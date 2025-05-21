@@ -32,7 +32,8 @@
           </div>
           <div class="chart-card">
             <h3>Interés en el Rastreo GPS</h3>
-            <canvas id="rastreoChart"></canvas> </div>
+            <canvas id="rastreoChart"></canvas>
+          </div>
           <div class="chart-card">
             <h3>Disposición de Inversión (USD)</h3>
             <canvas id="pagoChart"></canvas>
@@ -43,7 +44,12 @@
           </div>
           <div class="chart-card">
             <h3>Sentimiento sobre Inseguridad por Robo</h3>
-            <canvas id="inseguridadChart"></canvas> </div>
+            <canvas id="inseguridadChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Factores de Decisión (Importancia)</h3>
+            <canvas id="factoresChart"></canvas>
+          </div>
         </div>
       </div>
     </section>
@@ -53,16 +59,19 @@
         <h2>Conclusiones Estratégicas y Próximos Pasos</h2>
         <div class="analysis-summary">
             <p class="description">
-              La encuesta ha revelado insights críticos. Un total de **10 participantes** nos brindaron su valiosa perspectiva, conformando un grupo demográfico predominantemente joven. De ellos, **5 están entre 15 y 18 años**, **4 entre 18 y 30 años**, y **1 tiene más de 30 años** (considerando la respuesta "85" como +30). Esto refuerza la relevancia de nuestro proyecto para una audiencia nativa digital y con afinidad por la movilidad personal.
+              La encuesta ha revelado insights críticos. Un total de <strong id="totalParticipantesText">-- participantes</strong> nos brindaron su valiosa perspectiva, conformando un grupo demográfico predominantemente joven.
             </p>
             <p class="description">
-              Un hallazgo significativo es que el **100% de los encuestados ha expresado interés en poder ver la ubicación y otros datos de su vehículo a través de una aplicación o sitio web**. Esto sugiere una necesidad proactiva de seguridad y control, más allá de la reacción a incidentes pasados. Es una oportunidad clara para posicionar nuestro sistema como una herramienta de prevención y tranquilidad. Curiosamente, todos los encuestados que respondieron a la pregunta de "robo" indicaron **"No" haber sido víctimas de robo**, lo que subraya que el interés en el rastreo es más preventivo que reactivo. Además, el **80% se siente inseguro de darle a un hijo un vehículo propio por el riesgo de robo**, lo que indica una clara necesidad de soluciones de seguridad.
+              Un hallazgo significativo es que el <strong id="interesRastreoText">--% de los encuestados</strong> ha expresado interés en poder ver la ubicación y otros datos de su vehículo a través de una aplicación o sitio web.
             </p>
             <p class="description">
-              Financieramente, el proyecto muestra una gran viabilidad: el **50% de los participantes estaría dispuesto a invertir entre 300 y 500 USD** en el sistema E-Skate, y otro **40% está dispuesto a pagar entre 0 y 300 USD**. Solo el **10% no especificó** un rango. Esto demuestra un mercado receptivo a la propuesta de valor. La visión a futuro es aún más ambiciosa, con el **60% de los encuestados creyendo que nuestro sistema podría aplicarse a una amplia gama de vehículos**, abriendo las puertas a una expansión más allá de los skates eléctricos.
+              Financieramente, el proyecto muestra una gran viabilidad: el <strong id="pago300500Text">--% de los participantes</strong> estaría dispuesto a invertir entre 300 y 500 USD en el sistema E-Skate, y otro <strong id="pago0300Text">--% está dispuesto a pagar entre 0 y 300 USD</strong>.
             </p>
             <p class="description">
-              Finalmente, recibimos comentarios valiosos como la sugerencia de **comprar un dominio propio y hostear en servidores cercanos (ej. AWS Brasil)** para optimizar la respuesta de la página, lo que tomaremos en cuenta para la infraestructura futura. Estos resultados nos motivan a avanzar con el desarrollo, enfocándonos en robustez, usabilidad y escalabilidad para satisfacer esta demanda latente en el mercado de movilidad inteligente.
+              La visión a futuro es aún más ambiciosa, con el <strong id="expandirText">--% de los encuestados</strong> creyendo que nuestro sistema podría aplicarse a una amplia gama de vehículos.
+            </p>
+            <p class="description">
+              Finalmente, recibimos comentarios valiosos como la sugerencia de comprar un dominio propio y hostear en servidores cercanos (ej. AWS Brasil) para optimizar la respuesta de la página, lo que tomaremos en cuenta para la infraestructura futura. Estos resultados nos motivan a avanzar con el desarrollo, enfocándonos en robustez, usabilidad y escalabilidad para satisfacer esta demanda latente en el mercado de movilidad inteligente.
             </p>
         </div>
         <div class="text-center button-group-analysis">
@@ -81,12 +90,12 @@
 
   <script>
     const chartColors = {
-      primary: '#FFCC00', // Tu amarillo vibrante original
-      secondary: '#0F2D52', // Tu azul secundario
-      tertiary: '#1A1A2E', // Tu azul primario para algunos elementos internos
-      quaternary: '#4CAF50', // Verde (ejemplo de color adicional)
-      fifth: '#00BCD4', // Celeste (ejemplo de color adicional)
-      sixth: '#FF5722' // Naranja (ejemplo de color adicional)
+      primary: '#FFCC00',
+      secondary: '#0F2D52',
+      tertiary: '#1A1A2E',
+      quaternary: '#4CAF50',
+      fifth: '#00BCD4',
+      sixth: '#FF5722'
     };
 
     function getChartBackgroundColors(count) {
@@ -135,143 +144,364 @@
         }
     };
 
-    // Gráfico de Edad
-    new Chart(document.getElementById('edadChart'), {
-      type: 'pie',
-      data: {
-        labels: ['15-18 años', '18-30 años', '30+ años'],
-        datasets: [{
-          data: [5, 4, 1], // 5 de 15-18, 4 de 18-30, 1 de 30+ (el 85 lo puse aquí)
-          backgroundColor: getChartBackgroundColors(3),
-          hoverOffset: 10
-        }]
-      },
-      options: commonChartOptions
-    });
+    // La URL de tu Google Sheet CSV.
+    const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUxhn2MDgcTc5gtbZUtzpe9hyBwvIeCez3eQB0HAJjOJG2QE0HbLisj4nmz9MiU7kfPmOv7gb_wSNY/pub?output=csv';
 
-    // Gráfico de Vehículo Propio
-    new Chart(document.getElementById('vehiculoChart'), {
-      type: 'pie',
-      data: {
-        labels: ['Utilizo bicicleta o motocicleta', 'Tengo automóvil propio', 'Voy a todos lados caminando'],
-        datasets: [{
-          data: [6, 2, 2], // 6 bicicletas/motocicletas, 2 automóvil propio, 2 caminando
-          backgroundColor: getChartBackgroundColors(3),
-          hoverOffset: 10
-        }]
-      },
-      options: commonChartOptions
-    });
+    let edadChart, vehiculoChart, rastreoChart, pagoChart, expandirChart, inseguridadChart, factoresChart;
 
-    // Gráfico de Interés en Rastreo GPS (100% "Sí")
-    new Chart(document.getElementById('rastreoChart'), {
-      type: 'doughnut',
-      data: {
-        labels: ['Sí, me gustaría verlo'],
-        datasets: [{
-          data: [10], // Todos los 10 dijeron Sí
-          backgroundColor: [chartColors.primary],
-          hoverOffset: 10
-        }]
-      },
-      options: commonChartOptions
-    });
-
-    // Gráfico de Disposición de Inversión
-    new Chart(document.getElementById('pagoChart'), {
-      type: 'pie',
-      data: {
-        labels: ['0-300 USD', '300-500 USD'],
-        datasets: [{
-          data: [4, 5], // 4 de 0-300 USD, 5 de 300-500 USD. (10 - 4 - 5 = 1 que no especificó en esta tabla)
-          backgroundColor: getChartBackgroundColors(2),
-          hoverOffset: 10
-        }]
-      },
-      options: commonChartOptions
-    });
-
-    // Gráfico de Visión de Futuro: Aplicabilidad
-    new Chart(document.getElementById('expandirChart'), {
-      type: 'pie',
-      data: {
-        labels: ['Quiero tenerlo en todos mis vehículos', 'Lo veo posible'],
-        datasets: [{
-          data: [6, 4], // 6 "Quiero...", 4 "Lo veo posible" (Nop y No son "Lo veo posible")
-          backgroundColor: getChartBackgroundColors(2),
-          hoverOffset: 10
-        }]
-      },
-      options: commonChartOptions
-    });
-
-    // Gráfico de Sentimiento sobre Inseguridad por Robo (Nueva adición)
-    new Chart(document.getElementById('inseguridadChart'), {
-      type: 'doughnut',
-      data: {
-        labels: ['Sí, me siento inseguro', 'No me siento inseguro'],
-        datasets: [{
-          data: [8, 2], // 8 "Sí", 2 "No" (el de 85 y el de 14/5/2025 dijeron "No")
-          backgroundColor: [chartColors.quaternary, chartColors.sixth], // Verde para "Sí", Naranja para "No"
-          hoverOffset: 10
-        }]
-      },
-      options: commonChartOptions
-    });
-
-    // Gráfico de Factores de Decisión (Radar Chart - basado en percepción general de la encuesta)
-    new Chart(document.getElementById('factoresChart'), {
-      type: 'radar',
-      data: {
-        labels: ['Seguridad', 'Rastreo GPS', 'Costo', 'Facilidad de Uso', 'Diseño'],
-        datasets: [{
-          label: 'Importancia Valorada (1-5)',
-          data: [5, 4.8, 3.5, 4.2, 3.8], // Estos son promedios estimados por el análisis
-          backgroundColor: 'rgba(255, 204, 0, 0.2)',
-          borderColor: chartColors.primary,
-          pointBackgroundColor: chartColors.primary,
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: chartColors.primary,
-          borderWidth: 2
-        }]
-      },
-      options: {
-        ...commonChartOptions,
-        plugins: {
-            ...commonChartOptions.plugins,
-            legend: {
-                position: 'top',
+    async function fetchAndProcessData() {
+        try {
+            const response = await fetch(GOOGLE_SHEET_CSV_URL);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        },
-        scales: {
-          r: {
-            angleLines: {
-              color: 'rgba(255, 255, 255, 0.2)'
-            },
-            grid: {
-              color: 'rgba(255, 255, 255, 0.2)'
-            },
-            pointLabels: {
-              font: {
-                family: 'Poppins',
-                size: 14,
-                weight: '600'
-              },
-              color: '#E0E0E0'
-            },
-            ticks: {
-              display: false,
-              beginAtZero: true,
-              max: 5,
-              stepSize: 1
-            },
-            suggestedMin: 0,
-            suggestedMax: 5
-          }
+            const csvText = await response.text();
+
+            const lines = csvText.trim().split('\n');
+            
+            // Función para dividir una línea CSV manejando comas dentro de comillas
+            // Explicación de la regex:
+            // /,(?=(?:(?:[^"]*"){2})*[^"]*$)/
+            // ,             : Busca una coma
+            // (?=           : Positive lookahead (la coma debe ser seguida por...)
+            //   (?:         : Grupo sin captura
+            //     (?:[^"]*"){2} : Cero o más caracteres no comillas, seguidos por una comilla (este patrón se repite dos veces, es decir, un par de comillas)
+            //   )* : Este grupo (el par de comillas) puede aparecer cero o más veces. Esto asegura que estamos fuera de un campo entrecomillado.
+            //   [^"]* : Cero o más caracteres que no sean comillas (para llegar al final de la línea o al siguiente campo)
+            //   $           : Hasta el final de la línea
+            // )             : Cierra el lookahead
+            const parseCSVLine = (line) => {
+                const values = [];
+                let inQuote = false;
+                let currentField = '';
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    if (char === '"') {
+                        inQuote = !inQuote;
+                        // Si la comilla es parte del contenido y no un delimitador, no la añadimos.
+                        // Para este caso, como Google Sheets usa "" para escapar comillas, lo manejamos después.
+                    } else if (char === ',' && !inQuote) {
+                        values.push(currentField.trim());
+                        currentField = '';
+                    } else {
+                        currentField += char;
+                    }
+                }
+                values.push(currentField.trim()); // Añadir el último campo
+                // Remover comillas externas que pueden quedar si el campo estaba entrecomillado
+                return values.map(val => {
+                    if (val.startsWith('"') && val.endsWith('"')) {
+                        return val.substring(1, val.length - 1).replace(/""/g, '"'); // Manejar comillas escapadas
+                    }
+                    return val;
+                });
+            };
+
+            const headers = parseCSVLine(lines[0]);
+            const data = lines.slice(1).map(line => {
+                const values = parseCSVLine(line);
+                let obj = {};
+                headers.forEach((header, i) => {
+                    obj[header] = values[i] ? values[i].trim() : '';
+                });
+                return obj;
+            });
+
+            console.log("Datos brutos de la encuesta:", data);
+            console.log("Encabezados de columna:", headers);
+
+            const totalParticipantes = data.length;
+
+            // Edad - Lógica adaptada para categorías de texto (confirmado por el CSV)
+            let edad_15_18 = 0;
+            let edad_18_30 = 0;
+            let edad_30_plus = 0;
+            data.forEach(row => {
+                const edadStr = row['¿Qué edad tienes?'] || '';
+                if (edadStr.includes('15 a 18 años')) {
+                    edad_15_18++;
+                } else if (edadStr.includes('18 a 30 años')) {
+                    edad_18_30++;
+                } else if (parseInt(edadStr, 10) > 30) {
+                    edad_30_plus++;
+                }
+            });
+
+            // Hábitos de Movilidad Actuales
+            let vehiculoCounts = {};
+            data.forEach(row => {
+                const vehiculo = row['¿Tienes vehículo propio?'] || '';
+                if (vehiculo) {
+                   vehiculoCounts[vehiculo] = (vehiculoCounts[vehiculo] || 0) + 1;
+                }
+            });
+            const vehiculoLabels = Object.keys(vehiculoCounts);
+            const vehiculoData = Object.values(vehiculoCounts);
+
+            // Interés en Rastreo GPS
+            let rastreoSi = 0;
+            let rastreoNo = 0;
+            data.forEach(row => {
+                // Asegúrate de que el nombre de la columna es exacto
+                const rastreo = row['¿Te gustaría poder ver la ubicación y otros datos de tu vehículo a través de una aplicación o sitio web?'] || '';
+                if (rastreo === 'Si') {
+                    rastreoSi++;
+                } else if (rastreo === 'No') {
+                    rastreoNo++;
+                }
+            });
+            const porcentajeInteresRastreo = totalParticipantes > 0 ? ((rastreoSi / totalParticipantes) * 100).toFixed(0) : 0;
+
+
+            // Disposición de Inversión
+            let pago_0_300 = 0;
+            let pago_300_500 = 0;
+            let pago_mas_500 = 0;
+            let pago_no_esp = 0;
+            data.forEach(row => {
+                // Asegúrate de que el nombre de la columna es exacto
+                const pago = row['¿Cuánto estarías dispuesto a pagar por este producto?'] || '';
+                if (pago === '0-300 USD') pago_0_300++;
+                else if (pago === '300-500 USD') pago_300_500++;
+                else if (pago === 'Mas de 500 USD') pago_mas_500++;
+                else pago_no_esp++;
+            });
+            const porcentajePago300500 = totalParticipantes > 0 ? ((pago_300_500 / totalParticipantes) * 100).toFixed(0) : 0;
+            const porcentajePago0300 = totalParticipantes > 0 ? ((pago_0_300 / totalParticipantes) * 100).toFixed(0) : 0;
+
+
+            // Visión de Futuro: Aplicabilidad
+            let expandirQuiero = 0;
+            let expandirPosible = 0;
+            let expandirNo = 0;
+            data.forEach(row => {
+                // Asegúrate de que el nombre de la columna es exacto
+                const expandir = row['¿Te gustaría que se expanda a todo tipo de vehículos?'] || '';
+                if (expandir === 'Quiero tenerlo en todos mis vehículos') expandirQuiero++;
+                else if (expandir === 'Lo veo posible') expandirPosible++;
+                else if (expandir === 'No') expandirNo++;
+            });
+            const porcentajeExpandir = totalParticipantes > 0 ? (((expandirQuiero + expandirPosible) / totalParticipantes) * 100).toFixed(0) : 0;
+
+
+            // Sentimiento sobre Inseguridad por Robo
+            let inseguroSi = 0;
+            let inseguroNo = 0;
+            data.forEach(row => {
+                // Asegúrate de que el nombre de la columna es exacto
+                const inseguridad = row['¿Te sientes inseguro de darle a tu hijo un vehículo propio a causa de este peligro de robo?'] || '';
+                if (inseguridad === 'Si') inseguroSi++;
+                else if (inseguridad === 'No') inseguroNo++;
+            });
+
+
+            // --- Actualizar los Gráficos ---
+
+            // Edad Chart
+            const edadCtx = document.getElementById('edadChart').getContext('2d');
+            if (edadChart) {
+                edadChart.data.datasets[0].data = [edad_15_18, edad_18_30, edad_30_plus];
+                edadChart.update();
+            } else {
+                edadChart = new Chart(edadCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['15-18 años', '18-30 años', '30+ años'],
+                        datasets: [{
+                            data: [edad_15_18, edad_18_30, edad_30_plus],
+                            backgroundColor: getChartBackgroundColors(3),
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            }
+
+            // Vehículo Chart
+            const vehiculoCtx = document.getElementById('vehiculoChart').getContext('2d');
+            if (vehiculoChart) {
+                vehiculoChart.data.labels = vehiculoLabels;
+                vehiculoChart.data.datasets[0].data = vehiculoData;
+                vehiculoChart.data.datasets[0].backgroundColor = getChartBackgroundColors(vehiculoLabels.length);
+                vehiculoChart.update();
+            } else {
+                vehiculoChart = new Chart(vehiculoCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: vehiculoLabels,
+                        datasets: [{
+                            data: vehiculoData,
+                            backgroundColor: getChartBackgroundColors(vehiculoLabels.length),
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            }
+
+            // Rastreo Chart
+            const rastreoCtx = document.getElementById('rastreoChart').getContext('2d');
+            if (rastreoChart) {
+                rastreoChart.data.labels = ['Sí, me gustaría verlo', 'No, no me gustaría'];
+                rastreoChart.data.datasets[0].data = [rastreoSi, rastreoNo];
+                rastreoChart.data.datasets[0].backgroundColor = [chartColors.primary, chartColors.secondary];
+                rastreoChart.update();
+            } else {
+                rastreoChart = new Chart(rastreoCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Sí, me gustaría verlo', 'No, no me gustaría'],
+                        datasets: [{
+                            data: [rastreoSi, rastreoNo],
+                            backgroundColor: [chartColors.primary, chartColors.secondary],
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            }
+
+            // Pago Chart
+            const pagoCtx = document.getElementById('pagoChart').getContext('2d');
+            const pagoLabels = ['0-300 USD', '300-500 USD', 'Más de 500 USD'];
+            const pagoChartData = [pago_0_300, pago_300_500, pago_mas_500];
+            const pagoColors = getChartBackgroundColors(3);
+
+            if (pago_no_esp > 0) {
+                pagoLabels.push('No especificó');
+                pagoChartData.push(pago_no_esp);
+                pagoColors.push('#B0BEC5');
+            }
+
+            if (pagoChart) {
+                pagoChart.data.labels = pagoLabels;
+                pagoChart.data.datasets[0].data = pagoChartData;
+                pagoChart.data.datasets[0].backgroundColor = pagoColors;
+                pagoChart.update();
+            } else {
+                pagoChart = new Chart(pagoCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: pagoLabels,
+                        datasets: [{
+                            data: pagoChartData,
+                            backgroundColor: pagoColors,
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            }
+
+            // Expandir Chart
+            const expandirCtx = document.getElementById('expandirChart').getContext('2d');
+            const expandirLabels = ['Quiero tenerlo en todos mis vehículos', 'Lo veo posible'];
+            const expandirChartData = [expandirQuiero, expandirPosible];
+            const expandirColors = getChartBackgroundColors(2);
+
+            if (expandirNo > 0) {
+                expandirLabels.push('No');
+                expandirChartData.push(expandirNo);
+                expandirColors.push('#B0BEC5');
+            }
+
+            if (expandirChart) {
+                expandirChart.data.labels = expandirLabels;
+                expandirChart.data.datasets[0].data = expandirChartData;
+                expandirChart.data.datasets[0].backgroundColor = expandirColors;
+                expandirChart.update();
+            } else {
+                expandirChart = new Chart(expandirCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: expandirLabels,
+                        datasets: [{
+                            data: expandirChartData,
+                            backgroundColor: expandirColors,
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            }
+
+            // Inseguridad Chart
+            const inseguridadCtx = document.getElementById('inseguridadChart').getContext('2d');
+            if (inseguridadChart) {
+                inseguridadChart.data.datasets[0].data = [inseguroSi, inseguroNo];
+                inseguridadChart.update();
+            } else {
+                inseguridadChart = new Chart(inseguridadCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Sí, me sentiría mucho más seguro/a', 'No, no me sentiría inseguro/a'],
+                        datasets: [{
+                            data: [inseguroSi, inseguroNo],
+                            backgroundColor: [chartColors.quaternary, chartColors.sixth],
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            }
+
+            // Factores de Decisión Chart (se mantiene con datos fijos o se actualiza si tienes datos para ello)
+            const factoresCtx = document.getElementById('factoresChart').getContext('2d');
+            if (!factoresChart) {
+                factoresChart = new Chart(factoresCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Seguridad', 'Rastreo GPS', 'Costo', 'Facilidad de Uso', 'Diseño'],
+                        datasets: [{
+                            label: 'Importancia Valorada (1-5)',
+                            data: [5, 4.8, 3.5, 4.2, 3.8],
+                            backgroundColor: 'rgba(255, 204, 0, 0.2)',
+                            borderColor: chartColors.primary,
+                            pointBackgroundColor: chartColors.primary,
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: chartColors.primary,
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        ...commonChartOptions,
+                        plugins: {
+                            ...commonChartOptions.plugins,
+                            legend: {
+                                position: 'top',
+                            }
+                        },
+                        scales: {
+                            r: {
+                                angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                                grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                                pointLabels: {
+                                    font: { family: 'Poppins', size: 14, weight: '600' },
+                                    color: '#E0E0E0'
+                                },
+                                ticks: { display: false, beginAtZero: true, max: 5, stepSize: 1 },
+                                suggestedMin: 0,
+                                suggestedMax: 5
+                            }
+                        }
+                    }
+                });
+            }
+
+            document.getElementById('totalParticipantesText').textContent = `${totalParticipantes} participantes`;
+            document.getElementById('interesRastreoText').textContent = `${porcentajeInteresRastreo}% de los encuestados`;
+            document.getElementById('pago300500Text').textContent = `${porcentajePago300500}% de los participantes`;
+            document.getElementById('pago0300Text').textContent = `${porcentajePago0300}% está dispuesto a pagar entre 0 y 300 USD`;
+            document.getElementById('expandirText').textContent = `${porcentajeExpandir}% de los encuestados`;
+
+        } catch (error) {
+            console.error('Error al cargar o procesar los datos de la encuesta:', error);
         }
-      }
-    });
+    }
+
+    fetchAndProcessData();
+    setInterval(fetchAndProcessData, 30000);
   </script>
 </body>
 </html>
