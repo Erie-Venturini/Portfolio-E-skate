@@ -16,7 +16,8 @@
     <a href="#product-showcase" class="sidebar-item" data-tooltip="Explora el Producto"><i class="fas fa-cube"></i></a>
     <a href="#features" class="sidebar-item" data-tooltip="Características Clave"><i class="fas fa-cogs"></i></a>
     <a href="#survey" class="sidebar-item" data-tooltip="Participa en la Encuesta"><i class="fas fa-poll-h"></i></a>
-    <a href="resultados.html" class="sidebar-item" data-tooltip="Resultados"><i class="fas fa-chart-bar"></i></a> <a href="#contact" class="sidebar-item" data-tooltip="Contáctanos"><i class="fas fa-envelope"></i></a>
+    <a href="resultados.html" class="sidebar-item" data-tooltip="Resultados"><i class="fas fa-chart-bar"></i></a>
+    <a href="#contact" class="sidebar-item" data-tooltip="Contáctanos"><i class="fas fa-envelope"></i></a>
   </aside>
 
   <header>
@@ -63,8 +64,8 @@
 
         <div class="model-viewer-container">
           <model-viewer
-             src="E_skate.glb" alt="Modelo 3D de Módulo E-Skate"
-            alt="Modelo 3D de Módulo E-Skate"
+             src="E_skate.glb"
+            alt="Modelo 3D del prototipo de E-Skate"
             auto-rotate
             camera-controls
             shadow-intensity="1"
@@ -76,9 +77,9 @@
             exposure="1"
             interaction-prompt="none"
             class="interactive-model">
-          </model-viewer>
+            </model-viewer>
         </div>
-        <p class="small-text"><i>**Nota:** El modelo 3D actual es un ejemplo. Puedes reemplazar "Astronaut.glb" con tu propio modelo .glb del módulo E-Skate.</i></p>
+        <p class="small-text"><i>**Nota:** El modelo 3D actual es un ejemplo. Si "E_skate.glb" es tu archivo, ¡ya está!</i></p>
       </div>
     </section>
 
@@ -122,7 +123,7 @@
 
         <div id="formContainer" class="form-embed-wrapper">
           <iframe
-            src=""
+            src="https://docs.google.com/forms/d/e/1FAIpQLSc1aDMNoK8InEa-Y-MXDXiM-DX-NnrUMotyScSR15nSBSJb1Q/viewform?embedded=true"
             width="100%"
             height="700"
             frameborder="0"
@@ -141,7 +142,7 @@
             <div class="contact-info-grid">
                 <div class="contact-detail">
                     <i class="fas fa-map-marker-alt"></i>
-                    <p>Cordoba, Argentina</p>
+                    <p>Córdoba, Argentina</p>
                 </div>
                 <div class="contact-detail">
                     <i class="fas fa-envelope"></i>
@@ -149,7 +150,7 @@
                 </div>
                 <div class="contact-detail">
                     <i class="fas fa-phone"></i>
-                    <p><a href="tel:+5493881234567">+54 3571 419879</a></p>
+                    <p><a href="tel:+5493571419879">+54 3571 419879</a></p>
                 </div>
             </div>
             <div class="social-icons-contact">
@@ -221,7 +222,7 @@
         }
     });
 
-    // Función para el modelo 3D (ejemplo de hotspot toggle si tu modelo los tiene)
+    // Función para el modelo 3D
     const modelViewer = document.querySelector('model-viewer');
     if (modelViewer) {
       modelViewer.addEventListener('load', () => {
