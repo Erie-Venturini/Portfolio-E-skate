@@ -9,35 +9,56 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+  <div class="menu-icon" id="menuIcon">
+      <i class="fas fa-bars"></i>
+  </div>
+
+  <nav class="mobile-nav-overlay" id="mobileNavOverlay">
+      <div class="mobile-nav-header">
+          <h2 class="mobile-nav-category-title">Menú</h2>
+      </div>
+      <div class="mobile-nav-section">
+          <h3 class="mobile-nav-category-title">Navegación Principal</h3>
+          <ul class="mobile-nav-list">
+              <li><a href="index.html#hero-section" class="mobile-nav-item"><i class="fas fa-home"></i> Inicio</a></li>
+              <li><a href="index.html#survey-section" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Encuesta</a></li>
+              <li><a href="resultados.html#charts-section" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
+              <li><a href="#competition-analysis" class="mobile-nav-item"><i class="fas fa-balance-scale"></i> Competencia</a></li>
+          </ul>
+      </div>
+      <div class="mobile-nav-section">
+          <h3 class="mobile-nav-category-title">Contenido de esta Página</h3>
+          <ul class="mobile-nav-list">
+              <li><a href="#competition-analysis" class="mobile-nav-item"><i class="fas fa-sitemap"></i> Análisis Detallado</a></li>
+          </ul>
+      </div>
+  </nav>
+
   <aside class="sidebar sidebar-right">
-    <a href="index.html#hero" class="sidebar-item" data-tooltip="Volver a Inicio"><i class="fas fa-home"></i></a>
-    <a href="index.html#survey" class="sidebar-item" data-tooltip="Participa en la Encuesta"><i class="fas fa-poll-h"></i></a>
-    <a href="resultados.html" class="sidebar-item" data-tooltip="Resultados"><i class="fas fa-chart-bar"></i></a>
-    <a href="analisisCompetencia.html" class="sidebar-item" data-tooltip="Análisis de la Competencia"><i class="fas fa-balance-scale"></i></a>
+    <a href="index.html#hero-section" class="sidebar-item">
+        <i class="fas fa-home"></i>
+        <span class="custom-tooltip">Inicio</span>
+    </a>
+    <a href="index.html#survey-section" class="sidebar-item">
+        <i class="fas fa-poll-h"></i>
+        <span class="custom-tooltip">Encuesta</span>
+    </a>
+    <a href="resultados.html#charts-section" class="sidebar-item">
+        <i class="fas fa-chart-bar"></i>
+        <span class="custom-tooltip">Resultados</span>
+    </a>
+    <a href="#competition-analysis" class="sidebar-item">
+        <i class="fas fa-balance-scale"></i>
+        <span class="custom-tooltip">Análisis de la Competencia</span>
+    </a>
   </aside>
 
   <header>
     <div class="container">
       <h1 class="logo-text">E-Skate Project</h1>
       <p class="tagline">Análisis de la Competencia</p>
-      <div class="menu-icon" id="mobileMenuToggle">
-          <i class="fas fa-bars"></i>
       </div>
-    </div>
   </header>
-
-  <nav class="mobile-nav-overlay" id="mobileNavOverlay">
-      <div class="mobile-nav-header"></div>
-      <div class="mobile-nav-section">
-          <h3 class="mobile-nav-category-title">Economía del Producto</h3>
-          <ul class="mobile-nav-list">
-              <li><a href="index.html#hero" class="mobile-nav-item"><i class="fas fa-home"></i> Volver a Inicio</a></li>
-              <li><a href="index.html#survey" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Participa en la Encuesta</a></li>
-              <li><a href="resultados.html" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
-              <li><a href="analisisCompetencia.html" class="mobile-nav-item"><i class="fas fa-balance-scale"></i> Análisis de la Competencia</a></li>
-          </ul>
-      </div>
-  </nav>
 
   <main>
     <section id="competition-analysis" class="section-padded content-section">
@@ -211,73 +232,57 @@
   </footer>
 
   <script>
-    // Script general para barras laterales y menú móvil (copiado de index.html)
-    document.querySelectorAll('.sidebar-item').forEach(item => {
-        const tooltipText = item.getAttribute('data-tooltip');
-        if (tooltipText) {
-            item.style.position = 'relative';
-            item.addEventListener('mouseenter', function() {
-                const tooltip = document.createElement('span');
-                tooltip.classList.add('custom-tooltip');
-                tooltip.textContent = tooltipText;
-                this.appendChild(tooltip);
+    // JavaScript para el menú hamburguesa (GLOBAL PARA TODAS LAS PÁGINAS CON ESTA ESTRUCTURA)
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuIcon = document.getElementById('menuIcon'); // Usamos el ID 'menuIcon' consistentemente
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const navItems = mobileNavOverlay.querySelectorAll('.mobile-nav-item');
+
+        if (menuIcon && mobileNavOverlay) { // Asegurarse de que los elementos existan
+            menuIcon.addEventListener('click', () => {
+                mobileNavOverlay.classList.toggle('is-open');
+                document.body.classList.toggle('menu-active');
+                document.body.style.overflow = mobileNavOverlay.classList.contains('is-open') ? 'hidden' : ''; // Bloquea el scroll
+                menuIcon.querySelector('i').classList.toggle('fa-bars');
+                menuIcon.querySelector('i').classList.toggle('fa-times');
             });
-            item.addEventListener('mouseleave', function() {
-                const tooltip = this.querySelector('.custom-tooltip');
-                if (tooltip) {
-                    tooltip.remove();
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    mobileNavOverlay.classList.remove('is-open');
+                    document.body.classList.remove('menu-active');
+                    document.body.style.overflow = '';
+                    menuIcon.querySelector('i').classList.remove('fa-times');
+                    menuIcon.querySelector('i').classList.add('fa-bars');
+                });
+            });
+
+            // Cerrar menú al hacer clic fuera
+            document.body.addEventListener('click', (event) => {
+                if (mobileNavOverlay.classList.contains('is-open') &&
+                    !mobileNavOverlay.contains(event.target) &&
+                    !menuIcon.contains(event.target)) {
+
+                    mobileNavOverlay.classList.remove('is-open');
+                    document.body.classList.remove('menu-active');
+                    document.body.style.overflow = '';
+                    menuIcon.querySelector('i').classList.remove('fa-times');
+                    menuIcon.querySelector('i').classList.add('fa-bars');
                 }
             });
         }
-    });
 
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-
-    if (mobileMenuToggle && mobileNavOverlay) {
-        mobileMenuToggle.addEventListener('click', () => {
-            const isMenuOpen = mobileNavOverlay.classList.contains('is-open');
-            if (isMenuOpen) {
-                mobileNavOverlay.classList.remove('is-open');
-                document.body.classList.remove('menu-active');
-                document.body.style.overflow = '';
-                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-            } else {
-                mobileNavOverlay.classList.add('is-open');
-                document.body.classList.add('menu-active');
-                document.body.style.overflow = 'hidden';
-                mobileMenuToggle.querySelector('i').classList.remove('fa-bars');
-                mobileMenuToggle.querySelector('i').classList.add('fa-times');
-            }
-        });
-        
-        document.body.addEventListener('click', (e) => {
-            if (document.body.classList.contains('menu-active') && 
-                !mobileNavOverlay.contains(e.target) && 
-                !mobileMenuToggle.contains(e.target) &&
-                !e.target.closest('.mobile-nav-overlay')) { // Evita cierre si el clic es dentro del overlay
-                
-                mobileNavOverlay.classList.remove('is-open');
-                document.body.classList.remove('menu-active');
-                document.body.style.overflow = '';
-                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-            }
-        });
-    }
-
-    // Asegurarse de que los enlaces del menú móvil también cierren el menú
-    document.querySelectorAll('.mobile-nav-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-            const mobileMenuToggle = document.getElementById('mobileMenuToggle'); 
-            if (mobileNavOverlay && mobileMenuToggle) {
-                mobileNavOverlay.classList.remove('is-open');
-                document.body.classList.remove('menu-active'); 
-                document.body.style.overflow = ''; 
-                mobileMenuToggle.querySelector('i').classList.remove('fa-times'); 
-                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+        // Script para los tooltips (debe ser el mismo que en las otras páginas)
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            const tooltipText = item.querySelector('.custom-tooltip')?.textContent; // Obtener el texto del span
+            if (tooltipText) {
+                // No necesitamos añadir y remover el span en JS si ya está en HTML y solo lo mostramos/ocultamos con CSS
+                // El CSS se encarga de mostrar/ocultar el .custom-tooltip al :hover del .sidebar-item
+                // Si tu CSS lo necesita así, este JS no es necesario.
+                // Si el tooltip necesita ser creado dinámicamente, entonces el código anterior que tenías está bien.
+                // Asumiendo que el span ya está en el HTML y el CSS lo maneja:
+                // No hace falta JS aquí para los tooltips, se manejarían 100% con CSS.
+                // Si no funciona, por favor, muéstrame el CSS relevante.
             }
         });
     });
