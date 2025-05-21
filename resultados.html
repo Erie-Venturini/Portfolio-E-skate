@@ -1,283 +1,557 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-Skate Project | Resultados de la Encuesta</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de la Encuesta | E-Skate Project</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <aside class="sidebar sidebar-right">
-    <a href="index.html#hero" class="sidebar-item" data-tooltip="Volver a Inicio"><i class="fas fa-home"></i></a>
-    <a href="index.html#survey" class="sidebar-item" data-tooltip="Participa en la Encuesta"><i class="fas fa-poll-h"></i></a>
-    <a href="resultados.html" class="sidebar-item" data-tooltip="Resultados"><i class="fas fa-chart-bar"></i></a>
-    <a href="analisisCompetencia.html" class="sidebar-item" data-tooltip="Análisis de la Competencia"><i class="fas fa-balance-scale"></i></a>
-  </aside>
-
-  <header>
-    <div class="container">
-      <h1 class="logo-text">E-Skate Project</h1>
-      <p class="tagline">Resultados de la Encuesta</p>
-      <div class="menu-icon" id="mobileMenuToggle">
-          <i class="fas fa-bars"></i>
-      </div>
+    <div class="menu-icon" id="menuIcon">
+        <i class="fas fa-bars"></i>
     </div>
-  </header>
 
-  <nav class="mobile-nav-overlay" id="mobileNavOverlay">
-      <div class="mobile-nav-header"></div>
-      <div class="mobile-nav-section">
-          <h3 class="mobile-nav-category-title">Economía del Producto</h3>
-          <ul class="mobile-nav-list">
-              <li><a href="index.html#hero" class="mobile-nav-item"><i class="fas fa-home"></i> Volver a Inicio</a></li>
-              <li><a href="index.html#survey" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Participa en la Encuesta</a></li>
-              <li><a href="resultados.html" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
-              <li><a href="analisisCompetencia.html" class="mobile-nav-item"><i class="fas fa-balance-scale"></i> Análisis de la Competencia</a></li>
-          </ul>
-      </div>
-  </nav>
-
-  <main>
-    <section id="results-charts" class="section-padded content-section">
-      <div class="container">
-        <h2>Resultados Clave de Nuestra Encuesta</h2>
-        <p class="description">Analizamos las respuestas de nuestra encuesta para comprender mejor las necesidades y preferencias de nuestros potenciales usuarios. Estos datos nos ayudan a moldear el futuro de E-Skate Project.</p>
-
-        <div class="chart-grid">
-          <div class="chart-card">
-            <h3>Distribución Demográfica (Edad)</h3>
-            <canvas id="ageChart"></canvas>
-            <div class="small-text">
-                <span style="color: #FFCC00;">■</span> 15-18 años
-                <span style="color: #0F2D52;">■</span> 18-30 años
-                <span style="color: #4CAF50;">■</span> 30+ años
-            </div>
-          </div>
-          <div class="chart-card">
-            <h3>Hábitos de Movilidad Actuales</h3>
-            <canvas id="vehicleChart"></canvas>
-            <div class="small-text">
-                <span style="color: #FFCC00;">■</span> Automóvil propio
-                <span style="color: #0F2D52;">■</span> Transporte público
-                <span style="color: #4CAF50;">■</span> Bicicleta/Motocicleta
-                <span style="color: #F44336;">■</span> Caminando
-            </div>
-          </div>
-          <div class="chart-card">
-            <h3>Interés en el Rastreo GPS</h3>
-            <canvas id="gpsInterestChart"></canvas>
-            <div class="small-text">
-                <span style="color: #FFCC00;">■</span> Sí, me gustaría verlo
-                <span style="color: #0F2D52;">■</span> No, no me gustaría
-            </div>
-          </div>
+    <nav class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav-header">
+            <h2 class="mobile-nav-category-title">Menú</h2>
         </div>
-
-        <div class="analysis-summary">
-          <p class="description">El análisis de los datos demográficos revela una fuerte representación de usuarios jóvenes. La mayoría utiliza bicicleta o motocicleta, lo que indica una predisposición a soluciones de movilidad personal. Un alto porcentaje muestra interés en el rastreo GPS, confirmando la relevancia de esta característica para la seguridad y control del vehículo.</p>
-          <p class="description">Además, la disposición a pagar por el producto muestra un mercado receptivo a la inversión en características de valor agregado como la seguridad y el monitoreo avanzado.</p>
+        <div class="mobile-nav-section">
+            <h3 class="mobile-nav-category-title">Navegación Principal</h3>
+            <ul class="mobile-nav-list">
+                <li><a href="index.html#hero-section" class="mobile-nav-item"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="index.html#survey-section" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Encuesta</a></li>
+                <li><a href="#charts-section" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
+                <li><a href="analisisCompetencia.html" class="mobile-nav-item"><i class="fas fa-balance-scale"></i> Competencia</a></li>
+            </ul>
         </div>
-
-        <div class="button-group button-group-analysis">
-          <a href="index.html#survey" class="btn-primary">Volver a la Encuesta</a>
-          <a href="index.html" class="btn-primary">Volver a la Página Principal</a>
+        <div class="mobile-nav-section">
+            <h3 class="mobile-nav-category-title">Contenido de Resultados</h3>
+            <ul class="mobile-nav-list">
+                <li><a href="#charts-section" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Gráficos Clave</a></li>
+                <li><a href="#analysis-section" class="mobile-nav-item"><i class="fas fa-book-open"></i> Análisis Detallado</a></li>
+            </ul>
         </div>
-      </div>
-    </section>
-  </main>
+    </nav>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 E-Skate Project. Todos los derechos reservados.</p>
-    </div>
-  </footer>
+    <aside class="sidebar sidebar-right">
+        <a href="index.html#hero-section" class="sidebar-item">
+            <i class="fas fa-home"></i>
+            <span class="custom-tooltip">Inicio</span>
+        </a>
+        <a href="index.html#survey-section" class="sidebar-item">
+            <i class="fas fa-poll-h"></i>
+            <span class="custom-tooltip">Encuesta</span>
+        </a>
+        <a href="#charts-section" class="sidebar-item">
+            <i class="fas fa-chart-bar"></i>
+            <span class="custom-tooltip">Resultados</span>
+        </a>
+        <a href="analisisCompetencia.html" class="sidebar-item">
+            <i class="fas fa-balance-scale"></i>
+            <span class="custom-tooltip">Análisis de la Competencia</span>
+        </a>
+    </aside>
 
-  <script>
-    // Navegación suave para todos los enlaces ancla
-    document.querySelectorAll('a[href^="index.html#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            // Permitir la navegación si el hash no está en la misma página
-            const targetHash = this.getAttribute('href').split('#')[1];
-            if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
-                // Si ya estamos en index.html, hacer scroll suave
-                e.preventDefault();
-                const targetElement = document.querySelector(`#${targetHash}`);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - (document.querySelector('header')?.offsetHeight || 0),
-                        behavior: "smooth"
+    <header>
+        <div class="container">
+            <h1>Resultados Detallados</h1>
+            <p class="tagline">Análisis Exhaustivo de Nuestro Sondeo de Viabilidad</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="charts-section" class="section-padded content-section">
+            <div class="container">
+                <h2>Perspectivas Clave de la Encuesta</h2>
+                <p class="description">Descubre los patrones y tendencias que emergen de las respuestas de nuestros participantes.</p>
+                <div class="chart-grid">
+                    <div class="chart-card">
+                        <h3>Distribución Demográfica (Edad)</h3>
+                        <canvas id="edadChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Hábitos de Movilidad Actuales</h3>
+                        <canvas id="vehiculoChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Interés en el Rastreo GPS</h3>
+                        <canvas id="rastreoChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Disposición de Inversión (USD)</h3>
+                        <canvas id="pagoChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Visión de Futuro: Aplicabilidad</h3>
+                        <canvas id="expandirChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Sentimiento sobre Inseguridad por Robo</h3>
+                        <canvas id="inseguridadChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Factores de Decisión (Importancia)</h3>
+                        <canvas id="factoresChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis-section" class="section-padded accent-bg">
+            <div class="container">
+                <h2>Conclusiones Estratégicas y Próximos Pasos</h2>
+                <div class="analysis-summary">
+                    <p class="description">
+                        La encuesta ha revelado insights críticos. Un total de <strong id="totalParticipantesText">-- participantes</strong> nos brindaron su valiosa perspectiva, conformando un grupo demográfico predominantemente joven.
+                    </p>
+                    <p class="description">
+                        Un hallazgo significativo es que el <strong id="interesRastreoText">--% de los encuestados</strong> ha expresado interés en poder ver la ubicación y otros datos de su vehículo a través de una aplicación o sitio web.
+                    </p>
+                    <p class="description">
+                        Financieramente, el proyecto muestra una gran viabilidad: el <strong id="pago300500Text">--% de los participantes</strong> estaría dispuesto a invertir entre 300 y 500 USD en el sistema E-Skate, y otro <strong id="pago0300Text">--% está dispuesto a pagar entre 0 y 300 USD</strong>.
+                    </p>
+                    <p class="description">
+                        La visión a futuro es aún más ambiciosa, con el <strong id="expandirText">--% de los encuestados</strong> creyendo que nuestro sistema podría aplicarse a una amplia gama de vehículos.
+                    </p>
+                    <p class="description">
+                        Finalmente, recibimos comentarios valiosos como la sugerencia de comprar un dominio propio y hostear en servidores cercanos (ej. AWS Brasil) para optimizar la respuesta de la página, lo que tomaremos en cuenta para la infraestructura futura. Estos resultados nos motivan a avanzar con el desarrollo, enfocándonos en robustez, usabilidad y escalabilidad para satisfacer esta demanda latente en el mercado de movilidad inteligente.
+                    </p>
+                </div>
+                <div class="text-center button-group-analysis">
+                    <a href="index.html#survey-section" class="btn-primary">Volver a la Encuesta</a>
+                    <a href="index.html" class="btn-primary">Volver a la Página Principal</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 E-Skate Project. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tu código JavaScript para los gráficos y la obtención de datos del CSV (SIN CAMBIOS)
+        // ... (todo el script de Chart.js y datos) ...
+        const chartColors = {
+            primary: '#FFCC00',
+            secondary: '#0F2D52',
+            tertiary: '#1A1A2E',
+            quaternary: '#4CAF50',
+            fifth: '#00BCD4',
+            sixth: '#FF5722'
+        };
+
+        function getChartBackgroundColors(count) {
+            const colors = [
+                chartColors.primary, chartColors.secondary, chartColors.quaternary, chartColors.fifth,
+                chartColors.tertiary, chartColors.sixth, '#3F51B5', '#8BC34A', '#FF9800', '#F44336'
+            ];
+            return colors.slice(0, count);
+        }
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: 'Poppins',
+                            size: 14
+                        },
+                        color: '#E0E0E0'
+                    }
+                },
+                tooltip: {
+                    bodyFont: {
+                        family: 'Poppins',
+                        size: 14
+                    },
+                    titleFont: {
+                        family: 'Poppins',
+                        weight: 'bold',
+                        size: 16
+                    },
+                    backgroundColor: 'rgba(15, 45, 82, 0.9)',
+                    borderColor: chartColors.primary,
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    xPadding: 15,
+                    yPadding: 15
+                }
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        };
+
+        const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUxhn2MDgcTc5gtbZUtzpe9hyBwvIeCez3eQB0HAJjOJG2QE0HbLisj4nmz9MiU7kfPmOv7gb_wSNY/pub?output=csv';
+
+        let edadChart, vehiculoChart, rastreoChart, pagoChart, expandirChart, inseguridadChart, factoresChart;
+
+        async function fetchAndProcessData() {
+            try {
+                const response = await fetch(GOOGLE_SHEET_CSV_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const csvText = await response.text();
+
+                const lines = csvText.trim().split('\n');
+
+                const parseCSVLine = (line) => {
+                    const values = [];
+                    let inQuote = false;
+                    let currentField = '';
+                    for (let i = 0; i < line.length; i++) {
+                        const char = line[i];
+                        if (char === '"') {
+                            inQuote = !inQuote;
+                        } else if (char === ',' && !inQuote) {
+                            values.push(currentField.trim());
+                            currentField = '';
+                        } else {
+                            currentField += char;
+                        }
+                    }
+                    values.push(currentField.trim());
+                    return values.map(val => {
+                        if (val.startsWith('"') && val.endsWith('"')) {
+                            return val.substring(1, val.length - 1).replace(/""/g, '"');
+                        }
+                        return val;
+                    });
+                };
+
+                const headers = parseCSVLine(lines[0]);
+                const data = lines.slice(1).map(line => {
+                    const values = parseCSVLine(line);
+                    let obj = {};
+                    headers.forEach((header, i) => {
+                        obj[header] = values[i] ? values[i].trim() : '';
+                    });
+                    return obj;
+                });
+
+                console.log("Datos brutos de la encuesta:", data);
+                console.log("Encabezados de columna:", headers);
+
+                const totalParticipantes = data.length;
+
+                let edad_15_18 = 0;
+                let edad_18_30 = 0;
+                let edad_30_plus = 0;
+                data.forEach(row => {
+                    const edadStr = row['¿Qué edad tienes?'] || '';
+                    if (edadStr.includes('15 a 18 años')) {
+                        edad_15_18++;
+                    } else if (edadStr.includes('18 a 30 años')) {
+                        edad_18_30++;
+                    } else if (parseInt(edadStr, 10) > 30) {
+                        edad_30_plus++;
+                    }
+                });
+
+                let vehiculoCounts = {};
+                data.forEach(row => {
+                    const vehiculo = row['¿Tienes vehículo propio?'] || '';
+                    if (vehiculo) {
+                       vehiculoCounts[vehiculo] = (vehiculoCounts[vehiculo] || 0) + 1;
+                    }
+                });
+                const vehiculoLabels = Object.keys(vehiculoCounts);
+                const vehiculoData = Object.values(vehiculoCounts);
+
+                let rastreoSi = 0;
+                let rastreoNo = 0;
+                data.forEach(row => {
+                    const rastreo = row['¿Te gustaría poder ver la ubicación y otros datos de tu vehículo a través de una aplicación o sitio web?'] || '';
+                    if (rastreo === 'Si') {
+                        rastreoSi++;
+                    } else if (rastreo === 'No') {
+                        rastreoNo++;
+                    }
+                });
+                const porcentajeInteresRastreo = totalParticipantes > 0 ? ((rastreoSi / totalParticipantes) * 100).toFixed(0) : 0;
+
+
+                let pago_0_300 = 0;
+                let pago_300_500 = 0;
+                let pago_mas_500 = 0;
+                let pago_no_esp = 0;
+                data.forEach(row => {
+                    const pago = row['¿Cuánto estarías dispuesto a pagar por este producto?'] || '';
+                    if (pago === '0-300 USD') pago_0_300++;
+                    else if (pago === '300-500 USD') pago_300_500++;
+                    else if (pago === 'Mas de 500 USD') pago_mas_500++;
+                    else pago_no_esp++;
+                });
+                const porcentajePago300500 = totalParticipantes > 0 ? ((pago_300_500 / totalParticipantes) * 100).toFixed(0) : 0;
+                const porcentajePago0300 = totalParticipantes > 0 ? ((pago_0_300 / totalParticipantes) * 100).toFixed(0) : 0;
+
+
+                let expandirQuiero = 0;
+                let expandirPosible = 0;
+                let expandirNo = 0;
+                data.forEach(row => {
+                    const expandir = row['¿Te gustaría que se expanda a todo tipo de vehículos?'] || '';
+                    if (expandir === 'Quiero tenerlo en todos mis vehículos') expandirQuiero++;
+                    else if (expandir === 'Lo veo posible') expandirPosible++;
+                    else if (expandir === 'No') expandirNo++;
+                });
+                const porcentajeExpandir = totalParticipantes > 0 ? (((expandirQuiero + expandirPosible) / totalParticipantes) * 100).toFixed(0) : 0;
+
+
+                let inseguroSi = 0;
+                let inseguroNo = 0;
+                data.forEach(row => {
+                    const inseguridad = row['¿Te sientes inseguro de darle a tu hijo un vehículo propio a causa de este peligro de robo?'] || '';
+                    if (inseguridad === 'Si') inseguroSi++;
+                    else if (inseguridad === 'No') inseguroNo++;
+                });
+
+
+                const edadCtx = document.getElementById('edadChart').getContext('2d');
+                if (edadChart) {
+                    edadChart.data.datasets[0].data = [edad_15_18, edad_18_30, edad_30_plus];
+                    edadChart.update();
+                } else {
+                    edadChart = new Chart(edadCtx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['15-18 años', '18-30 años', '30+ años'],
+                            datasets: [{
+                                data: [edad_15_18, edad_18_30, edad_30_plus],
+                                backgroundColor: getChartBackgroundColors(3),
+                                hoverOffset: 10
+                            }]
+                        },
+                        options: commonChartOptions
                     });
                 }
-            }
-            // Si no estamos en index.html, el navegador manejará la navegación normal
-        });
-    });
 
-    // Tooltip para el sidebar
-    document.querySelectorAll('.sidebar-item').forEach(item => {
-        const tooltipText = item.getAttribute('data-tooltip');
-        if (tooltipText) {
-            item.style.position = 'relative';
-            item.addEventListener('mouseenter', function() {
-                const tooltip = document.createElement('span');
-                tooltip.classList.add('custom-tooltip');
-                tooltip.textContent = tooltipText;
-                this.appendChild(tooltip);
-            });
-            item.addEventListener('mouseleave', function() {
-                const tooltip = this.querySelector('.custom-tooltip');
-                if (tooltip) {
-                    tooltip.remove();
+                const vehiculoCtx = document.getElementById('vehiculoChart').getContext('2d');
+                if (vehiculoChart) {
+                    vehiculoChart.data.labels = vehiculoLabels;
+                    vehiculoChart.data.datasets[0].data = vehiculoData;
+                    vehiculoChart.data.datasets[0].backgroundColor = getChartBackgroundColors(vehiculoLabels.length);
+                    vehiculoChart.update();
+                } else {
+                    vehiculoChart = new Chart(vehiculoCtx, {
+                        type: 'pie',
+                        data: {
+                            labels: vehiculoLabels,
+                            datasets: [{
+                                data: vehiculoData,
+                                backgroundColor: getChartBackgroundColors(vehiculoLabels.length),
+                                hoverOffset: 10
+                            }]
+                        },
+                        options: commonChartOptions
+                    });
                 }
-            });
+
+                const rastreoCtx = document.getElementById('rastreoChart').getContext('2d');
+                if (rastreoChart) {
+                    rastreoChart.data.labels = ['Sí, me gustaría verlo', 'No, no me gustaría'];
+                    rastreoChart.data.datasets[0].data = [rastreoSi, rastreoNo];
+                    rastreoChart.data.datasets[0].backgroundColor = [chartColors.primary, chartColors.secondary];
+                    rastreoChart.update();
+                } else {
+                    rastreoChart = new Chart(rastreoCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Sí, me gustaría verlo', 'No, no me gustaría'],
+                            datasets: [{
+                                data: [rastreoSi, rastreoNo],
+                                backgroundColor: [chartColors.primary, chartColors.secondary],
+                                hoverOffset: 10
+                            }]
+                        },
+                        options: commonChartOptions
+                    });
+                }
+
+                const pagoCtx = document.getElementById('pagoChart').getContext('2d');
+                const pagoLabels = ['0-300 USD', '300-500 USD', 'Más de 500 USD'];
+                const pagoChartData = [pago_0_300, pago_300_500, pago_mas_500];
+                const pagoColors = getChartBackgroundColors(3);
+
+                if (pago_no_esp > 0) {
+                    pagoLabels.push('No especificó');
+                    pagoChartData.push(pago_no_esp);
+                    pagoColors.push('#B0BEC5');
+                }
+
+                if (pagoChart) {
+                    pagoChart.data.labels = pagoLabels;
+                    pagoChart.data.datasets[0].data = pagoChartData;
+                    pagoChart.data.datasets[0].backgroundColor = pagoColors;
+                    pagoChart.update();
+                } else {
+                    pagoChart = new Chart(pagoCtx, {
+                        type: 'pie',
+                        data: {
+                            labels: pagoLabels,
+                            datasets: [{
+                                data: pagoChartData,
+                                backgroundColor: pagoColors,
+                                hoverOffset: 10
+                            }]
+                        },
+                        options: commonChartOptions
+                    });
+                }
+
+                const expandirCtx = document.getElementById('expandirChart').getContext('2d');
+                const expandirLabels = ['Quiero tenerlo en todos mis vehículos', 'Lo veo posible'];
+                const expandirChartData = [expandirQuiero, expandirPosible];
+                const expandirColors = getChartBackgroundColors(2);
+
+                if (expandirNo > 0) {
+                    expandirLabels.push('No');
+                    expandirChartData.push(expandirNo);
+                    expandirColors.push('#B0BEC5');
+                }
+
+                if (expandirChart) {
+                    expandirChart.data.labels = expandirLabels;
+                    expandirChart.data.datasets[0].data = expandirChartData;
+                    expandirChart.data.datasets[0].backgroundColor = expandirColors;
+                    expandirChart.update();
+                } else {
+                    expandirChart = new Chart(expandirCtx, {
+                        type: 'pie',
+                        data: {
+                            labels: expandirLabels,
+                            datasets: [{
+                                data: expandirChartData,
+                                backgroundColor: expandirColors,
+                                hoverOffset: 10
+                            }]
+                        },
+                        options: commonChartOptions
+                    });
+                }
+
+                const inseguridadCtx = document.getElementById('inseguridadChart').getContext('2d');
+                if (inseguridadChart) {
+                    inseguridadChart.data.datasets[0].data = [inseguroSi, inseguroNo];
+                    inseguridadChart.update();
+                } else {
+                    inseguridadChart = new Chart(inseguridadCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Sí, me sentiría mucho más seguro/a', 'No, no me sentiría inseguro/a'],
+                            datasets: [{
+                                data: [inseguroSi, inseguroNo],
+                                backgroundColor: [chartColors.quaternary, chartColors.sixth],
+                                hoverOffset: 10
+                            }]
+                        },
+                        options: commonChartOptions
+                    });
+                }
+
+                const factoresCtx = document.getElementById('factoresChart').getContext('2d');
+                if (!factoresChart) {
+                    factoresChart = new Chart(factoresCtx, {
+                        type: 'radar',
+                        data: {
+                            labels: ['Seguridad', 'Rastreo GPS', 'Costo', 'Facilidad de Uso', 'Diseño'],
+                            datasets: [{
+                                label: 'Importancia Valorada (1-5)',
+                                data: [5, 4.8, 3.5, 4.2, 3.8],
+                                backgroundColor: 'rgba(255, 204, 0, 0.2)',
+                                borderColor: chartColors.primary,
+                                pointBackgroundColor: chartColors.primary,
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: chartColors.primary,
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            ...commonChartOptions,
+                            plugins: {
+                                ...commonChartOptions.plugins,
+                                legend: {
+                                    position: 'top',
+                                }
+                            },
+                            scales: {
+                                r: {
+                                    angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                                    grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                                    pointLabels: {
+                                        font: { family: 'Poppins', size: 14, weight: '600' },
+                                        color: '#E0E0E0'
+                                    },
+                                    ticks: { display: false, beginAtZero: true, max: 5, stepSize: 1 },
+                                    suggestedMin: 0,
+                                    suggestedMax: 5
+                                }
+                            }
+                        }
+                    });
+                }
+
+                document.getElementById('totalParticipantesText').textContent = `${totalParticipantes} participantes`;
+                document.getElementById('interesRastreoText').textContent = `${porcentajeInteresRastreo}% de los encuestados`;
+                document.getElementById('pago300500Text').textContent = `${porcentajePago300500}% de los participantes`;
+                document.getElementById('pago0300Text').textContent = `${porcentajePago0300}% está dispuesto a pagar entre 0 y 300 USD`;
+                document.getElementById('expandirText').textContent = `${porcentajeExpandir}% de los encuestados`;
+
+            } catch (error) {
+                console.error('Error al cargar o procesar los datos de la encuesta:', error);
+            }
         }
-    });
 
-    // Lógica para el menú hamburguesa (ahora con transformación de ícono y botón fijo)
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-
-    if (mobileMenuToggle && mobileNavOverlay) {
-        mobileMenuToggle.addEventListener('click', () => {
-            const isMenuOpen = mobileNavOverlay.classList.contains('is-open');
-            if (isMenuOpen) {
-                // Si el menú está abierto, ciérralo
-                mobileNavOverlay.classList.remove('is-open');
-                document.body.classList.remove('menu-active');
-                document.body.style.overflow = '';
-                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-            } else {
-                // Si el menú está cerrado, ábrelo
-                mobileNavOverlay.classList.add('is-open');
-                document.body.classList.add('menu-active');
-                document.body.style.overflow = 'hidden';
-                mobileMenuToggle.querySelector('i').classList.remove('fa-bars');
-                mobileMenuToggle.querySelector('i').classList.add('fa-times');
-            }
-        });
-        
-        // Cierra el menú si se hace clic en el backdrop (el área oscurecida)
-        document.body.addEventListener('click', (e) => {
-            // Si el menú está abierto y el clic no fue en el toggle ni dentro del overlay
-            if (document.body.classList.contains('menu-active') && 
-                !mobileNavOverlay.contains(e.target) && 
-                !mobileMenuToggle.contains(e.target) &&
-                !e.target.closest('.mobile-nav-overlay')) { // Añadido para asegurar que clics DENTRO del overlay no lo cierren
-                
-                mobileNavOverlay.classList.remove('is-open');
-                document.body.classList.remove('menu-active');
-                document.body.style.overflow = '';
-                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-            }
-        });
-    }
-
-    // Asegurarse de que los enlaces del menú móvil también cierren el menú
-    document.querySelectorAll('.mobile-nav-item').forEach(item => {
-        item.addEventListener('click', () => {
+        fetchAndProcessData();
+        setInterval(fetchAndProcessData, 30000);
+    </script>
+    <script>
+        // JavaScript para el menú hamburguesa (GLOBAL PARA AMBAS PÁGINAS)
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.getElementById('menuIcon');
             const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-            const mobileMenuToggle = document.getElementById('mobileMenuToggle'); 
-            if (mobileNavOverlay && mobileMenuToggle) {
-                mobileNavOverlay.classList.remove('is-open');
-                document.body.classList.remove('menu-active'); 
-                document.body.style.overflow = ''; 
-                mobileMenuToggle.querySelector('i').classList.remove('fa-times'); 
-                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-            }
-        });
-    });
+            const navItems = mobileNavOverlay.querySelectorAll('.mobile-nav-item');
 
-    // Datos de la encuesta (hardcodeados como ejemplo)
-    const ageData = {
-        '15-18 años': 4,
-        'Entre 18 a 30 años': 4,
-        '85': 1 
-    };
+            menuIcon.addEventListener('click', () => {
+                mobileNavOverlay.classList.toggle('is-open');
+                document.body.classList.toggle('menu-active');
+                menuIcon.querySelector('i').classList.toggle('fa-bars');
+                menuIcon.querySelector('i').classList.toggle('fa-times');
+            });
 
-    const vehicleData = {
-        'Utilizo bicicleta o motocicleta': 7,
-        'Tengo automóvil propio': 2,
-        'Voy a todos lados caminando': 1
-    };
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    mobileNavOverlay.classList.remove('is-open');
+                    document.body.classList.remove('menu-active');
+                    menuIcon.querySelector('i').classList.remove('fa-times');
+                    menuIcon.querySelector('i').classList.add('fa-bars');
+                });
+            });
 
-    const gpsInterestData = {
-        'Si': 9,
-        'No': 0
-    };
+            document.body.addEventListener('click', (event) => {
+                if (mobileNavOverlay.classList.contains('is-open') &&
+                    !mobileNavOverlay.contains(event.target) &&
+                    !menuIcon.contains(event.target)) {
 
-    // Procesar datos para los gráficos
-    // Edad
-    const ageLabels = ['15-18 años', '18-30 años', '30+ años'];
-    const ageCounts = [ageData['15-18 años'], ageData['Entre 18 a 30 años'], ageData['85']];
-    const ageColors = ['#FFCC00', '#0F2D52', '#4CAF50'];
-
-    // Vehículo
-    const vehicleLabels = ['Utilizo bicicleta o motocicleta', 'Tengo automóvil propio', 'Voy a todos lados caminando'];
-    const vehicleCounts = [vehicleData['Utilizo bicicleta o motocicleta'], vehicleData['Tengo automóvil propio'], vehicleData['Voy a todos lados caminando']];
-    const vehicleColors = ['#FFCC00', '#0F2D52', '#4CAF50', '#F44336']; 
-
-    // Interés GPS
-    const gpsLabels = ['Sí, me gustaría verlo', 'No, no me gustaría'];
-    const gpsCounts = [gpsInterestData['Si'], gpsInterestData['No']];
-    const gpsColors = ['#FFCC00', '#0F2D52'];
-
-    // Función para crear gráficos de tipo Doughnut
-    function createDoughnutChart(ctx, labels, data, colors, title) {
-      new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: labels,
-          datasets: [{
-            data: data,
-            backgroundColor: colors,
-            hoverOffset: 10
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false, 
-          plugins: {
-            legend: {
-              display: false 
-            },
-            title: {
-              display: false 
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        let label = context.label || '';
-                        if (label) {
-                            label += ': ';
-                        }
-                        if (context.parsed !== null) {
-                            label += context.parsed;
-                        }
-                        return label;
-                    }
+                    mobileNavOverlay.classList.remove('is-open');
+                    document.body.classList.remove('menu-active');
+                    menuIcon.querySelector('i').classList.remove('fa-times');
+                    menuIcon.querySelector('i').classList.add('fa-bars');
                 }
-            }
-          }
-        }
-      });
-    }
-
-    // Renderizar gráficos
-    document.addEventListener('DOMContentLoaded', () => {
-      const ageCtx = document.getElementById('ageChart').getContext('2d');
-      createDoughnutChart(ageCtx, ageLabels, ageCounts, ageColors, 'Distribución Demográfica (Edad)');
-
-      const vehicleCtx = document.getElementById('vehicleChart').getContext('2d');
-      createDoughnutChart(vehicleCtx, vehicleLabels, vehicleCounts, vehicleColors, 'Hábitos de Movilidad Actuales');
-
-      const gpsInterestCtx = document.getElementById('gpsInterestChart').getContext('2d');
-      createDoughnutChart(gpsInterestCtx, gpsLabels, gpsCounts, gpsColors, 'Interés en el Rastreo GPS');
-    });
-  </script>
+            });
+        });
+    </script>
 </body>
 </html>
