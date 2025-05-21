@@ -601,7 +601,6 @@ canvas {
     font-size: 2rem;
     color: var(--accent-yellow);
     cursor: pointer;
-    /* CAMBIO CLAVE: Position Fixed para que sea siempre visible */
     position: fixed; 
     top: 20px; /* Distancia desde arriba */
     right: 20px; /* Distancia desde la derecha */
@@ -618,18 +617,17 @@ canvas {
     position: fixed;
     top: 0;
     right: 0; 
-    /* CAMBIO CLAVE: Aumentar el ancho y max-width */
     width: 80%; /* Ahora es 80% del ancho de la pantalla */
     max-width: 400px; /* Nuevo ancho máximo */
     height: 100%;
-    /* CAMBIO CLAVE: Fondo más transparente */
     background-color: rgba(15, 45, 82, 0.95); /* secondary-dark con 95% de opacidad */
     z-index: 1050; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    /* CAMBIO CLAVE: Centrar verticalmente los elementos del menú */
+    justify-content: center; /* Centra el contenido a lo largo del eje principal (columna) */
     align-items: center;
-    padding-top: 20px;
+    padding: 20px 0; /* Padding general arriba y abajo */
     transform: translateX(100%); 
     transition: transform 0.4s ease-out; 
     overflow-y: auto; 
@@ -643,25 +641,24 @@ canvas {
 
 /* El header interno del menú móvil (sin el botón de cerrar) */
 .mobile-nav-header {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end; 
-    align-items: center;
-    padding: 20px 25px;
-    border-bottom: 2px solid var(--accent-yellow);
-    min-height: 50px; 
+    display: none; /* Ocultamos completamente este elemento si no tiene contenido relevante */
+    /* Removido: border-bottom: 2px solid var(--accent-yellow); */ 
 }
 
 .mobile-nav-list {
     list-style: none;
     padding: 0;
-    margin-top: 40px;
+    margin: 0; /* Aseguramos que no haya márgenes extra que impidan el centrado */
     width: 100%;
     text-align: center;
 }
 
 .mobile-nav-list li {
     margin-bottom: 25px;
+    /* Si es el último elemento, quitamos el margin-bottom para un centrado perfecto */
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 .mobile-nav-item {
@@ -671,7 +668,6 @@ canvas {
     gap: 15px; 
     padding: 15px 0;
     color: var(--light-text);
-    /* CAMBIO CLAVE: Fuente ligeramente más pequeña */
     font-size: 1.3rem; 
     text-decoration: none;
     transition: color 0.3s ease, background-color 0.3s ease;
@@ -679,7 +675,6 @@ canvas {
 }
 
 .mobile-nav-item i { 
-    /* CAMBIO CLAVE: Íconos también ligeramente más pequeños para armonizar */
     font-size: 1.6rem; 
     color: var(--accent-yellow);
 }
@@ -751,10 +746,8 @@ canvas {
         display: block; /* Muestra el botón de menú móvil */
     }
 
-    /* Ya no necesitamos padding-right aquí si el menú-icon es fixed */
     header .container {
         position: relative;
-        /* padding-right: 80px;  Eliminado o reducido si el icono es fixed */
     }
     
     header .logo-text {
