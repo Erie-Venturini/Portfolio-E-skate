@@ -10,14 +10,18 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-  <aside class="sidebar">
+  <aside class="sidebar sidebar-left">
     <a href="#hero" class="sidebar-item" data-tooltip="Inicio"><i class="fas fa-home"></i></a>
     <a href="#about" class="sidebar-item" data-tooltip="Visión del Proyecto"><i class="fas fa-lightbulb"></i></a>
     <a href="#product-showcase" class="sidebar-item" data-tooltip="Explora el Producto"><i class="fas fa-cube"></i></a>
     <a href="#features" class="sidebar-item" data-tooltip="Características Clave"><i class="fas fa-cogs"></i></a>
+    <a href="#contact" class="sidebar-item" data-tooltip="Contáctanos"><i class="fas fa-envelope"></i></a>
+  </aside>
+
+  <aside class="sidebar sidebar-right">
     <a href="#survey" class="sidebar-item" data-tooltip="Participa en la Encuesta"><i class="fas fa-poll-h"></i></a>
     <a href="resultados.html" class="sidebar-item" data-tooltip="Resultados"><i class="fas fa-chart-bar"></i></a>
-    <a href="#contact" class="sidebar-item" data-tooltip="Contáctanos"><i class="fas fa-envelope"></i></a>
+    <a href="analisisCompetencia.html" class="sidebar-item" data-tooltip="Análisis de la Competencia"><i class="fas fa-balance-scale"></i></a>
   </aside>
 
   <header>
@@ -31,17 +35,25 @@
   </header>
 
   <nav class="mobile-nav-overlay" id="mobileNavOverlay">
-      <div class="mobile-nav-header">
-          </div>
-      <ul class="mobile-nav-list">
-          <li><a href="#hero" class="mobile-nav-item"><i class="fas fa-home"></i> Inicio</a></li>
-          <li><a href="#about" class="mobile-nav-item"><i class="fas fa-lightbulb"></i> Visión del Proyecto</a></li>
-          <li><a href="#product-showcase" class="mobile-nav-item"><i class="fas fa-cube"></i> Explora el Producto</a></li>
-          <li><a href="#features" class="mobile-nav-item"><i class="fas fa-cogs"></i> Características Clave</a></li>
-          <li><a href="#survey" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Participa en la Encuesta</a></li>
-          <li><a href="resultados.html" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
-          <li><a href="#contact" class="mobile-nav-item"><i class="fas fa-envelope"></i> Contáctanos</a></li>
-      </ul>
+      <div class="mobile-nav-header"></div>
+      <div class="mobile-nav-section">
+          <h3 class="mobile-nav-category-title">Página Principal</h3>
+          <ul class="mobile-nav-list">
+              <li><a href="#hero" class="mobile-nav-item"><i class="fas fa-home"></i> Inicio</a></li>
+              <li><a href="#about" class="mobile-nav-item"><i class="fas fa-lightbulb"></i> Visión del Proyecto</a></li>
+              <li><a href="#product-showcase" class="mobile-nav-item"><i class="fas fa-cube"></i> Explora el Producto</a></li>
+              <li><a href="#features" class="mobile-nav-item"><i class="fas fa-cogs"></i> Características Clave</a></li>
+              <li><a href="#contact" class="mobile-nav-item"><i class="fas fa-envelope"></i> Contáctanos</a></li>
+          </ul>
+      </div>
+      <div class="mobile-nav-section">
+          <h3 class="mobile-nav-category-title">Economía del Producto</h3>
+          <ul class="mobile-nav-list">
+              <li><a href="#survey" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Participa en la Encuesta</a></li>
+              <li><a href="resultados.html" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
+              <li><a href="analisisCompetencia.html" class="mobile-nav-item"><i class="fas fa-balance-scale"></i> Análisis de la Competencia</a></li>
+          </ul>
+      </div>
   </nav>
 
   <main>
@@ -81,7 +93,7 @@
 
         <div class="model-viewer-container">
           <model-viewer
-             src="E_skate.glb"
+            src="E_skate.glb"
             alt="Modelo 3D del prototipo de E-Skate"
             auto-rotate
             camera-controls
@@ -202,31 +214,52 @@
         });
     }
 
-    // Navegación suave para todos los enlaces ancla
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Navegación suave para todos los enlaces ancla y externos
+    document.querySelectorAll('a[href^="#"], a[href="resultados.html"], a[href="analisisCompetencia.html"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+            const href = this.getAttribute('href');
+            
+            // Si es un enlace interno de la misma página (con #)
+            if (href.startsWith('#')) {
+                e.preventDefault(); // Previene el comportamiento por defecto solo para enlaces ancla
+                const targetId = href;
+                const targetElement = document.querySelector(targetId);
 
-            // Cerrar el menú móvil si un enlace es clickeado dentro de él
-            if (this.classList.contains('mobile-nav-item')) {
-                const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-                const mobileMenuToggle = document.getElementById('mobileMenuToggle'); // Obtener el botón de menú
-                if (mobileNavOverlay && mobileMenuToggle) {
-                    mobileNavOverlay.classList.remove('is-open');
-                    document.body.classList.remove('menu-active'); // Quitar la clase del body
-                    document.body.style.overflow = ''; // Restaurar el scroll del body
-                    mobileMenuToggle.querySelector('i').classList.remove('fa-times'); // Cambiar a fa-bars
-                    mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                // Cerrar el menú móvil si un enlace es clickeado dentro de él
+                if (this.classList.contains('mobile-nav-item')) {
+                    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+                    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                    if (mobileNavOverlay && mobileMenuToggle) {
+                        mobileNavOverlay.classList.remove('is-open');
+                        document.body.classList.remove('menu-active');
+                        document.body.style.overflow = '';
+                        mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                        mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                    }
                 }
-            }
 
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - (document.querySelector('header')?.offsetHeight || 0),
-                    behavior: "smooth"
-                });
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - (document.querySelector('header')?.offsetHeight || 0),
+                        behavior: "smooth"
+                    });
+                }
+            } else {
+                // Si es un enlace a otra página (resultados.html, analisisCompetencia.html),
+                // el navegador debe seguir su comportamiento normal.
+                // Asegurarse de que el menú móvil se cierre antes de navegar.
+                if (this.classList.contains('mobile-nav-item')) {
+                    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+                    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                    if (mobileNavOverlay && mobileMenuToggle) {
+                        mobileNavOverlay.classList.remove('is-open');
+                        document.body.classList.remove('menu-active');
+                        document.body.style.overflow = '';
+                        mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                        mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                }
+                // No se previene el default, para que el navegador siga el href
             }
         });
     });
@@ -270,14 +303,12 @@
         mobileMenuToggle.addEventListener('click', () => {
             const isMenuOpen = mobileNavOverlay.classList.contains('is-open');
             if (isMenuOpen) {
-                // Si el menú está abierto, ciérralo
                 mobileNavOverlay.classList.remove('is-open');
                 document.body.classList.remove('menu-active');
                 document.body.style.overflow = '';
                 mobileMenuToggle.querySelector('i').classList.remove('fa-times');
                 mobileMenuToggle.querySelector('i').classList.add('fa-bars');
             } else {
-                // Si el menú está cerrado, ábrelo
                 mobileNavOverlay.classList.add('is-open');
                 document.body.classList.add('menu-active');
                 document.body.style.overflow = 'hidden';
@@ -288,7 +319,6 @@
         
         // Cierra el menú si se hace clic en el backdrop (el área oscurecida)
         document.body.addEventListener('click', (e) => {
-            // Verificar si el clic fue fuera del overlay y no en el botón de toggle
             if (document.body.classList.contains('menu-active') && 
                 !mobileNavOverlay.contains(e.target) && 
                 !mobileMenuToggle.contains(e.target)) {

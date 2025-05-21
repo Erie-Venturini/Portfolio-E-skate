@@ -68,18 +68,27 @@ body::before { /* Estado inicial oculto del backdrop */
 /* --- Sidebar de Navegación Fija --- */
 .sidebar {
     position: fixed;
-    left: 0;
     top: 50%;
     transform: translateY(-50%);
     z-index: 1050;
     background-color: rgba(15, 45, 82, 0.9); /* Un tono más oscuro del secondary-dark con transparencia */
-    border-radius: 0 12px 12px 0;
     padding: 18px 12px;
     display: flex;
     flex-direction: column;
     gap: 18px;
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar-left {
+    left: 0;
+    border-radius: 0 12px 12px 0;
     border-right: 2px solid var(--accent-yellow); /* Amarilla */
+}
+
+.sidebar-right {
+    right: 0;
+    border-radius: 12px 0 0 12px;
+    border-left: 2px solid var(--accent-yellow); /* Amarilla */
 }
 
 .sidebar-item {
@@ -108,7 +117,8 @@ body::before { /* Estado inicial oculto del backdrop */
 
 .custom-tooltip {
     position: absolute;
-    left: 70px;
+    /* Ajustar posición del tooltip para la barra derecha */
+    left: 70px; /* Por defecto para la izquierda */
     top: 50%;
     transform: translateY(-50%);
     background-color: var(--accent-yellow);
@@ -125,6 +135,12 @@ body::before { /* Estado inicial oculto del backdrop */
     font-weight: 400;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
+
+.sidebar-right .custom-tooltip {
+    right: 70px; /* Para la barra derecha */
+    left: auto; /* Anula el left de la regla general */
+}
+
 
 .sidebar-item:hover .custom-tooltip {
     opacity: 1;
@@ -624,10 +640,9 @@ canvas {
     z-index: 1050; 
     display: flex;
     flex-direction: column;
-    /* CAMBIO CLAVE: Centrar verticalmente los elementos del menú */
-    justify-content: center; /* Centra el contenido a lo largo del eje principal (columna) */
+    justify-content: flex-start; /* Alinea el contenido al inicio para que el header esté arriba */
     align-items: center;
-    padding: 20px 0; /* Padding general arriba y abajo */
+    padding: 0; /* Resetea el padding general */
     transform: translateX(100%); 
     transition: transform 0.4s ease-out; 
     overflow-y: auto; 
@@ -639,11 +654,39 @@ canvas {
     transform: translateX(0); 
 }
 
-/* El header interno del menú móvil (sin el botón de cerrar) */
+/* Ajuste del header dentro del menú móvil */
 .mobile-nav-header {
-    display: none; /* Ocultamos completamente este elemento si no tiene contenido relevante */
-    /* Removido: border-bottom: 2px solid var(--accent-yellow); */ 
+    display: block; /* Hacemos que sea visible */
+    width: 100%;
+    padding: 30px 20px 20px; /* Más padding arriba para separar el título */
+    text-align: center;
+    /* Puedes añadir un border-bottom si quieres una línea debajo */
+    /* border-bottom: 1px solid rgba(255, 204, 0, 0.3); */
 }
+
+/* Estilos para las secciones del menú móvil (Página Principal, Economía del Producto) */
+.mobile-nav-section {
+    width: 90%; /* Ancho de la sección dentro del overlay */
+    margin-bottom: 30px; /* Espacio entre secciones */
+    text-align: center;
+    padding-top: 10px; /* Pequeño padding superior para separar del título de categoría anterior */
+}
+
+.mobile-nav-section:last-child {
+    margin-bottom: 0; /* Eliminar margen inferior de la última sección */
+}
+
+.mobile-nav-category-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    color: var(--accent-yellow);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 204, 0, 0.3); /* Línea divisoria suave */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 
 .mobile-nav-list {
     list-style: none;
@@ -654,11 +697,11 @@ canvas {
 }
 
 .mobile-nav-list li {
-    margin-bottom: 25px;
-    /* Si es el último elemento, quitamos el margin-bottom para un centrado perfecto */
-    &:last-child {
-        margin-bottom: 0;
-    }
+    margin-bottom: 15px; /* Espacio entre ítems de menú dentro de la misma categoría */
+}
+
+.mobile-nav-list li:last-child {
+    margin-bottom: 0; /* No margin-bottom en el último ítem de cada lista */
 }
 
 .mobile-nav-item {
@@ -666,7 +709,7 @@ canvas {
     align-items: center;
     justify-content: center; 
     gap: 15px; 
-    padding: 15px 0;
+    padding: 12px 0; /* Padding vertical para cada ítem */
     color: var(--light-text);
     font-size: 1.3rem; 
     text-decoration: none;
@@ -735,11 +778,15 @@ canvas {
     canvas {
         height: 250px !important;
     }
+    /* Tabla de competencia en pantallas más grandes: sin cambios drásticos, solo responsive por defecto */
+    .table-responsive {
+        padding: 0 10px; /* Ajuste para que no esté pegado a los bordes de la pantalla en tablets */
+    }
 }
 
 @media (max-width: 768px) {
-    .sidebar {
-        display: none; /* Oculta la barra lateral en pantallas pequeñas */
+    .sidebar-left, .sidebar-right {
+        display: none; /* Oculta ambas barras laterales en pantallas pequeñas */
     }
     
     .menu-icon {
@@ -803,6 +850,23 @@ canvas {
     canvas {
         height: 250px !important; 
     }
+
+    /* Ajustes específicos para la tabla de competencia en móvil */
+    .comparison-table th,
+    .comparison-table td {
+        padding: 12px 15px; /* Reducir padding en móvil */
+        font-size: 0.9rem; /* Reducir tamaño de fuente */
+    }
+
+    .comparison-table th:first-child,
+    .comparison-table td:first-child {
+        min-width: 150px; /* Asegura que la primera columna tenga un ancho mínimo razonable */
+        max-width: 180px; /* Limita el ancho de la primera columna */
+        white-space: normal; /* Permite que el texto se envuelva */
+    }
+    .comparison-table th {
+        font-size: 1rem; /* Ajuste para encabezados */
+    }
 }
 
 @media (max-width: 480px) {
@@ -849,5 +913,15 @@ canvas {
     }
     canvas {
         height: 180px !important;
+    }
+    /* Más ajustes para la tabla en móviles muy pequeños */
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+    .comparison-table th:first-child,
+    .comparison-table td:first-child {
+        min-width: 120px; /* Aún más pequeño */
     }
 }
