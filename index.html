@@ -3,64 +3,234 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inicio | Encuesta E-Skate</title>
+  <title>E-Skate Project | Innovación en Movilidad Urbana</title>
   <link rel="stylesheet" href="style.css" />
-  </head>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
 <body>
+  <aside class="sidebar">
+    <a href="#hero" class="sidebar-item" data-tooltip="Inicio"><i class="fas fa-home"></i></a>
+    <a href="#about" class="sidebar-item" data-tooltip="Visión del Proyecto"><i class="fas fa-lightbulb"></i></a>
+    <a href="#product-showcase" class="sidebar-item" data-tooltip="Explora el Producto"><i class="fas fa-cube"></i></a>
+    <a href="#features" class="sidebar-item" data-tooltip="Características Clave"><i class="fas fa-cogs"></i></a>
+    <a href="#survey" class="sidebar-item" data-tooltip="Participa en la Encuesta"><i class="fas fa-poll-h"></i></a>
+    <a href="resultados.html" class="sidebar-item" data-tooltip="Resultados"><i class="fas fa-chart-bar"></i></a> <a href="#contact" class="sidebar-item" data-tooltip="Contáctanos"><i class="fas fa-envelope"></i></a>
+  </aside>
+
   <header>
-    <h1>Proyecto E-Skate: Encuesta de Viabilidad</h1>
+    <div class="container">
+      <h1 class="logo-text">E-Skate Project</h1>
+      <p class="tagline">Innovación y Futuro en Movilidad Urbana</p>
+    </div>
   </header>
 
-  <div class="main-content-wrapper">
+  <main>
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <h2>Transformando el Viaje Urbano</h2>
+          <p class="hero-description">Nuestro sistema de seguimiento y control redefine la experiencia del skate eléctrico, ofreciendo seguridad, eficiencia y una conexión sin precedentes.</p>
+          <a href="#product-showcase" class="btn-primary hero-btn">Descubre Nuestro Concepto</a>
+        </div>
+      </div>
+    </section>
 
-      <section class="intro">
-        <div class="container"> <h2>¿De qué trata este proyecto?</h2>
+    <section id="about" class="section-padded content-section">
+      <div class="container">
+        <h2>Nuestra Visión: Movilidad Inteligente</h2>
+        <div class="about-grid">
+          <div class="about-text">
             <p>
-              Este trabajo tiene como objetivo presentar los resultados de una encuesta
-              realizada para evaluar la viabilidad de un sistema de seguimiento y control
-              de vehículos (especialmente skates eléctricos), como parte del proyecto
-              E-Skate. El formulario fue compartido a un grupo reducido de personas para
-              obtener un primer sondeo.
+              En **E-Skate Project**, nos dedicamos a la fusión de tecnología y transporte personal. Nuestro objetivo es crear un ecosistema donde los vehículos como los skates eléctricos no solo sean rápidos y divertidos, sino también seguros e inteligentes.
             </p>
-        </div>
-      </section>
-
-      <section class="models"> <div class="container text-center">
-          <h2>Encuesta</h2>
-
-          <button id="toggleFormBtn" class="btn-main">Cerrar Encuesta</button>
-
-          <div id="formContainer" style="margin-top: 40px;">
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSc1aDMNoK8InEa-Y-MXDXiM-DX-NnrUMotyScSR15nSBSJb1Q/viewform?embedded=true"
-              width="100%"  height="1300" frameborder="0"
-              marginheight="0"
-              marginwidth="0"
-              style="border-radius: 15px; border: 3px solid #004b6b; max-width: 800px; margin: auto; display: block;"> Cargando…
-            </iframe>
+            <p>
+              Esta iniciativa surge de la necesidad de comprender cómo un sistema de rastreo GPS, control remoto y análisis de datos puede impactar positivamente la experiencia del usuario y abordar preocupaciones clave como el robo y la optimización del rendimiento. Creemos en un futuro donde cada viaje es una experiencia conectada y protegida.
+            </p>
           </div>
-
-          <a href="resultados.html" class="btn-main" style="margin-top: 40px;">Ver Resultados</a>
-
+          <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1623862272826-b8449c2d1b72?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Persona usando un skate eléctrico" class="responsive-img">
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-  </div> <footer>
+    <section id="product-showcase" class="section-padded accent-bg">
+      <div class="container text-center">
+        <h2>Explora Nuestro Concepto en 3D</h2>
+        <p class="description">Gira, haz zoom y descubre cada detalle del módulo de seguimiento que imaginamos para tu E-Skate. Una visión interactiva del futuro.</p>
+
+        <div class="model-viewer-container">
+          <model-viewer
+             src="E_skate.glb" alt="Modelo 3D de Módulo E-Skate"
+            alt="Modelo 3D de Módulo E-Skate"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+            ar
+            ar-modes="webxr quick-look scene-viewer"
+            autoplay
+            seamless-poster
+            environment-image="neutral"
+            exposure="1"
+            interaction-prompt="none"
+            class="interactive-model">
+          </model-viewer>
+        </div>
+        <p class="small-text"><i>**Nota:** El modelo 3D actual es un ejemplo. Puedes reemplazar "Astronaut.glb" con tu propio modelo .glb del módulo E-Skate.</i></p>
+      </div>
+    </section>
+
+    <section id="features" class="section-padded content-section">
+      <div class="container">
+        <h2>Características que Impulsan el Futuro</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Rastreo GPS en Tiempo Real</h3>
+            <p>Monitorea la ubicación exacta de tu skate desde cualquier lugar, con actualizaciones instantáneas y geocercas personalizables.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-lock"></i>
+            <h3>Bloqueo Remoto Inteligente</h3>
+            <p>Asegura tu vehículo con un toque. Bloquea las ruedas remotamente para disuadir robos o recuperarlo más fácilmente.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Análisis de Rendimiento</h3>
+            <p>Accede a estadísticas de tus viajes: distancia, velocidad promedio, rutas y consumo de batería para optimizar tu experiencia.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-bell"></i>
+            <h3>Alertas de Seguridad Instantáneas</h3>
+            <p>Recibe notificaciones en tu móvil si tu skate se mueve inesperadamente o sale de una zona segura predefinida.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="survey" class="section-padded accent-bg">
+      <div class="container text-center">
+        <h2>Tu Voz Impulsa la Innovación</h2>
+        <p class="description">Tu opinión es fundamental para dar forma al futuro de la movilidad inteligente. Ayúdanos a construir la solución perfecta.</p>
+
+        <div class="button-group">
+          <button id="toggleFormBtn" class="btn-primary">Cerrar Encuesta</button>
+          <a href="resultados.html" class="btn-primary">Ver Análisis de Resultados</a>
+        </div>
+
+        <div id="formContainer" class="form-embed-wrapper">
+          <iframe
+            src=""
+            width="100%"
+            height="700"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0">
+            Cargando…
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section-padded content-section">
+        <div class="container">
+            <h2>Hablemos de Futuro</h2>
+            <p class="description">¿Interesado en saber más o colaborar? Contáctanos para explorar las posibilidades.</p>
+            <div class="contact-info-grid">
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Cordoba, Argentina</p>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <p><a href="mailto:eskatevz@gmail.com">eskatevz@gmail.com</a></p>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <p><a href="tel:+5493881234567">+54 3571 419879</a></p>
+                </div>
+            </div>
+            <div class="social-icons-contact">
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <footer>
     <div class="container">
-      <p>&copy; 2025 Proyecto E-Skate - Portfolio</p>
+      <p>&copy; 2025 E-Skate Project. Todos los derechos reservados.</p>
     </div>
   </footer>
 
   <script>
+    // Toggle para el formulario de la encuesta
     const toggleBtn = document.getElementById('toggleFormBtn');
     const formContainer = document.getElementById('formContainer');
 
-    toggleBtn.addEventListener('click', () => {
-      // Clave: Ahora verificamos si está visible por si acaso el estado inicial cambia
-      const isVisible = formContainer.style.display !== 'none';
-      formContainer.style.display = isVisible ? 'none' : 'block';
-      toggleBtn.textContent = isVisible ? 'Ver Encuesta' : 'Cerrar Encuesta';
+    // Estado inicial: Encuesta visible, botón dice "Cerrar Encuesta"
+    if (formContainer && toggleBtn) {
+        formContainer.style.display = 'block';
+        toggleBtn.textContent = 'Cerrar Encuesta';
+
+        toggleBtn.addEventListener('click', () => {
+            const isVisible = formContainer.style.display !== 'none';
+            formContainer.style.display = isVisible ? 'none' : 'block';
+            toggleBtn.textContent = isVisible ? 'Abrir Encuesta' : 'Cerrar Encuesta';
+        });
+    }
+
+    // Navegación suave para todos los enlaces ancla
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - (document.querySelector('header')?.offsetHeight || 0),
+                    behavior: "smooth"
+                });
+            }
+        });
     });
+
+    // Tooltip para el sidebar
+    document.querySelectorAll('.sidebar-item').forEach(item => {
+        const tooltipText = item.getAttribute('data-tooltip');
+        if (tooltipText) {
+            item.style.position = 'relative';
+            item.addEventListener('mouseenter', function() {
+                const tooltip = document.createElement('span');
+                tooltip.classList.add('custom-tooltip');
+                tooltip.textContent = tooltipText;
+                this.appendChild(tooltip);
+            });
+            item.addEventListener('mouseleave', function() {
+                const tooltip = this.querySelector('.custom-tooltip');
+                if (tooltip) {
+                    tooltip.remove();
+                }
+            });
+        }
+    });
+
+    // Función para el modelo 3D (ejemplo de hotspot toggle si tu modelo los tiene)
+    const modelViewer = document.querySelector('model-viewer');
+    if (modelViewer) {
+      modelViewer.addEventListener('load', () => {
+        console.log('Modelo 3D cargado correctamente.');
+      });
+      modelViewer.addEventListener('error', (event) => {
+        console.error('Error al cargar el modelo 3D:', event);
+      });
+    }
   </script>
 </body>
 </html>

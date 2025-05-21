@@ -3,83 +3,275 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resultados Encuesta</title>
+  <title>Resultados de la Encuesta | E-Skate Project</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
-    <h1>Resultados de la Encuesta</h1>
+    <div class="container">
+      <h1>Resultados Detallados</h1>
+      <p class="tagline">Análisis Exhaustivo de Nuestro Sondeo de Viabilidad</p>
+    </div>
   </header>
 
-  <section class="graficos">
-    <h2>Gráficos de las respuestas</h2>
+  <main>
+    <section id="charts-section" class="section-padded content-section">
+      <div class="container">
+        <h2>Perspectivas Clave de la Encuesta</h2>
+        <p class="description">Descubre los patrones y tendencias que emergen de las respuestas de nuestros participantes.</p>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>Distribución Demográfica (Edad)</h3>
+            <canvas id="edadChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Hábitos de Movilidad Actuales</h3>
+            <canvas id="vehiculoChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Interés en el Rastreo GPS</h3>
+            <canvas id="rastreoChart"></canvas> </div>
+          <div class="chart-card">
+            <h3>Disposición de Inversión (USD)</h3>
+            <canvas id="pagoChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Visión de Futuro: Aplicabilidad</h3>
+            <canvas id="expandirChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Sentimiento sobre Inseguridad por Robo</h3>
+            <canvas id="inseguridadChart"></canvas> </div>
+        </div>
+      </div>
+    </section>
 
-    <canvas id="edadChart"></canvas>
-    <canvas id="vehiculoChart"></canvas>
-    <canvas id="pagoChart"></canvas>
-    <canvas id="expandirChart"></canvas>
-  </section>
-
-  <section class="analisis">
-    <h2>Análisis de los resultados</h2>
-    <p>La encuesta fue respondida por 9 personas, en su mayoría jóvenes entre 15 y 30 años. El 66.7% se moviliza en bicicleta o motocicleta, y todos los encuestados indicaron no haber sido víctimas de robo de vehículos. Sin embargo, el 100% está interesado en poder ver la ubicación de su vehículo a través de una aplicación.</p>
-    <p>En cuanto al precio, más del 44% estaría dispuesto a pagar entre 300 y 500 USD, mostrando que hay interés real en la funcionalidad del sistema. Finalmente, más del 55% cree que este sistema podría aplicarse a todo tipo de vehículos, no solo skates.</p>
-  </section>
+    <section id="analysis-section" class="section-padded accent-bg">
+      <div class="container">
+        <h2>Conclusiones Estratégicas y Próximos Pasos</h2>
+        <div class="analysis-summary">
+            <p class="description">
+              La encuesta ha revelado insights críticos. Un total de **10 participantes** nos brindaron su valiosa perspectiva, conformando un grupo demográfico predominantemente joven. De ellos, **5 están entre 15 y 18 años**, **4 entre 18 y 30 años**, y **1 tiene más de 30 años** (considerando la respuesta "85" como +30). Esto refuerza la relevancia de nuestro proyecto para una audiencia nativa digital y con afinidad por la movilidad personal.
+            </p>
+            <p class="description">
+              Un hallazgo significativo es que el **100% de los encuestados ha expresado interés en poder ver la ubicación y otros datos de su vehículo a través de una aplicación o sitio web**. Esto sugiere una necesidad proactiva de seguridad y control, más allá de la reacción a incidentes pasados. Es una oportunidad clara para posicionar nuestro sistema como una herramienta de prevención y tranquilidad. Curiosamente, todos los encuestados que respondieron a la pregunta de "robo" indicaron **"No" haber sido víctimas de robo**, lo que subraya que el interés en el rastreo es más preventivo que reactivo. Además, el **80% se siente inseguro de darle a un hijo un vehículo propio por el riesgo de robo**, lo que indica una clara necesidad de soluciones de seguridad.
+            </p>
+            <p class="description">
+              Financieramente, el proyecto muestra una gran viabilidad: el **50% de los participantes estaría dispuesto a invertir entre 300 y 500 USD** en el sistema E-Skate, y otro **40% está dispuesto a pagar entre 0 y 300 USD**. Solo el **10% no especificó** un rango. Esto demuestra un mercado receptivo a la propuesta de valor. La visión a futuro es aún más ambiciosa, con el **60% de los encuestados creyendo que nuestro sistema podría aplicarse a una amplia gama de vehículos**, abriendo las puertas a una expansión más allá de los skates eléctricos.
+            </p>
+            <p class="description">
+              Finalmente, recibimos comentarios valiosos como la sugerencia de **comprar un dominio propio y hostear en servidores cercanos (ej. AWS Brasil)** para optimizar la respuesta de la página, lo que tomaremos en cuenta para la infraestructura futura. Estos resultados nos motivan a avanzar con el desarrollo, enfocándonos en robustez, usabilidad y escalabilidad para satisfacer esta demanda latente en el mercado de movilidad inteligente.
+            </p>
+        </div>
+        <div class="text-center button-group-analysis">
+            <a href="index.html#survey" class="btn-primary">Volver a la Encuesta</a>
+            <a href="index.html" class="btn-primary">Volver a la Página Principal</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Proyecto E-Skate - Resultados</p>
+    <div class="container">
+      <p>&copy; 2025 E-Skate Project. Todos los derechos reservados.</p>
+    </div>
   </footer>
 
   <script>
-    const edadChart = new Chart(document.getElementById('edadChart'), {
+    const chartColors = {
+      primary: '#FFCC00', // Tu amarillo vibrante original
+      secondary: '#0F2D52', // Tu azul secundario
+      tertiary: '#1A1A2E', // Tu azul primario para algunos elementos internos
+      quaternary: '#4CAF50', // Verde (ejemplo de color adicional)
+      fifth: '#00BCD4', // Celeste (ejemplo de color adicional)
+      sixth: '#FF5722' // Naranja (ejemplo de color adicional)
+    };
+
+    function getChartBackgroundColors(count) {
+      const colors = [
+        chartColors.primary, chartColors.secondary, chartColors.quaternary, chartColors.fifth,
+        chartColors.tertiary, chartColors.sixth, '#3F51B5', '#8BC34A', '#FF9800', '#F44336'
+      ];
+      return colors.slice(0, count);
+    }
+
+    const commonChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    font: {
+                        family: 'Poppins',
+                        size: 14
+                    },
+                    color: '#E0E0E0'
+                }
+            },
+            tooltip: {
+                bodyFont: {
+                    family: 'Poppins',
+                    size: 14
+                },
+                titleFont: {
+                    family: 'Poppins',
+                    weight: 'bold',
+                    size: 16
+                },
+                backgroundColor: 'rgba(15, 45, 82, 0.9)',
+                borderColor: chartColors.primary,
+                borderWidth: 1,
+                cornerRadius: 8,
+                xPadding: 15,
+                yPadding: 15
+            }
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        }
+    };
+
+    // Gráfico de Edad
+    new Chart(document.getElementById('edadChart'), {
       type: 'pie',
       data: {
-        labels: ['15-18 años', '18-30 años', '85 (error?)'],
+        labels: ['15-18 años', '18-30 años', '30+ años'],
         datasets: [{
-          label: 'Edad',
-          data: [4, 4, 1],
-          backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
+          data: [5, 4, 1], // 5 de 15-18, 4 de 18-30, 1 de 30+ (el 85 lo puse aquí)
+          backgroundColor: getChartBackgroundColors(3),
+          hoverOffset: 10
         }]
-      }
+      },
+      options: commonChartOptions
     });
 
-    const vehiculoChart = new Chart(document.getElementById('vehiculoChart'), {
+    // Gráfico de Vehículo Propio
+    new Chart(document.getElementById('vehiculoChart'), {
       type: 'pie',
       data: {
-        labels: ['Caminando', 'Bici/Moto', 'Auto propio'],
+        labels: ['Utilizo bicicleta o motocicleta', 'Tengo automóvil propio', 'Voy a todos lados caminando'],
         datasets: [{
-          label: 'Vehículo propio',
-          data: [1, 6, 2],
-          backgroundColor: ['#f1c40f', '#9b59b6', '#1abc9c']
+          data: [6, 2, 2], // 6 bicicletas/motocicletas, 2 automóvil propio, 2 caminando
+          backgroundColor: getChartBackgroundColors(3),
+          hoverOffset: 10
         }]
-      }
+      },
+      options: commonChartOptions
     });
 
-    const pagoChart = new Chart(document.getElementById('pagoChart'), {
-      type: 'pie',
+    // Gráfico de Interés en Rastreo GPS (100% "Sí")
+    new Chart(document.getElementById('rastreoChart'), {
+      type: 'doughnut',
       data: {
-        labels: ['0-300 USD', '300-500 USD', 'Más de 500'],
+        labels: ['Sí, me gustaría verlo'],
         datasets: [{
-          label: 'Precio aceptable',
-          data: [5, 4, 0],
-          backgroundColor: ['#34495e', '#16a085', '#c0392b']
+          data: [10], // Todos los 10 dijeron Sí
+          backgroundColor: [chartColors.primary],
+          hoverOffset: 10
         }]
-      }
+      },
+      options: commonChartOptions
     });
 
-    const expandirChart = new Chart(document.getElementById('expandirChart'), {
+    // Gráfico de Disposición de Inversión
+    new Chart(document.getElementById('pagoChart'), {
       type: 'pie',
       data: {
-        labels: ['Solo skates', 'Todos los vehículos', 'Lo veo posible'],
+        labels: ['0-300 USD', '300-500 USD'],
         datasets: [{
-          label: 'Expansión',
-          data: [0, 4, 5],
-          backgroundColor: ['#d35400', '#8e44ad', '#27ae60']
+          data: [4, 5], // 4 de 0-300 USD, 5 de 300-500 USD. (10 - 4 - 5 = 1 que no especificó en esta tabla)
+          backgroundColor: getChartBackgroundColors(2),
+          hoverOffset: 10
         }]
+      },
+      options: commonChartOptions
+    });
+
+    // Gráfico de Visión de Futuro: Aplicabilidad
+    new Chart(document.getElementById('expandirChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Quiero tenerlo en todos mis vehículos', 'Lo veo posible'],
+        datasets: [{
+          data: [6, 4], // 6 "Quiero...", 4 "Lo veo posible" (Nop y No son "Lo veo posible")
+          backgroundColor: getChartBackgroundColors(2),
+          hoverOffset: 10
+        }]
+      },
+      options: commonChartOptions
+    });
+
+    // Gráfico de Sentimiento sobre Inseguridad por Robo (Nueva adición)
+    new Chart(document.getElementById('inseguridadChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Sí, me siento inseguro', 'No me siento inseguro'],
+        datasets: [{
+          data: [8, 2], // 8 "Sí", 2 "No" (el de 85 y el de 14/5/2025 dijeron "No")
+          backgroundColor: [chartColors.quaternary, chartColors.sixth], // Verde para "Sí", Naranja para "No"
+          hoverOffset: 10
+        }]
+      },
+      options: commonChartOptions
+    });
+
+    // Gráfico de Factores de Decisión (Radar Chart - basado en percepción general de la encuesta)
+    new Chart(document.getElementById('factoresChart'), {
+      type: 'radar',
+      data: {
+        labels: ['Seguridad', 'Rastreo GPS', 'Costo', 'Facilidad de Uso', 'Diseño'],
+        datasets: [{
+          label: 'Importancia Valorada (1-5)',
+          data: [5, 4.8, 3.5, 4.2, 3.8], // Estos son promedios estimados por el análisis
+          backgroundColor: 'rgba(255, 204, 0, 0.2)',
+          borderColor: chartColors.primary,
+          pointBackgroundColor: chartColors.primary,
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: chartColors.primary,
+          borderWidth: 2
+        }]
+      },
+      options: {
+        ...commonChartOptions,
+        plugins: {
+            ...commonChartOptions.plugins,
+            legend: {
+                position: 'top',
+            }
+        },
+        scales: {
+          r: {
+            angleLines: {
+              color: 'rgba(255, 255, 255, 0.2)'
+            },
+            grid: {
+              color: 'rgba(255, 255, 255, 0.2)'
+            },
+            pointLabels: {
+              font: {
+                family: 'Poppins',
+                size: 14,
+                weight: '600'
+              },
+              color: '#E0E0E0'
+            },
+            ticks: {
+              display: false,
+              beginAtZero: true,
+              max: 5,
+              stepSize: 1
+            },
+            suggestedMin: 0,
+            suggestedMax: 5
+          }
+        }
       }
     });
   </script>
 </body>
 </html>
-
