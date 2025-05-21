@@ -24,8 +24,25 @@
     <div class="container">
       <h1 class="logo-text">E-Skate Project</h1>
       <p class="tagline">Innovación y Futuro en Movilidad Urbana</p>
+      <div class="menu-icon" id="mobileMenuToggle">
+          <i class="fas fa-bars"></i>
+      </div>
     </div>
   </header>
+
+  <nav class="mobile-nav-overlay" id="mobileNavOverlay">
+      <div class="mobile-nav-header">
+          </div>
+      <ul class="mobile-nav-list">
+          <li><a href="#hero" class="mobile-nav-item"><i class="fas fa-home"></i> Inicio</a></li>
+          <li><a href="#about" class="mobile-nav-item"><i class="fas fa-lightbulb"></i> Visión del Proyecto</a></li>
+          <li><a href="#product-showcase" class="mobile-nav-item"><i class="fas fa-cube"></i> Explora el Producto</a></li>
+          <li><a href="#features" class="mobile-nav-item"><i class="fas fa-cogs"></i> Características Clave</a></li>
+          <li><a href="#survey" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Participa en la Encuesta</a></li>
+          <li><a href="resultados.html" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
+          <li><a href="#contact" class="mobile-nav-item"><i class="fas fa-envelope"></i> Contáctanos</a></li>
+      </ul>
+  </nav>
 
   <main>
     <section id="hero" class="hero-section">
@@ -192,6 +209,19 @@
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
+            // Cerrar el menú móvil si un enlace es clickeado dentro de él
+            if (this.classList.contains('mobile-nav-item')) {
+                const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+                const mobileMenuToggle = document.getElementById('mobileMenuToggle'); // Obtener el botón de menú
+                if (mobileNavOverlay && mobileMenuToggle) {
+                    mobileNavOverlay.classList.remove('is-open');
+                    document.body.classList.remove('menu-active'); // Quitar la clase del body
+                    document.body.style.overflow = ''; // Restaurar el scroll del body
+                    mobileMenuToggle.querySelector('i').classList.remove('fa-times'); // Cambiar a fa-bars
+                    mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            }
+
             if (targetElement) {
                 window.scrollTo({
                     top: targetElement.offsetTop - (document.querySelector('header')?.offsetHeight || 0),
@@ -230,6 +260,46 @@
       modelViewer.addEventListener('error', (event) => {
         console.error('Error al cargar el modelo 3D:', event);
       });
+    }
+
+    // Lógica para el menú hamburguesa (ahora con transformación de ícono)
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+    if (mobileMenuToggle && mobileNavOverlay) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isMenuOpen = mobileNavOverlay.classList.contains('is-open');
+            if (isMenuOpen) {
+                // Si el menú está abierto, ciérralo
+                mobileNavOverlay.classList.remove('is-open');
+                document.body.classList.remove('menu-active');
+                document.body.style.overflow = '';
+                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+            } else {
+                // Si el menú está cerrado, ábrelo
+                mobileNavOverlay.classList.add('is-open');
+                document.body.classList.add('menu-active');
+                document.body.style.overflow = 'hidden';
+                mobileMenuToggle.querySelector('i').classList.remove('fa-bars');
+                mobileMenuToggle.querySelector('i').classList.add('fa-times');
+            }
+        });
+        
+        // Cierra el menú si se hace clic en el backdrop (el área oscurecida)
+        document.body.addEventListener('click', (e) => {
+            // Verificar si el clic fue fuera del overlay y no en el botón de toggle
+            if (document.body.classList.contains('menu-active') && 
+                !mobileNavOverlay.contains(e.target) && 
+                !mobileMenuToggle.contains(e.target)) {
+                
+                mobileNavOverlay.classList.remove('is-open');
+                document.body.classList.remove('menu-active');
+                document.body.style.overflow = '';
+                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+            }
+        });
     }
   </script>
 </body>
