@@ -10,6 +10,7 @@
     --medium-text: #A0A0A0; /* Color de texto medio para descripciones */
     --border-color: #FFCC00; /* Borde para elementos importantes */
     --shadow-color: rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+    --table-border-color: rgba(255, 204, 0, 0.3); /* Borde de tabla más suave */
 }
 
 body {
@@ -23,7 +24,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Evita scroll horizontal no deseado en el body */
 }
 
 /* NUEVO: Clase para controlar el scroll y el backdrop del body */
@@ -658,7 +659,7 @@ canvas {
 .mobile-nav-header {
     display: block; /* Hacemos que sea visible */
     width: 100%;
-    padding: 30px 20px 20px; /* Más padding arriba para separar el título */
+    padding: 30px 20px 20px; /* Más padding arriba para separar del título */
     text-align: center;
     /* Puedes añadir un border-bottom si quieres una línea debajo */
     /* border-bottom: 1px solid rgba(255, 204, 0, 0.3); */
@@ -730,6 +731,156 @@ canvas {
 .mobile-nav-item:hover i,
 .mobile-nav-item:focus i {
     color: #FFB700; 
+}
+
+/* --- ESTILOS MEJORADOS PARA LA TABLA DE COMPARACIÓN (COMPETENCIA) --- */
+
+.table-responsive {
+    overflow-x: auto; /* Habilita el desplazamiento horizontal */
+    -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
+    margin-bottom: 30px;
+    position: relative; /* Para las sombras de scroll */
+    padding-bottom: 10px; /* Espacio para la barra de desplazamiento */
+    border-radius: 10px; /* Bordes redondeados para el contenedor */
+    box-shadow: 0 10px 25px var(--shadow-color); /* Sombra para el contenedor */
+    border: 2px solid var(--border-color); /* Borde amarillo para el contenedor */
+    background-color: var(--primary-dark); /* Fondo del contenedor */
+}
+
+/* Sombras sutiles para indicar capacidad de desplazamiento */
+.table-responsive::before,
+.table-responsive::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 30px; /* Ancho de la sombra */
+    pointer-events: none; /* Permite interactuar con el contenido detrás */
+    transition: opacity 0.3s;
+    z-index: 3; /* Asegura que las sombras estén por encima del contenido de la tabla */
+}
+
+.table-responsive::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent); /* Sombra más oscura */
+    opacity: 1; /* Visible inicialmente */
+}
+
+.table-responsive::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent); /* Sombra más oscura */
+    opacity: 1; /* Visible inicialmente */
+}
+
+/* Ocultar sombras cuando se ha desplazado a los extremos o no se necesita desplazamiento */
+.table-responsive.at-start::before { opacity: 0; }
+.table-responsive.at-end::after { opacity: 0; }
+.table-responsive.no-scroll::before,
+.table-responsive.no-scroll::after { opacity: 0; }
+
+
+.comparison-table {
+    width: 100%; /* La tabla tomará el ancho completo de su contenedor */
+    min-width: 1400px; /* Ancho mínimo forzado para activar el scroll horizontal */
+    border-collapse: collapse; /* Elimina el espacio entre los bordes de las celdas */
+    margin: 0; /* Asegura que no haya márgenes externos */
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 10px 15px; /* Reducir el padding para juntar las filas */
+    vertical-align: top; /* Alinea el contenido en la parte superior de la celda */
+    white-space: normal; /* Permite que el texto se ajuste dentro de las celdas */
+    border: 1px solid var(--table-border-color); /* Bordes claros para cada celda */
+    text-align: left; /* Alineación del texto a la izquierda por defecto */
+}
+
+.comparison-table th {
+    font-weight: 700;
+    white-space: nowrap; /* Mantiene los encabezados de columna en una sola línea */
+    background-color: var(--secondary-dark); /* Fondo del encabezado */
+    color: var(--accent-yellow); /* Color del texto del encabezado */
+    text-align: center; /* Centrar texto en encabezados */
+    position: sticky; /* Hace que los encabezados se peguen al desplazarse verticalmente */
+    top: 0; /* Se pegan a la parte superior */
+    z-index: 4; /* Asegura que los encabezados estén por encima de las sombras */
+}
+
+.comparison-table td {
+    background-color: var(--primary-dark);
+    color: var(--light-text);
+}
+
+/* Alternar colores de fondo de fila para mejor legibilidad */
+.comparison-table tbody tr:nth-child(even) td {
+    background-color: rgba(0, 0, 0, 0.2); /* Un tono más oscuro del primary-dark o un transparente sobre primary */
+}
+.comparison-table tbody tr:nth-child(odd) td {
+    background-color: var(--primary-dark); /* Color base */
+}
+
+/* Primera columna fija (Nombre de la Empresa) */
+.comparison-table th:first-child,
+.comparison-table td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: var(--secondary-dark); /* Fondo distintivo para la primera columna */
+    z-index: 5; /* Asegura que esté por encima de otras celdas y encabezados al desplazarse */
+    box-shadow: 2px 0 8px rgba(0,0,0,0.4); /* Sombra para destacarla */
+    border-right: 1px solid var(--accent-yellow); /* Borde amarillo para separarla */
+    color: var(--accent-yellow); /* Texto amarillo para la primera columna */
+    font-weight: 600; /* Texto más negrita */
+    min-width: 200px; /* Ancho mínimo para la primera columna */
+    text-align: left; /* Alineación a la izquierda para el contenido de la primera columna */
+}
+
+/* Ajustes para descripciones y listas en celdas de tabla */
+.comparison-table td ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comparison-table td ul li {
+    padding-left: 20px; /* Espacio para el ícono */
+    position: relative;
+    margin-bottom: 5px;
+    font-size: 0.95rem; /* Ajustar el tamaño de la fuente para las listas en celdas */
+    line-height: 1.4;
+}
+
+.comparison-table td ul li::before {
+    content: '\2022'; /* Un simple punto o un guion */
+    color: var(--accent-yellow);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2em;
+    line-height: inherit; /* Asegura que el ícono se alinee con el texto */
+}
+
+/* Styles for checkmark in lists (if you want to use them elsewhere, not just in tables) */
+ul {
+    list-style: none; /* Remove default bullet points */
+    padding-left: 0; /* Remove default padding */
+    margin-left: 0;
+}
+
+ul li {
+    padding-left: 30px; /* Space for custom bullet */
+    position: relative;
+    margin-bottom: 10px; /* Space between list items */
+    color: var(--light-text); /* Consistent text color */
+}
+
+ul li::before {
+    content: '\2713'; /* Checkmark icon */
+    font-family: 'Font Awesome 6 Free'; /* Use Font Awesome font */
+    font-weight: 900; /* For solid icon */
+    color: var(--accent-yellow); /* Yellow checkmark */
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 
@@ -854,7 +1005,7 @@ canvas {
     /* Ajustes específicos para la tabla de competencia en móvil */
     .comparison-table th,
     .comparison-table td {
-        padding: 12px 15px; /* Reducir padding en móvil */
+        padding: 8px 12px; /* Reducir padding aún más en móvil */
         font-size: 0.9rem; /* Reducir tamaño de fuente */
     }
 
@@ -917,11 +1068,11 @@ canvas {
     /* Más ajustes para la tabla en móviles muy pequeños */
     .comparison-table th,
     .comparison-table td {
-        padding: 10px 12px;
-        font-size: 0.85rem;
+        padding: 6px 10px; /* Aún más pequeño */
+        font-size: 0.8rem;
     }
     .comparison-table th:first-child,
     .comparison-table td:first-child {
-        min-width: 120px; /* Aún más pequeño */
+        min-width: 110px; /* Aún más pequeño */
     }
 }
