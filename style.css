@@ -732,347 +732,141 @@ canvas {
 .mobile-nav-item:focus i {
     color: #FFB700; 
 }
-
-/* --- ESTILOS MEJORADOS PARA LA TABLA DE COMPARACIÓN (COMPETENCIA) --- */
-
 .table-responsive {
-    overflow-x: auto; /* Habilita el desplazamiento horizontal */
+    overflow-x: auto; /* Permite el scroll horizontal */
     -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
     margin-bottom: 30px;
-    position: relative; /* Para las sombras de scroll */
-    padding-bottom: 10px; /* Espacio para la barra de desplazamiento */
-    border-radius: 10px; /* Bordes redondeados para el contenedor */
-    box-shadow: 0 10px 25px var(--shadow-color); /* Sombra para el contenedor */
-    border: 2px solid var(--border-color); /* Borde amarillo para el contenedor */
-    background-color: var(--primary-dark); /* Fondo del contenedor */
+    position: relative; /* Necesario para las sombras de scroll (aunque ahora estén desactivadas) */
+    border-radius: 10px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    border: 2px solid var(--border-color);
+    background-color: var(--primary-dark); /* Fondo del área de scroll */
 }
 
-/* Sombras sutiles para indicar capacidad de desplazamiento */
+/* Sombras sutiles para indicar que se puede scrollear - AHORA COMENTADAS SEGÚN SOLICITUD */
+/*
 .table-responsive::before,
 .table-responsive::after {
     content: '';
     position: absolute;
     top: 0;
-    height: 100%;
-    width: 30px; /* Ancho de la sombra */
-    pointer-events: none; /* Permite interactuar con el contenido detrás */
+    bottom: 0;
+    width: 30px;
+    pointer-events: none;
     transition: opacity 0.3s;
-    z-index: 3; /* Asegura que las sombras estén por encima del contenido de la tabla */
+    z-index: 3;
 }
 
 .table-responsive::before {
     left: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent); /* Sombra más oscura */
-    opacity: 1; /* Visible inicialmente */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent);
 }
 
 .table-responsive::after {
     right: 0;
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent); /* Sombra más oscura */
-    opacity: 1; /* Visible inicialmente */
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.7), transparent);
 }
+*/
 
-/* Ocultar sombras cuando se ha desplazado a los extremos o no se necesita desplazamiento */
-.table-responsive.at-start::before { opacity: 0; }
-.table-responsive.at-end::after { opacity: 0; }
-.table-responsive.no-scroll::before,
+/* Ocultar sombras cuando se llega al final del scroll o no hay scroll - AHORA COMENTADAS */
+/*
+.table-responsive.at-start::before,
+.table-responsive.no-scroll::before { opacity: 0; }
+
+.table-responsive.at-end::after,
 .table-responsive.no-scroll::after { opacity: 0; }
-
+*/
 
 .comparison-table {
-    width: 100%; /* La tabla tomará el ancho completo de su contenedor */
-    min-width: 1400px; /* Ancho mínimo forzado para activar el scroll horizontal */
-    border-collapse: collapse; /* Elimina el espacio entre los bordes de las celdas */
-    margin: 0; /* Asegura que no haya márgenes externos */
+    width: 100%;
+    /* Ajusta este valor si necesitas más o menos espacio para el scroll. Lo he aumentado. */
+    min-width: 3000px; /* <<<< ANCHO AUMENTADO AQUÍ (antes 1800px) */
+    border-collapse: collapse;
+    background-color: var(--primary-dark); /* Fondo base de la tabla */
+    table-layout: fixed; /* Importante para controlar el ancho de las columnas y el comportamiento de sticky */
 }
 
 .comparison-table th,
 .comparison-table td {
-    padding: 10px 15px; /* Reducir el padding para juntar las filas */
-    vertical-align: top; /* Alinea el contenido en la parte superior de la celda */
-    white-space: normal; /* Permite que el texto se ajuste dentro de las celdas */
-    border: 1px solid var(--table-border-color); /* Bordes claros para cada celda */
-    text-align: left; /* Alineación del texto a la izquierda por defecto */
+    padding: 6px 8px; /* Padding reducido */
+    vertical-align: top;
+    white-space: normal; /* Permitir que el texto se ajuste */
+    word-wrap: break-word; /* Romper palabras largas si es necesario */
+    border: 1px solid var(--table-border-color);
+    box-sizing: border-box;
+    text-align: left;
 }
 
+/* Estilos para los encabezados (fijos en la parte superior) */
 .comparison-table th {
     font-weight: 700;
-    white-space: nowrap; /* Mantiene los encabezados de columna en una sola línea */
-    background-color: var(--secondary-dark); /* Fondo del encabezado */
-    color: var(--accent-yellow); /* Color del texto del encabezado */
-    text-align: center; /* Centrar texto en encabezados */
-    position: sticky; /* Hace que los encabezados se peguen al desplazarse verticalmente */
-    top: 0; /* Se pegan a la parte superior */
-    z-index: 4; /* Asegura que los encabezados estén por encima de las sombras */
+    background-color: var(--secondary-dark); /* Fondo para todos los TH */
+    color: var(--accent-yellow);
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 4; /* Encima del contenido de la tabla que se desplaza, pero debajo de la primera columna (si tiene z-index > 4) */
 }
 
+/* Estilos para las celdas de datos */
 .comparison-table td {
-    background-color: var(--primary-dark);
+    background-color: #1A1A2E; /* Fondo consistente para todas las celdas de datos */
     color: var(--light-text);
 }
 
-/* Alternar colores de fondo de fila para mejor legibilidad */
-.comparison-table tbody tr:nth-child(even) td {
-    background-color: rgba(0, 0, 0, 0.2); /* Un tono más oscuro del primary-dark o un transparente sobre primary */
-}
-.comparison-table tbody tr:nth-child(odd) td {
-    background-color: var(--primary-dark); /* Color base */
-}
-
-/* Primera columna fija (Nombre de la Empresa) */
+/* Primera columna (Empresa - fija a la izquierda), aplica a TH y TD de la primera columna */
 .comparison-table th:first-child,
 .comparison-table td:first-child {
     position: sticky;
     left: 0;
-    background-color: var(--secondary-dark); /* Fondo distintivo para la primera columna */
-    z-index: 5; /* Asegura que esté por encima de otras celdas y encabezados al desplazarse */
-    box-shadow: 2px 0 8px rgba(0,0,0,0.4); /* Sombra para destacarla */
-    border-right: 1px solid var(--accent-yellow); /* Borde amarillo para separarla */
-    color: var(--accent-yellow); /* Texto amarillo para la primera columna */
-    font-weight: 600; /* Texto más negrita */
-    min-width: 200px; /* Ancho mínimo para la primera columna */
-    text-align: left; /* Alineación a la izquierda para el contenido de la primera columna */
+    background-color: var(--secondary-dark) !important; /* Fondo opaco, crucial para evitar "trabado" */
+    color: var(--accent-yellow) !important; /* Color de texto distintivo */
+    font-weight: 600;
+    text-align: left; /* Asegurar alineación */
+    padding: 6px 12px; /* Padding específico para la primera columna */
+    z-index: 5; /* Debe ser mayor que el z-index de los TH generales (4) */
+    box-shadow: 2px 0 8px rgba(0,0,0,0.6); /* Sombra para dar efecto de profundidad */
+    border-right: 1px solid var(--accent-yellow) !important; /* Borde para separar visualmente */
 }
 
-/* Ajustes para descripciones y listas en celdas de tabla */
-.comparison-table td ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.comparison-table td ul li {
-    padding-left: 20px; /* Espacio para el ícono */
-    position: relative;
-    margin-bottom: 5px;
-    font-size: 0.95rem; /* Ajustar el tamaño de la fuente para las listas en celdas */
-    line-height: 1.4;
-}
-
-.comparison-table td ul li::before {
-    content: '\2022'; /* Un simple punto o un guion */
-    color: var(--accent-yellow);
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 1.2em;
-    line-height: inherit; /* Asegura que el ícono se alinee con el texto */
-}
-
-/* Styles for checkmark in lists (if you want to use them elsewhere, not just in tables) */
-ul {
-    list-style: none; /* Remove default bullet points */
-    padding-left: 0; /* Remove default padding */
-    margin-left: 0;
-}
-
-ul li {
-    padding-left: 30px; /* Space for custom bullet */
-    position: relative;
-    margin-bottom: 10px; /* Space between list items */
-    color: var(--light-text); /* Consistent text color */
-}
-
-ul li::before {
-    content: '\2713'; /* Checkmark icon */
-    font-family: 'Font Awesome 6 Free'; /* Use Font Awesome font */
-    font-weight: 900; /* For solid icon */
-    color: var(--accent-yellow); /* Yellow checkmark */
-    position: absolute;
-    left: 0;
-    top: 0;
-}
+/* Anchos de las columnas (15 columnas en total) */
+.comparison-table th:nth-child(1), .comparison-table td:nth-child(1) { width: 12%; } /* Empresa */
+.comparison-table th:nth-child(2), .comparison-table td:nth-child(2) { width: 8%; }  /* 1. Principales Empresas */
+.comparison-table th:nth-child(3), .comparison-table td:nth-child(3) { width: 8%; }  /* 2. Localización */
+.comparison-table th:nth-child(4), .comparison-table td:nth-child(4) { width: 12%; } /* 3. Productos y servicios */
+.comparison-table th:nth-child(5), .comparison-table td:nth-child(5) { width: 7%; }  /* 4. Precio de venta */
+.comparison-table th:nth-child(6), .comparison-table td:nth-child(6) { width: 7%; }  /* 5. Medios de pago */
+.comparison-table th:nth-child(7), .comparison-table td:nth-child(7) { width: 8%; }  /* 6. Características de la materia prima */
+.comparison-table th:nth-child(8), .comparison-table td:nth-child(8) { width: 7%; }  /* 7. Marca */
+.comparison-table th:nth-child(9), .comparison-table td:nth-child(9) { width: 8%; }  /* 8. Tecnología */
+.comparison-table th:nth-child(10), .comparison-table td:nth-child(10) { width: 7%; } /* 9. Embalaje */
+.comparison-table th:nth-child(11), .comparison-table td:nth-child(11) { width: 9%; } /* 10. Principales clientes */
+.comparison-table th:nth-child(12), .comparison-table td:nth-child(12) { width: 8%; } /* 11. Atención al cliente */
+.comparison-table th:nth-child(13), .comparison-table td:nth-child(13) { width: 8%; } /* 12. Cumplimiento de entrega */
+.comparison-table th:nth-child(14), .comparison-table td:nth-child(14) { width: 8%; } /* 13. Tipo de publicidad */
+.comparison-table th:nth-child(15), .comparison-table td:nth-child(15) { width: 15%;} /* 14. Puntos débiles y fuertes */
 
 
-/* --- Media Queries para Responsividad --- */
-@media (max-width: 992px) {
-    .container {
-        padding: 0 20px;
-    }
-    header .logo-text {
-        font-size: 2.5rem;
-    }
-    .hero-section h2 {
-        font-size: 3.5rem;
-    }
-    .hero-description {
-        font-size: 1.2rem;
-    }
-    h2 {
-        font-size: 2.5rem;
-    }
-    .description {
-        font-size: 1.05rem;
-    }
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-    .about-text {
-        text-align: center;
-    }
-    .model-viewer-container {
-        height: 400px;
-    }
-    .btn-primary {
-        padding: 14px 30px;
-        font-size: 1rem;
-    }
-    .feature-card h3 {
-        font-size: 1.5rem;
-    }
-    .chart-grid {
-        gap: 30px;
-    }
-    .chart-card {
-        min-height: 350px;
-    }
-    canvas {
-        height: 250px !important;
-    }
-    /* Tabla de competencia en pantallas más grandes: sin cambios drásticos, solo responsive por defecto */
-    .table-responsive {
-        padding: 0 10px; /* Ajuste para que no esté pegado a los bordes de la pantalla en tablets */
-    }
-}
-
+/* MEDIA QUERIES PARA AJUSTES EN PANTALLAS MÁS PEQUEÑAS */
 @media (max-width: 768px) {
-    .sidebar-left, .sidebar-right {
-        display: none; /* Oculta ambas barras laterales en pantallas pequeñas */
+    .comparison-table {
+        /* Ajusta el min-width para tabletas si el nuevo valor de 2400px es demasiado */
+        min-width: 1800px; /* Ejemplo: un valor menor para tabletas */
     }
-    
-    .menu-icon {
-        display: block; /* Muestra el botón de menú móvil */
-    }
-
-    header .container {
-        position: relative;
-    }
-    
-    header .logo-text {
-        font-size: 2rem;
-    }
-    .tagline {
-        font-size: 1rem;
-    }
-    .hero-section {
-        min-height: 75vh;
-        padding: 80px 0;
-    }
-    .hero-section h2 {
-        font-size: 2.8rem;
-    }
-    .hero-description {
-        font-size: 1.1rem;
-    }
-    h2 {
-        font-size: 2.2rem;
-        margin-bottom: 40px;
-    }
-    .section-padded {
-        padding: 60px 0;
-    }
-    .button-group {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .btn-primary {
-        width: 80%;
-        max-width: 300px;
-    }
-    .model-viewer-container {
-        height: 350px;
-    }
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-    .form-embed-wrapper iframe {
-        height: 600px;
-    }
-    .contact-info-grid {
-        grid-template-columns: 1fr;
-        padding: 25px;
-    }
-    .chart-grid {
-        grid-template-columns: 1fr;
-    }
-    .chart-card {
-        min-height: 320px;
-    }
-    canvas {
-        height: 250px !important; 
-    }
-
-    /* Ajustes específicos para la tabla de competencia en móvil */
     .comparison-table th,
     .comparison-table td {
-        padding: 8px 12px; /* Reducir padding aún más en móvil */
-        font-size: 0.9rem; /* Reducir tamaño de fuente */
-    }
-
-    .comparison-table th:first-child,
-    .comparison-table td:first-child {
-        min-width: 150px; /* Asegura que la primera columna tenga un ancho mínimo razonable */
-        max-width: 180px; /* Limita el ancho de la primera columna */
-        white-space: normal; /* Permite que el texto se envuelva */
-    }
-    .comparison-table th {
-        font-size: 1rem; /* Ajuste para encabezados */
+        padding: 4px 6px !important; /* Reducir padding */
+        font-size: 0.85rem; /* Reducir tamaño de fuente */
     }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
+    .comparison-table {
+        /* Ajusta el min-width para móviles si el nuevo valor de 2400px es demasiado */
+        min-width: 1500px; /* Ejemplo: un valor menor para móviles */
     }
-    header .logo-text {
-        font-size: 1.8rem;
-    }
-    .hero-section h2 {
-        font-size: 2.2rem;
-    }
-    .hero-description {
-        font-size: 0.95rem;
-    }
-    .hero-btn {
-        padding: 14px 35px;
-        font-size: 1.1rem;
-    }
-    h2 {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-    }
-    .section-padded {
-        padding: 40px 0;
-    }
-    .description {
-        font-size: 0.9rem;
-    }
-    .model-viewer-container {
-        height: 280px;
-    }
-    .feature-card {
-        padding: 25px;
-    }
-    .feature-card h3 {
-        font-size: 1.4rem;
-    }
-    .form-embed-wrapper iframe {
-        height: 450px;
-    }
-    .chart-card {
-        min-height: 280px;
-    }
-    canvas {
-        height: 180px !important;
-    }
-    /* Más ajustes para la tabla en móviles muy pequeños */
     .comparison-table th,
     .comparison-table td {
-        padding: 6px 10px; /* Aún más pequeño */
-        font-size: 0.8rem;
-    }
-    .comparison-table th:first-child,
-    .comparison-table td:first-child {
-        min-width: 110px; /* Aún más pequeño */
+        font-size: 0.75rem; /* Fuente aún más pequeña */
     }
 }
