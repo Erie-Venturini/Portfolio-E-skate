@@ -13,6 +13,10 @@
     --table-border-color: rgba(255, 204, 0, 0.3); /* Borde de tabla más suave */
 }
 
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave para anclas */
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--primary-dark); /* Fondo general de la página */
@@ -23,11 +27,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    scroll-behavior: smooth;
     overflow-x: hidden; /* Evita scroll horizontal no deseado en el body */
 }
 
-/* NUEVO: Clase para controlar el scroll y el backdrop del body */
+/* Clase para controlar el scroll y el backdrop del body cuando el menú está abierto */
 body.menu-active {
     overflow: hidden; /* Evita el scroll del body cuando el menú está abierto */
 }
@@ -78,6 +81,7 @@ body::before { /* Estado inicial oculto del backdrop */
     flex-direction: column;
     gap: 18px;
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-out; /* Animación para ocultar/mostrar */
 }
 
 .sidebar-left {
@@ -131,6 +135,7 @@ body::before { /* Estado inicial oculto del backdrop */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
     z-index: 1100;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
@@ -634,10 +639,12 @@ canvas {
     position: fixed;
     top: 0;
     right: 0; 
-    width: 80%; /* Ahora es 80% del ancho de la pantalla */
-    max-width: 400px; /* Nuevo ancho máximo */
+    /* Cambiado para ocupar consistentemente menos ancho, ej. 60% o un max-width más bajo */
+    width: 30%; /* Ahora es 60% del ancho de la pantalla */
+    max-width: 350px; /* Nuevo ancho máximo para que no sea demasiado grande en pantallas grandes */
     height: 100%;
-    background-color: rgba(15, 45, 82, 0.95); /* secondary-dark con 95% de opacidad */
+    /* Ajustado el color de fondo con la opacidad solicitada (0.93) */
+    background-color: rgba(15, 45, 82, 0.93); /* secondary-dark con 93% de opacidad */
     z-index: 1050; 
     display: flex;
     flex-direction: column;
@@ -732,63 +739,30 @@ canvas {
 .mobile-nav-item:focus i {
     color: #FFB700; 
 }
+
+/* --- Estilos de la tabla de competencia --- */
 .table-responsive {
     overflow-x: auto; /* Permite el scroll horizontal */
     -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
     margin-bottom: 30px;
-    position: relative; /* Necesario para las sombras de scroll (aunque ahora estén desactivadas) */
+    position: relative;
     border-radius: 10px;
     box-shadow: 0 10px 25px var(--shadow-color);
     border: 2px solid var(--border-color);
     background-color: var(--primary-dark); /* Fondo del área de scroll */
 }
 
-/* Sombras sutiles para indicar que se puede scrollear - AHORA COMENTADAS SEGÚN SOLICITUD */
-/*
-.table-responsive::before,
-.table-responsive::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 30px;
-    pointer-events: none;
-    transition: opacity 0.3s;
-    z-index: 3;
-}
-
-.table-responsive::before {
-    left: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent);
-}
-
-.table-responsive::after {
-    right: 0;
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.7), transparent);
-}
-*/
-
-/* Ocultar sombras cuando se llega al final del scroll o no hay scroll - AHORA COMENTADAS */
-/*
-.table-responsive.at-start::before,
-.table-responsive.no-scroll::before { opacity: 0; }
-
-.table-responsive.at-end::after,
-.table-responsive.no-scroll::after { opacity: 0; }
-*/
-
 .comparison-table {
     width: 100%;
-    /* Ajusta este valor si necesitas más o menos espacio para el scroll. Lo he aumentado. */
-    min-width: 3000px; /* <<<< ANCHO AUMENTADO AQUÍ (antes 1800px) */
+    min-width: 3000px; /* ANCHO MÍNIMO GRANDE para forzar el scroll */
     border-collapse: collapse;
     background-color: var(--primary-dark); /* Fondo base de la tabla */
-    table-layout: fixed; /* Importante para controlar el ancho de las columnas y el comportamiento de sticky */
+    table-layout: fixed; /* IMPORTANTE: Controla el ancho de las columnas */
 }
 
 .comparison-table th,
 .comparison-table td {
-    padding: 6px 8px; /* Padding reducido */
+    padding: 8px 12px; /* Aumentado ligeramente el padding para mejor legibilidad */
     vertical-align: top;
     white-space: normal; /* Permitir que el texto se ajuste */
     word-wrap: break-word; /* Romper palabras largas si es necesario */
@@ -797,7 +771,6 @@ canvas {
     text-align: left;
 }
 
-/* Estilos para los encabezados (fijos en la parte superior) */
 .comparison-table th {
     font-weight: 700;
     background-color: var(--secondary-dark); /* Fondo para todos los TH */
@@ -805,38 +778,37 @@ canvas {
     text-align: center;
     position: sticky;
     top: 0;
-    z-index: 4; /* Encima del contenido de la tabla que se desplaza, pero debajo de la primera columna (si tiene z-index > 4) */
+    z-index: 4; 
 }
 
-/* Estilos para las celdas de datos */
 .comparison-table td {
     background-color: #1A1A2E; /* Fondo consistente para todas las celdas de datos */
     color: var(--light-text);
 }
 
-/* Primera columna (Empresa - fija a la izquierda), aplica a TH y TD de la primera columna */
+/* Primera columna (Empresa - fija a la izquierda) */
 .comparison-table th:first-child,
 .comparison-table td:first-child {
     position: sticky;
     left: 0;
-    background-color: var(--secondary-dark) !important; /* Fondo opaco, crucial para evitar "trabado" */
-    color: var(--accent-yellow) !important; /* Color de texto distintivo */
+    background-color: var(--secondary-dark) !important; /* Fondo opaco y forzado */
+    color: var(--accent-yellow) !important; /* Color de texto distintivo y forzado */
     font-weight: 600;
-    text-align: left; /* Asegurar alineación */
-    padding: 6px 12px; /* Padding específico para la primera columna */
-    z-index: 5; /* Debe ser mayor que el z-index de los TH generales (4) */
-    box-shadow: 2px 0 8px rgba(0,0,0,0.6); /* Sombra para dar efecto de profundidad */
-    border-right: 1px solid var(--accent-yellow) !important; /* Borde para separar visualmente */
+    text-align: left;
+    padding: 8px 12px; /* Padding específico para la primera columna */
+    z-index: 5; /* Mayor que el z-index de los TH generales (4) */
+    box-shadow: 2px 0 8px rgba(0,0,0,0.6); /* Sombra para profundidad */
+    border-right: 1px solid var(--accent-yellow) !important; /* Borde visual */
 }
 
 /* Anchos de las columnas (15 columnas en total) */
 .comparison-table th:nth-child(1), .comparison-table td:nth-child(1) { width: 12%; } /* Empresa */
-.comparison-table th:nth-child(2), .comparison-table td:nth-child(2) { width: 8%; }  /* 1. Principales Empresas */
+.comparison-table th:nth-child(2), .comparison-table td:nth-child(2) { width: 8%; }  /* 1. Competidores Clave */
 .comparison-table th:nth-child(3), .comparison-table td:nth-child(3) { width: 8%; }  /* 2. Localización */
 .comparison-table th:nth-child(4), .comparison-table td:nth-child(4) { width: 12%; } /* 3. Productos y servicios */
 .comparison-table th:nth-child(5), .comparison-table td:nth-child(5) { width: 7%; }  /* 4. Precio de venta */
 .comparison-table th:nth-child(6), .comparison-table td:nth-child(6) { width: 7%; }  /* 5. Medios de pago */
-.comparison-table th:nth-child(7), .comparison-table td:nth-child(7) { width: 8%; }  /* 6. Características de la materia prima */
+.comparison-table th:nth-child(7), .comparison-table td:nth-child(7) { width: 8%; }  /* 6. Materia Prima */
 .comparison-table th:nth-child(8), .comparison-table td:nth-child(8) { width: 7%; }  /* 7. Marca */
 .comparison-table th:nth-child(9), .comparison-table td:nth-child(9) { width: 8%; }  /* 8. Tecnología */
 .comparison-table th:nth-child(10), .comparison-table td:nth-child(10) { width: 7%; } /* 9. Embalaje */
@@ -847,26 +819,162 @@ canvas {
 .comparison-table th:nth-child(15), .comparison-table td:nth-child(15) { width: 15%;} /* 14. Puntos débiles y fuertes */
 
 
-/* MEDIA QUERIES PARA AJUSTES EN PANTALLAS MÁS PEQUEÑAS */
+/* --- MEDIA QUERIES PARA AJUSTES RESPONSIVOS --- */
+
+/* Ocultar barras laterales y mostrar menú hamburguesa en pantallas pequeñas */
+@media (max-width: 1024px) { /* Puedes ajustar este breakpoint si necesitas que ocurra antes o después */
+    .sidebar {
+        /* Oculta la barra lateral */
+        transform: translateX(calc(100% + 20px)); /* Mueve fuera de la vista + un pequeño margen */
+        display: none; /* Asegúrate de que no ocupen espacio */
+    }
+    .sidebar-left {
+        transform: translateX(calc(-100% - 20px));
+        display: none;
+    }
+    .menu-icon {
+        display: block; /* Muestra el botón de menú hamburguesa */
+    }
+    .container {
+        padding: 0 15px; /* Ajusta el padding del contenedor en pantallas más pequeñas */
+    }
+    header .logo-text {
+        font-size: 2.5rem;
+    }
+    .tagline {
+        font-size: 1rem;
+    }
+    h2 {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+    }
+    .description {
+        font-size: 1rem;
+    }
+    .hero-section h2 {
+        font-size: 3.5rem;
+    }
+    .hero-description {
+        font-size: 1.2rem;
+    }
+    .hero-btn {
+        padding: 15px 40px;
+        font-size: 1.1rem;
+    }
+    .about-grid {
+        grid-template-columns: 1fr; /* Apila las columnas en móviles */
+    }
+    .about-text {
+        text-align: center;
+    }
+    .model-viewer-container {
+        height: 400px; /* Ajusta la altura del visor 3D */
+    }
+    .features-grid, .contact-info-grid, .chart-grid {
+        grid-template-columns: 1fr; /* Apila las tarjetas en móviles */
+    }
+    .feature-card, .chart-card, .contact-info-grid {
+        padding: 25px;
+    }
+    .feature-card i {
+        font-size: 2.8rem;
+    }
+    .feature-card h3 {
+        font-size: 1.5rem;
+    }
+    .btn-primary {
+        padding: 14px 30px;
+        font-size: 1rem;
+    }
+    .form-embed-wrapper iframe {
+        height: 600px; /* Ajusta la altura del iframe de encuesta */
+    }
+}
+
 @media (max-width: 768px) {
     .comparison-table {
-        /* Ajusta el min-width para tabletas si el nuevo valor de 2400px es demasiado */
-        min-width: 1800px; /* Ejemplo: un valor menor para tabletas */
+        min-width: 1800px; /* Un poco más de espacio en tabletas */
     }
     .comparison-table th,
     .comparison-table td {
-        padding: 4px 6px !important; /* Reducir padding */
-        font-size: 0.85rem; /* Reducir tamaño de fuente */
+        padding: 6px 8px; /* Padding reducido para tabletas */
+        font-size: 0.85rem; /* Fuente más pequeña para tabletas */
+    }
+    header .logo-text {
+        font-size: 2rem;
+    }
+    .hero-section h2 {
+        font-size: 2.8rem;
+    }
+    .hero-description {
+        font-size: 1rem;
+    }
+    .model-viewer-container {
+        height: 300px;
+    }
+    .form-embed-wrapper iframe {
+        height: 500px;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    .description {
+        font-size: 0.95rem;
     }
 }
 
 @media (max-width: 480px) {
     .comparison-table {
-        /* Ajusta el min-width para móviles si el nuevo valor de 2400px es demasiado */
-        min-width: 1500px; /* Ejemplo: un valor menor para móviles */
+        min-width: 1500px; /* Mínimo para móviles muy pequeños */
     }
     .comparison-table th,
     .comparison-table td {
-        font-size: 0.75rem; /* Fuente aún más pequeña */
+        padding: 4px 6px; /* Padding mínimo para móviles */
+        font-size: 0.75rem; /* Fuente aún más pequeña para móviles */
+    }
+    .menu-icon {
+        font-size: 1.8rem;
+        top: 15px;
+        right: 15px;
+    }
+    .mobile-nav-overlay {
+        width: 100%; /* El menú puede ocupar todo el ancho en móviles muy pequeños */
+    }
+    header .logo-text {
+        font-size: 1.8rem;
+    }
+    .tagline {
+        font-size: 0.9rem;
+    }
+    .hero-section h2 {
+        font-size: 2.2rem;
+    }
+    .hero-description {
+        font-size: 0.9rem;
+    }
+    .hero-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    .model-viewer-container {
+        height: 250px;
+    }
+    .form-embed-wrapper iframe {
+        height: 400px;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    .description {
+        font-size: 0.9rem;
+    }
+    .contact-info-grid, .chart-grid, .features-grid {
+        gap: 20px;
+    }
+    .contact-detail i {
+        font-size: 2rem;
+    }
+    .social-icons-contact a {
+        font-size: 1.8rem;
     }
 }
