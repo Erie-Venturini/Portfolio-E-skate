@@ -89,25 +89,44 @@
     <section id="product-showcase" class="section-padded accent-bg">
       <div class="container text-center">
         <h2>Explora Nuestro Concepto en 3D</h2>
-        <p class="description">Gira, haz zoom y descubre cada detalle del módulo de seguimiento que imaginamos para tu E-Skate. Una visión interactiva del futuro.</p>
+        <p class="description">Gira, haz zoom y descubre cada detalle de nuestros prototipos. Una visión interactiva del futuro.</p>
 
         <div class="model-viewer-container">
           <model-viewer
-            src="E_skate.glb"
-            alt="Modelo 3D del prototipo de E-Skate"
-            auto-rotate
+            id="mainModelViewer" 
+            src="animacionAbertura.glb" 
+            alt="Modelo 3D interactivo"
             camera-controls
             shadow-intensity="1"
             ar
             ar-modes="webxr quick-look scene-viewer"
-            autoplay
             seamless-poster
             environment-image="neutral"
             exposure="1"
             interaction-prompt="none"
-            class="interactive-model">
-            </model-viewer>
+            class="interactive-model"
+            
+            camera-orbit="0deg 80deg 2.8m" 
+            camera-target="0.0m 0.6m 0.0m" 
+            field-of-view="35deg" >
+            <button slot="poster" class="loading-spinner"></button>
+          </model-viewer>
         </div>
+
+        <div class="model-controls">
+            <button class="btn-primary model-toggle-btn" 
+                    data-model-src="animacionAbertura.glb" 
+                    data-animation-name="AperturaCompletaYSalida"
+                    data-camera-orbit="0deg 80deg 2.8m" 
+                    data-camera-target="0.0m 0.6m 0.0m" 
+                    data-field-of-view="35deg">Abrir Caja y Sacar Skate</button>
+            
+            <button class="btn-primary model-toggle-btn" 
+                    data-model-src="vistaComponentes.glb" 
+                    data-animation-name="VistaComponentesAnim"
+                    data-camera-orbit="0deg 75deg 4.5m"  data-camera-target="0.0m 1.0m 0.0m" data-field-of-view="55deg">Desglosar Componentes</button> <button class="btn-primary model-reset-btn">Reiniciar Vista Actual</button>
+        </div>
+
       </div>
     </section>
 
@@ -219,13 +238,11 @@
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             
-            // Si es un enlace interno de la misma página (con #)
             if (href.startsWith('#')) {
-                e.preventDefault(); // Previene el comportamiento por defecto solo para enlaces ancla
+                e.preventDefault(); 
                 const targetId = href;
                 const targetElement = document.querySelector(targetId);
 
-                // Cerrar el menú móvil si un enlace es clickeado dentro de él
                 if (this.classList.contains('mobile-nav-item')) {
                     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
                     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -245,9 +262,6 @@
                     });
                 }
             } else {
-                // Si es un enlace a otra página (resultados.html, analisisCompetencia.html),
-                // el navegador debe seguir su comportamiento normal.
-                // Asegurarse de que el menú móvil se cierre antes de navegar.
                 if (this.classList.contains('mobile-nav-item')) {
                     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
                     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -259,7 +273,6 @@
                         mobileMenuToggle.querySelector('i').classList.add('fa-bars');
                     }
                 }
-                // No se previene el default, para que el navegador siga el href
             }
         });
     });
@@ -284,18 +297,7 @@
         }
     });
 
-    // Función para el modelo 3D
-    const modelViewer = document.querySelector('model-viewer');
-    if (modelViewer) {
-      modelViewer.addEventListener('load', () => {
-        console.log('Modelo 3D cargado correctamente.');
-      });
-      modelViewer.addEventListener('error', (event) => {
-        console.error('Error al cargar el modelo 3D:', event);
-      });
-    }
-
-    // Lógica para el menú hamburguesa (ahora con transformación de ícono)
+    // Lógica para el menú hamburguesa
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
 
@@ -317,7 +319,6 @@
             }
         });
         
-        // Cierra el menú si se hace clic en el backdrop (el área oscurecida)
         document.body.addEventListener('click', (e) => {
             if (document.body.classList.contains('menu-active') && 
                 !mobileNavOverlay.contains(e.target) && 
@@ -329,6 +330,144 @@
                 mobileMenuToggle.querySelector('i').classList.remove('fa-times');
                 mobileMenuToggle.querySelector('i').classList.add('fa-bars');
             }
+        });
+    }
+
+    // --- CÓDIGO PARA CONTROLAR EL ÚNICO MODEL-VIEWER ---
+    const mainModelViewer = document.getElementById('mainModelViewer');
+
+    // Estado para guardar las configuraciones de cada modelo
+    const modelConfigs = {
+        "animacionAbertura.glb": {
+            animation: "AperturaCompletaYSalida",
+            cameraOrbit: "0deg 80deg 2.8m", 
+            cameraTarget: "0.0m 0.6m 0.0m", 
+            fieldOfView: "35deg" 
+        },
+        "vistaComponentes.glb": {
+            animation: "VistaComponentesAnim", 
+            // Nuevos valores para "Desglosar Componentes":
+            // Elevación del objetivo a 1.0m y mayor distancia (4.5m)
+            cameraOrbit: "0deg 75deg 4.5m", 
+            cameraTarget: "0.0m 1.0m 0.0m", 
+            fieldOfView: "55deg" 
+        }
+    };
+
+    // Función para aplicar la configuración de la cámara al model-viewer
+    const applyCameraConfig = (viewer, config) => {
+        if (config.cameraOrbit) viewer.cameraOrbit = config.cameraOrbit;
+        if (config.cameraTarget) viewer.cameraTarget = config.cameraTarget; 
+        if (config.fieldOfView) viewer.fieldOfView = config.fieldOfView;
+    };
+
+    if (mainModelViewer) {
+      mainModelViewer.addEventListener('load', () => {
+        console.log('Modelo principal cargado correctamente:', mainModelViewer.src);
+        
+        mainModelViewer.autoplay = false; 
+        mainModelViewer.animationName = ''; 
+        mainModelViewer.autoRotate = false; 
+        mainModelViewer.cameraControls = true; 
+
+        console.log('Animaciones disponibles en el modelo actual:', mainModelViewer.availableAnimations);
+        
+        // Al cargar, aplicar la configuración de la cámara para el GLB inicial
+        const initialSrc = mainModelViewer.src.split('/').pop(); 
+        if (modelConfigs[initialSrc]) {
+            applyCameraConfig(mainModelViewer, modelConfigs[initialSrc]);
+        }
+      });
+
+      mainModelViewer.addEventListener('error', (event) => {
+        console.error('Error al cargar el modelo 3D:', event);
+      });
+    }
+
+    // Botones para alternar modelos y reproducir animaciones
+    const modelToggleButtons = document.querySelectorAll('.model-toggle-btn');
+    const modelResetButton = document.querySelector('.model-reset-btn');
+
+    if (mainModelViewer && modelToggleButtons.length > 0) {
+        modelToggleButtons.forEach(button => {
+            button.addEventListener('click', async () => {
+                const newModelSrc = button.dataset.modelSrc;
+                const animName = button.dataset.animationName;
+                const cameraOrbit = button.dataset.cameraOrbit;
+                const cameraTarget = button.dataset.cameraTarget; 
+                const fieldOfView = button.dataset.fieldOfView;
+
+                // Si el modelo ya está cargado y es el mismo, solo reiniciamos y reproducimos la animación
+                if (mainModelViewer.src.endsWith(newModelSrc)) {
+                    console.log(`Modelo ${newModelSrc} ya cargado. Reiniciando y reproduciendo animación.`);
+                    mainModelViewer.pause();
+                    mainModelViewer.currentTime = 0; // Asegura que empiece desde el inicio
+                    mainModelViewer.animationName = animName;
+                    const playback = mainModelViewer.play({ repetition: 1 }); // Reproduce una vez
+
+                    // Usa la promesa de reproducción para saber cuándo termina la animación
+                    playback.then(() => {
+                        mainModelViewer.pause(); // Pausa explícitamente al final para que se quede en el último frame
+                    }).catch((error) => {
+                        // Manejar si la promesa es rechazada (ej. si la animación se detiene manualmente)
+                        console.error('Error o interrupción de la animación:', error);
+                    });
+
+                    applyCameraConfig(mainModelViewer, { cameraOrbit, cameraTarget, fieldOfView }); 
+                } else {
+                    // Si es un modelo diferente, lo cambiamos y esperamos que cargue
+                    console.log(`Cambiando modelo a: ${newModelSrc}`);
+                    mainModelViewer.pause();
+                    mainModelViewer.animationName = ''; 
+                    mainModelViewer.autoRotate = false; 
+                    mainModelViewer.src = newModelSrc; 
+
+                    // Espera a que el nuevo modelo cargue completamente
+                    await mainModelViewer.updateComplete; 
+                    
+                    console.log(`Nuevo modelo ${newModelSrc} cargado. Animaciones disponibles:`, mainModelViewer.availableAnimations);
+
+                    // Una vez cargado, reproducir la animación deseada y aplicar config de cámara
+                    if (mainModelViewer.availableAnimations.includes(animName)) {
+                        console.log(`Reproduciendo animación: ${animName}`);
+                        mainModelViewer.animationName = animName;
+                        mainModelViewer.currentTime = 0; 
+                        const playback = mainModelViewer.play({ repetition: 1 }); // Reproduce una vez
+
+                        playback.then(() => {
+                            mainModelViewer.pause(); // Pausa explícitamente al final
+                        }).catch((error) => {
+                            console.error('Error o interrupción de la animación:', error);
+                        });
+                        applyCameraConfig(mainModelViewer, { cameraOrbit, cameraTarget, fieldOfView }); 
+                    } else {
+                        console.warn(`Animación '${animName}' no encontrada en el modelo ${newModelSrc}.`);
+                        mainModelViewer.animationName = ''; 
+                        applyCameraConfig(mainModelViewer, { cameraOrbit, cameraTarget, fieldOfView }); 
+                    }
+                }
+            });
+        });
+    }
+
+    // Botón para reiniciar la vista del modelo actual
+    if (modelResetButton) {
+        modelResetButton.addEventListener('click', () => {
+            mainModelViewer.pause();
+            mainModelViewer.currentTime = 0;
+            mainModelViewer.animationName = '';
+            mainModelViewer.autoRotate = false; 
+
+            // Obtener la configuración de cámara del modelo actual
+            const currentSrc = mainModelViewer.src.split('/').pop();
+            if (modelConfigs[currentSrc]) {
+                applyCameraConfig(mainModelViewer, modelConfigs[currentSrc]);
+            } else {
+                mainModelViewer.cameraOrbit = '0deg 75deg auto'; 
+                mainModelViewer.cameraTarget = 'auto auto auto'; 
+                mainModelViewer.fieldOfView = 'auto';
+            }
+            console.log(`Vista del modelo ${currentSrc} reiniciada a su estado inicial.`);
         });
     }
   </script>
