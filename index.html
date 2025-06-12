@@ -5,6 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>E-Skate Project | Innovación en Movilidad Urbana</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* ESTILOS PARA HOTSPOTS */
+        .Hotspot {
+            background-color: #FFD700 !important; /* Color amarillo del hotspot */
+            border-radius: 8px !important; /* Bordes redondeados del hotspot */
+            padding: 6px 10px !important;
+            color: #333 !important; /* Color del texto del hotspot */
+            font-weight: bold !important;
+            text-decoration: none !important;
+            transition: background-color 0.3s ease !important;
+            white-space: nowrap !important; /* Evita que el texto se divida en varias líneas */
+            pointer-events: auto !important; /* Asegura que el hotspot sea clickeable */
+            
+            /* POSICIONAMIENTO PARA MOVER A LA DERECHA */
+            /* Mueve el hotspot a la derecha del punto de anclaje */
+            left: 100% !important; /* Coloca el borde izquierdo del hotspot en el punto de anclaje */
+            
+            /* Ajuste fino para la posición horizontal y vertical */
+            transform: translate(75px, -50%) !important; /* Ajustar el primer valor (20px) para la distancia a la derecha */
+                                                     /* El segundo valor (-50%) centra verticalmente el hotspot */
+            
+            /* Asegura que no haya otras propiedades de posicionamiento que interfieran */
+            top: 50% !important; 
+            right: unset !important;
+            bottom: unset !important;
+        }
+
+        .Hotspot[data-surface]:before {
+            content: '' !important;
+            position: absolute !important;
+            top: 50% !important;
+            right: 100% !important; /* Coloca el triángulo a la izquierda del hotspot */
+            transform: translateY(-50%) !important;
+            width: 0 !important;
+            height: 0 !important;
+            border-top: 5px solid transparent !important;
+            border-bottom: 5px solid transparent !important;
+            border-right: 5px solid #FFD700 !important; /* Color del triángulo */
+        }
+
+        .Hotspot:hover {
+            background-color: #FFA500 !important; /* Color del hotspot al pasar el ratón */
+        }
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
