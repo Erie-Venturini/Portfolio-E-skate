@@ -361,46 +361,59 @@ h2::after {
     --mv-control-button-background-color: rgba(0,0,0,0.5);
 }
 
-.hotspot-button {
-    background-color: var(--accent-yellow); /* Botones de hotspot en amarillo */
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    transition: transform 0.2s ease;
-}
-
-.hotspot-button:hover {
-    transform: scale(1.2);
-    background-color: #FFB700; /* Un amarillo más oscuro al hover */
-}
-
-.hotspot-annotation {
-    background-color: rgba(15, 45, 82, 0.95); /* secondary-dark con opacidad */
-    color: var(--light-text);
-    padding: 8px 12px;
+/* Estilos para los Hotspots (botones dentro del modelo 3D) */
+model-viewer button.hotspot-button {
+    background-color: rgba(0, 123, 255, 0.7); /* Azul semi-transparente */
+    border: 2px solid white;
     border-radius: 8px;
-    font-size: 0.9rem;
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    pointer-events: none;
-    border: 1px solid var(--accent-yellow); /* Borde en amarillo */
+    padding: 8px 12px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+    opacity: 0; /* Por defecto invisibles, JS los hará visibles */
+    pointer-events: none; /* No clickeables hasta que sean visibles */
 }
 
-.hotspot-button:hover .hotspot-annotation {
-    opacity: 1;
-    visibility: visible;
+/* Visibilidad controlada por el atributo 'visible' en model-viewer */
+model-viewer[visible] button.hotspot-button {
+    opacity: 1; /* Hacemos los hotspots visibles */
+    pointer-events: auto; /* Hacemos los hotspots clickeables */
+}
+
+model-viewer button.hotspot-button:hover {
+    background-color: rgba(0, 86, 179, 0.9);
+    transform: translateY(-2px);
+}
+
+/* Asegura que los model-controls principales tengan un margen */
+.model-controls {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px; 
+    margin-bottom: 25px; 
+}
+
+/* El botón "Volver a Componentes" también debe tener un estilo similar a btn-primary */
+#backToGeneralViewBtn {
+    background-color: #28a745; /* Un color distinto para "Volver" */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#backToGeneralViewBtn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
 }
 
 

@@ -1,489 +1,694 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-Skate Project | Innovación en Movilidad Urbana</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Skate Project | Innovación en Movilidad Urbana</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-  <aside class="sidebar sidebar-left">
-    <a href="#hero" class="sidebar-item" data-tooltip="Inicio"><i class="fas fa-home"></i></a>
-    <a href="#about" class="sidebar-item" data-tooltip="Visión del Proyecto"><i class="fas fa-lightbulb"></i></a>
-    <a href="#product-showcase" class="sidebar-item" data-tooltip="Explora el Producto"><i class="fas fa-cube"></i></a>
-    <a href="#features" class="sidebar-item" data-tooltip="Características Clave"><i class="fas fa-cogs"></i></a>
-    <a href="#contact" class="sidebar-item" data-tooltip="Contáctanos"><i class="fas fa-envelope"></i></a>
-  </aside>
+    <aside class="sidebar sidebar-left">
+        <a href="#hero" class="sidebar-item" data-tooltip="Inicio"><i class="fas fa-home"></i></a>
+        <a href="#about" class="sidebar-item" data-tooltip="Visión del Proyecto"><i class="fas fa-lightbulb"></i></a>
+        <a href="#product-showcase" class="sidebar-item" data-tooltip="Explora el Producto"><i class="fas fa-cube"></i></a>
+        <a href="#features" class="sidebar-item" data-tooltip="Características Clave"><i class="fas fa-cogs"></i></a>
+        <a href="#contact" class="sidebar-item" data-tooltip="Contáctanos"><i class="fas fa-envelope"></i></a>
+    </aside>
 
-  <aside class="sidebar sidebar-right">
-    <a href="#survey" class="sidebar-item" data-tooltip="Participa en la Encuesta"><i class="fas fa-poll-h"></i></a>
-    <a href="resultados.html" class="sidebar-item" data-tooltip="Resultados"><i class="fas fa-chart-bar"></i></a>
-    <a href="analisisCompetencia.html" class="sidebar-item" data-tooltip="Análisis de la Competencia"><i class="fas fa-balance-scale"></i></a>
-  </aside>
+    <aside class="sidebar sidebar-right">
+        <a href="#survey" class="sidebar-item" data-tooltip="Participa en la Encuesta"><i class="fas fa-poll-h"></i></a>
+        <a href="resultados.html" class="sidebar-item" data-tooltip="Resultados"><i class="fas fa-chart-bar"></i></a>
+        <a href="analisisCompetencia.html" class="sidebar-item" data-tooltip="Análisis de la Competencia"><i class="fas fa-balance-scale"></i></a>
+    </aside>
 
-  <header>
-    <div class="container">
-      <h1 class="logo-text">E-Skate Project</h1>
-      <p class="tagline">Innovación y Futuro en Movilidad Urbana</p>
-      <div class="menu-icon" id="mobileMenuToggle">
-          <i class="fas fa-bars"></i>
-      </div>
-    </div>
-  </header>
-
-  <nav class="mobile-nav-overlay" id="mobileNavOverlay">
-      <div class="mobile-nav-header"></div>
-      <div class="mobile-nav-section">
-          <h3 class="mobile-nav-category-title">Página Principal</h3>
-          <ul class="mobile-nav-list">
-              <li><a href="#hero" class="mobile-nav-item"><i class="fas fa-home"></i> Inicio</a></li>
-              <li><a href="#about" class="mobile-nav-item"><i class="fas fa-lightbulb"></i> Visión del Proyecto</a></li>
-              <li><a href="#product-showcase" class="mobile-nav-item"><i class="fas fa-cube"></i> Explora el Producto</a></li>
-              <li><a href="#features" class="mobile-nav-item"><i class="fas fa-cogs"></i> Características Clave</a></li>
-              <li><a href="#contact" class="mobile-nav-item"><i class="fas fa-envelope"></i> Contáctanos</a></li>
-          </ul>
-      </div>
-      <div class="mobile-nav-section">
-          <h3 class="mobile-nav-category-title">Economía del Producto</h3>
-          <ul class="mobile-nav-list">
-              <li><a href="#survey" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Participa en la Encuesta</a></li>
-              <li><a href="resultados.html" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
-              <li><a href="analisisCompetencia.html" class="mobile-nav-item"><i class="fas fa-balance-scale"></i> Análisis de la Competencia</a></li>
-          </ul>
-      </div>
-  </nav>
-
-  <main>
-    <section id="hero" class="hero-section">
-      <div class="container">
-        <div class="hero-content">
-          <h2>Transformando el Viaje Urbano</h2>
-          <p class="hero-description">Nuestro sistema de seguimiento y control redefine la experiencia del skate eléctrico, ofreciendo seguridad, eficiencia y una conexión sin precedentes.</p>
-          <a href="http://eskate.onrender.com" class="btn-primary hero-btn">Conocer Nuestra Página</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section-padded content-section">
-      <div class="container">
-        <h2>Nuestra Visión: Movilidad Inteligente</h2>
-        <div class="about-grid">
-          <div class="about-text">
-            <p>
-              En E-Skate Project, nos dedicamos a la fusión de tecnología y transporte personal. Nuestro objetivo es crear un ecosistema donde los vehículos como los skates eléctricos no solo sean rápidos y divertidos, sino también seguros e inteligentes.
-            </p>
-            <p>
-              Esta iniciativa surge de la necesidad de comprender cómo un sistema de rastreo GPS, control remoto y análisis de datos puede impactar positivamente la experiencia del usuario y abordar preocupaciones clave como el robo y la optimización del rendimiento. Creemos en un futuro donde cada viaje es una experiencia conectada y protegida.
-            </p>
-          </div>
-          <div class="about-image">
-            <img src="https://billiken.lat/wp-content/uploads/2023/11/DESTACADA-BILLIKEN-9-1.png" alt="Persona usando un skate eléctrico" class="responsive-img">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="product-showcase" class="section-padded accent-bg">
-      <div class="container text-center">
-        <h2>Explora Nuestro Concepto en 3D</h2>
-        <p class="description">Gira, haz zoom y descubre cada detalle de nuestros prototipos. Una visión interactiva del futuro.</p>
-
-        <div class="model-viewer-container">
-          <model-viewer
-            id="mainModelViewer" 
-            src="animacionAbertura.glb" 
-            alt="Modelo 3D interactivo"
-            camera-controls
-            shadow-intensity="1"
-            ar
-            ar-modes="webxr quick-look scene-viewer"
-            seamless-poster
-            environment-image="neutral"
-            exposure="1"
-            interaction-prompt="none"
-            class="interactive-model"
-            
-            min-camera-orbit="auto auto 8.0m"
-            max-camera-orbit="auto auto 100.0m" 
-            > 
-            <button slot="poster" class="loading-spinner"></button>
-          </model-viewer>
-        </div>
-
-        <div class="model-controls">
-            <button class="btn-primary model-toggle-btn" 
-                    data-model-src="animacionAbertura.glb" 
-                    data-animation-name="AperturaCompletaYSalida">Abrir Caja y Sacar Skate</button>
-            
-            <button class="btn-primary model-toggle-btn" 
-                    data-model-src="vistaComponentes.glb" 
-                    data-animation-name="VistaComponentes">Desglosar Componentes</button>
-            
-            <button class="btn-primary model-reset-btn">Reiniciar Vista Actual</button>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="features" class="section-padded content-section">
-      <div class="container">
-        <h2>Características que Impulsan el Futuro</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <i class="fas fa-map-marker-alt"></i>
-            <h3>Rastreo GPS en Tiempo Real</h3>
-            <p>Monitorea la ubicación exacta de tu skate desde cualquier lugar, con actualizaciones instantáneas y geocercas personalizables.</p>
-          </div>
-          <div class="feature-card">
-            <i class="fas fa-lock"></i>
-            <h3>Bloqueo Remoto Inteligente</h3>
-            <p>Asegura tu vehículo con un toque. Bloquea las ruedas remotamente para disuadir robos o recuperarlo más fácilmente.</p>
-          </div>
-          <div class="feature-card">
-            <i class="fas fa-chart-line"></i>
-            <h3>Análisis de Rendimiento</h3>
-            <p>Accede a estadísticas de tus viajes: distancia, velocidad promedio, rutas y consumo de batería para optimizar tu experiencia.</p>
-          </div>
-          <div class="feature-card">
-            <i class="fas fa-bell"></i>
-            <h3>Alertas de Seguridad Instantáneas</h3>
-            <p>Recibe notificaciones en tu móvil si tu skate se mueve inesperadamente o sale de una zona segura predefinida.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="survey" class="section-padded accent-bg">
-      <div class="container text-center">
-        <h2>Tu Voz Impulsa la Innovación</h2>
-        <p class="description">Tu opinión es fundamental para dar forma al futuro de la movilidad inteligente. Ayúdanos a construir la solución perfecta.</p>
-
-        <div class="button-group">
-          <button id="toggleFormBtn" class="btn-primary">Cerrar Encuesta</button>
-          <a href="resultados.html" class="btn-primary">Ver Análisis de Resultados</a>
-        </div>
-
-        <div id="formContainer" class="form-embed-wrapper">
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSc1aDMNoK8InEa-Y-MXDXiM-DX-NnrUMotyScSR15nSBSJb1Q/viewform?embedded=true"
-            width="100%"
-            height="700"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0">
-            Cargando…
-          </iframe>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section-padded content-section">
+    <header>
         <div class="container">
-            <h2>Hablemos de Futuro</h2>
-            <p class="description">¿Interesado en saber más o colaborar? Contáctanos para explorar las posibilidades.</p>
-            <div class="contact-info-grid">
-                <div class="contact-detail">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>Córdoba, Argentina</p>
-                </div>
-                <div class="contact-detail">
-                    <i class="fas fa-envelope"></i>
-                    <p><a href="mailto:eskatevz@gmail.com">eskatevz@gmail.com</a></p>
-                </div>
-                <div class="contact-detail">
-                    <i class="fas fa-phone"></i>
-                    <p><a href="tel:+5493571419879">+54 3571 419879</a></p>
-                </div>
-            </div>
-            <div class="social-icons-contact">
-                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <h1 class="logo-text">E-Skate Project</h1>
+            <p class="tagline">Innovación y Futuro en Movilidad Urbana</p>
+            <div class="menu-icon" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
-    </section>
-  </main>
+    </header>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 E-Skate Project. Todos los derechos reservados.</p>
-    </div>
-  </footer>
+    <nav class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav-header"></div>
+        <div class="mobile-nav-section">
+            <h3 class="mobile-nav-category-title">Página Principal</h3>
+            <ul class="mobile-nav-list">
+                <li><a href="#hero" class="mobile-nav-item"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#about" class="mobile-nav-item"><i class="fas fa-lightbulb"></i> Visión del Proyecto</a></li>
+                <li><a href="#product-showcase" class="mobile-nav-item"><i class="fas fa-cube"></i> Explora el Producto</a></li>
+                <li><a href="#features" class="mobile-nav-item"><i class="fas fa-cogs"></i> Características Clave</a></li>
+                <li><a href="#contact" class="mobile-nav-item"><i class="fas fa-envelope"></i> Contáctanos</a></li>
+            </ul>
+        </div>
+        <div class="mobile-nav-section">
+            <h3 class="mobile-nav-category-title">Economía del Producto</h3>
+            <ul class="mobile-nav-list">
+                <li><a href="#survey" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Participa en la Encuesta</a></li>
+                <li><a href="resultados.html" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
+                <li><a href="analisisCompetencia.html" class="mobile-nav-item"><i class="fas fa-balance-scale"></i> Análisis de la Competencia</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <script>
-    // Toggle para el formulario de la encuesta
-    const toggleBtn = document.getElementById('toggleFormBtn');
-    const formContainer = document.getElementById('formContainer');
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Transformando el Viaje Urbano</h2>
+                    <p class="hero-description">Nuestro sistema de seguimiento y control redefine la experiencia del skate eléctrico, ofreciendo seguridad, eficiencia y una conexión sin precedentes.</p>
+                    <a href="http://eskate.onrender.com" class="btn-primary hero-btn">Conocer Nuestra Página</a>
+                </div>
+            </div>
+        </section>
 
-    // Estado inicial: Encuesta visible, botón dice "Cerrar Encuesta"
-    if (formContainer && toggleBtn) {
-        formContainer.style.display = 'block';
-        toggleBtn.textContent = 'Cerrar Encuesta';
+        <section id="about" class="section-padded content-section">
+            <div class="container">
+                <h2>Nuestra Visión: Movilidad Inteligente</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>
+                            En E-Skate Project, nos dedicamos a la fusión de tecnología y transporte personal. Nuestro objetivo es crear un ecosistema donde los vehículos como los skates eléctricos no solo sean rápidos y divertidos, sino también seguros e inteligentes.
+                        </p>
+                        <p>
+                            Esta iniciativa surge de la necesidad de comprender cómo un sistema de rastreo GPS, control remoto y análisis de datos puede impactar positivamente la experiencia del usuario y abordar preocupaciones clave como el robo y la optimización del rendimiento. Creemos en un futuro donde cada viaje es una experiencia conectada y protegida.
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://billiken.lat/wp-content/uploads/2023/11/DESTACADA-BILLIKEN-9-1.png" alt="Persona usando un skate eléctrico" class="responsive-img">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        toggleBtn.addEventListener('click', () => {
-            const isVisible = formContainer.style.display !== 'none';
-            formContainer.style.display = isVisible ? 'none' : 'block';
-            toggleBtn.textContent = isVisible ? 'Abrir Encuesta' : 'Cerrar Encuesta';
-        });
-    }
+        <section id="product-showcase" class="section-padded accent-bg">
+            <div class="container text-center">
+                <h2>Explora Nuestro Concepto en 3D</h2>
+                <p class="description">Gira, haz zoom y descubre cada detalle de nuestros prototipos. Una visión interactiva del futuro.</p>
 
-    // Navegación suave para todos los enlaces ancla y externos
-    document.querySelectorAll('a[href^="#"], a[href="resultados.html"], a[href="analisisCompetencia.html"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            
-            if (href.startsWith('#')) {
-                e.preventDefault(); 
-                const targetId = href;
-                const targetElement = document.querySelector(targetId);
+                <div class="model-and-description-wrapper">
+                    <div class="model-viewer-container">
+                        <model-viewer
+                            id="mainModelViewer" 
+                            src="animacionAbertura.glb" 
+                            alt="Modelo 3D interactivo"
+                            camera-controls
+                            shadow-intensity="1"
+                            ar
+                            ar-modes="webxr quick-look scene-viewer"
+                            seamless-poster
+                            environment-image="neutral"
+                            exposure="1"
+                            interaction-prompt="none"
+                            class="interactive-model"
+                            min-camera-orbit="auto auto 0.1m" max-camera-orbit="auto auto 20.0m" 
+                            > 
+                            <button slot="poster" class="loading-spinner"></button>
 
-                if (this.classList.contains('mobile-nav-item')) {
-                    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-                    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-                    if (mobileNavOverlay && mobileMenuToggle) {
-                        mobileNavOverlay.classList.remove('is-open');
-                        document.body.classList.remove('menu-active');
-                        document.body.style.overflow = '';
-                        mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                        mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-                    }
-                }
+                            <button class="Hotspot" slot="hotspot-1" data-surface="6 0 3823 3842 3806 0.95 0.104 0.021" data-component-name="DHT22" data-model-src="dht22.glb">DHT22</button>
+                            <button class="Hotspot" slot="hotspot-2" data-surface="7 0 754 756 757 0.6 0.437 0.086" data-component-name="GPS" data-model-src="gps.glb">GY6MW</button>
+                            <button class="Hotspot" slot="hotspot-3" data-surface="2 0 1363 1378 1341 0.45 0.125 0.554" data-component-name="ESP32" data-model-src="esp32.glb">ESP32</button>
+                            
+                            <div class="progress-bar hide" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                            <button slot="ar-button" id="ar-button">
+                                View in your space
+                            </button>
+                            <div id="ar-prompt">
+                                <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+                            </div>
+                        </model-viewer>
+                    </div>
+                    
+                    <div id="componentDescription" class="component-description" style="display: none;">
+                        <h3>Detalles del Componente</h3>
+                        <p id="componentText"></p>
+                    </div>
+                </div> 
+                <div class="model-controls">
+                    <button class="btn-primary model-toggle-btn" 
+                            data-model-src="animacionAbertura.glb" 
+                            data-animation-name="AperturaCompletaYSalida">Abrir Caja y Sacar Skate</button>
+                    
+                    <button class="btn-primary model-toggle-btn" 
+                            data-model-src="vistaComponentes.glb" 
+                            data-animation-name="VistaComponentes">Desglosar Componentes</button>
+                    
+                    <button class="btn-primary model-reset-btn">Reiniciar Vista Actual</button>
 
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - (document.querySelector('header')?.offsetHeight || 0),
-                        behavior: "smooth"
-                    });
-                }
-            } else {
-                if (this.classList.contains('mobile-nav-item')) {
-                    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-                    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-                    if (mobileNavOverlay && mobileMenuToggle) {
-                        mobileNavOverlay.classList.remove('is-open');
-                        document.body.classList.remove('menu-active');
-                        document.body.style.overflow = '';
-                        mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                        mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-                    }
-                }
-            }
-        });
-    });
+                    <button class="btn-primary" id="backToGeneralViewBtn" style="display: none;"
+                            data-model-src="vistaComponentes.glb" 
+                            data-animation-name="VistaComponentes">Volver a Componentes</button>
+                </div>
 
-    // Tooltip para el sidebar
-    document.querySelectorAll('.sidebar-item').forEach(item => {
-        const tooltipText = item.getAttribute('data-tooltip');
-        if (tooltipText) {
-            item.style.position = 'relative';
-            item.addEventListener('mouseenter', function() {
-                const tooltip = document.createElement('span');
-                tooltip.classList.add('custom-tooltip');
-                tooltip.textContent = tooltipText;
-                this.appendChild(tooltip);
-            });
-            item.addEventListener('mouseleave', function() {
-                const tooltip = this.querySelector('.custom-tooltip');
-                if (tooltip) {
-                    tooltip.remove();
-                }
+            </div>
+        </section>
+
+        <section id="features" class="section-padded content-section">
+            <div class="container">
+                <h2>Características que Impulsan el Futuro</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Rastreo GPS en Tiempo Real</h3>
+                        <p>Monitorea la ubicación exacta de tu skate desde cualquier lugar, con actualizaciones instantáneas y geocercas personalizables.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-lock"></i>
+                        <h3>Bloqueo Remoto Inteligente</h3>
+                        <p>Asegura tu vehículo con un toque. Bloquea las ruedas remotamente para disuadir robos o recuperarlo más fácilmente.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Análisis de Rendimiento</h3>
+                        <p>Accede a estadísticas de tus viajes: distancia, velocidad promedio, rutas y consumo de batería para optimizar tu experiencia.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bell"></i>
+                        <h3>Alertas de Seguridad Instantáneas</h3>
+                        <p>Recibe notificaciones en tu móvil si tu skate se mueve inesperadamente o sale de una zona segura predefinida.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="survey" class="section-padded accent-bg">
+            <div class="container text-center">
+                <h2>Tu Voz Impulsa la Innovación</h2>
+                <p class="description">Tu opinión es fundamental para dar forma al futuro de la movilidad inteligente. Ayúdanos a construir la solución perfecta.</p>
+
+                <div class="button-group">
+                    <button id="toggleFormBtn" class="btn-primary">Cerrar Encuesta</button>
+                    <a href="resultados.html" class="btn-primary">Ver Análisis de Resultados</a>
+                </div>
+
+                <div id="formContainer" class="form-embed-wrapper">
+                    <iframe
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSc1aDMNoK8InEa-Y-MXDXiM-DX-NnrUMotyScSR15nSBSJb1Q/viewform?embedded=true"
+                        width="100%"
+                        height="700"
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0">
+                        Cargando…
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padded content-section">
+            <div class="container">
+                <h2>Hablemos de Futuro</h2>
+                <p class="description">¿Interesado en saber más o colaborar? Contáctanos para explorar las posibilidades.</p>
+                <div class="contact-info-grid">
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Córdoba, Argentina</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <p><a href="mailto:eskatevz@gmail.com">eskatevz@gmail.com</a></p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <p><a href="tel:+5493571419879">+54 3571 419879</a></p>
+                    </div>
+                </div>
+                <div class="social-icons-contact">
+                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 E-Skate Project. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle para el formulario de la encuesta
+        const toggleBtn = document.getElementById('toggleFormBtn');
+        const formContainer = document.getElementById('formContainer');
+
+        // Estado inicial: Encuesta visible, botón dice "Cerrar Encuesta"
+        if (formContainer && toggleBtn) {
+            formContainer.style.display = 'block';
+            toggleBtn.textContent = 'Cerrar Encuesta';
+
+            toggleBtn.addEventListener('click', () => {
+                const isVisible = formContainer.style.display !== 'none';
+                formContainer.style.display = isVisible ? 'none' : 'block';
+                toggleBtn.textContent = isVisible ? 'Abrir Encuesta' : 'Cerrar Encuesta';
             });
         }
-    });
 
-    // Lógica para el menú hamburguesa
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-
-    if (mobileMenuToggle && mobileNavOverlay) {
-        mobileMenuToggle.addEventListener('click', () => {
-            const isMenuOpen = mobileNavOverlay.classList.contains('is-open');
-            if (isMenuOpen) {
-                mobileNavOverlay.classList.remove('is-open');
-                document.body.classList.remove('menu-active');
-                document.body.style.overflow = '';
-                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-            } else {
-                mobileNavOverlay.classList.add('is-open');
-                document.body.classList.add('menu-active');
-                document.body.style.overflow = 'hidden';
-                mobileMenuToggle.querySelector('i').classList.remove('fa-bars');
-                mobileMenuToggle.querySelector('i').classList.add('fa-times');
-            }
-        });
-        
-        document.body.addEventListener('click', (e) => {
-            if (document.body.classList.contains('menu-active') && 
-                !mobileNavOverlay.contains(e.target) && 
-                !mobileMenuToggle.contains(e.target)) {
+        // Navegación suave para todos los enlaces ancla y externos
+        document.querySelectorAll('a[href^="#"], a[href="resultados.html"], a[href="analisisCompetencia.html"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
                 
-                mobileNavOverlay.classList.remove('is-open');
-                document.body.classList.remove('menu-active');
-                document.body.style.overflow = '';
-                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-            }
+                if (href.startsWith('#')) {
+                    e.preventDefault(); 
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
+
+                    if (this.classList.contains('mobile-nav-item')) {
+                        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+                        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                        if (mobileNavOverlay && mobileMenuToggle) {
+                            mobileNavOverlay.classList.remove('is-open');
+                            document.body.classList.remove('menu-active');
+                            document.body.style.overflow = '';
+                            mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                            mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                        }
+                    }
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - (document.querySelector('header')?.offsetHeight || 0),
+                            behavior: "smooth"
+                        });
+                    }
+                } else {
+                    if (this.classList.contains('mobile-nav-item')) {
+                        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+                        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                        if (mobileNavOverlay && mobileMenuToggle) {
+                            mobileNavOverlay.classList.remove('is-open');
+                            document.body.classList.remove('menu-active');
+                            document.body.style.overflow = '';
+                            mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                            mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                        }
+                    }
+                }
+            });
         });
-    }
 
-    // --- CÓDIGO PARA CONTROLAR EL MODEL-VIEWER ---
-    const mainModelViewer = document.getElementById('mainModelViewer');
+        // Tooltip para el sidebar
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            const tooltipText = item.getAttribute('data-tooltip');
+            if (tooltipText) {
+                item.style.position = 'relative';
+                item.addEventListener('mouseenter', function() {
+                    const tooltip = document.createElement('span');
+                    tooltip.classList.add('custom-tooltip');
+                    tooltip.textContent = tooltipText;
+                    this.appendChild(tooltip);
+                });
+                item.addEventListener('mouseleave', function() {
+                    const tooltip = this.querySelector('.custom-tooltip');
+                    if (tooltip) {
+                        tooltip.remove();
+                    }
+                });
+            }
+        }); /* CORRECCIÓN: Este era el }) } que estaba mal. Se eliminó un }) extra que había antes de este. */
 
-    // Configuraciones para cada modelo
-    const modelConfigs = {
-        "animacionAbertura.glb": {
-            animation: "AperturaCompletaYSalida",
-            cameraOrbit: "0deg 80deg 2.8m", // Restaurado a su valor original
-            cameraTarget: "0.0m 0.6m 0.0m",
-            fieldOfView: "35deg",
-            autoRotate: false
-        },
-        "vistaComponentes.glb": {
-            animation: "VistaComponentes",
-            // Ajuste la distancia para acercar la cámara
-            cameraOrbit: "0deg 75deg 10.0m", // Puedes ajustar este valor (ej. 10.0m, 20.0m)
-            cameraTarget: "0.0m 1.0m 0.0m",  
-            fieldOfView: "65deg", 
-            autoRotate: true 
+
+        // Lógica para el menú hamburguesa
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+        if (mobileMenuToggle && mobileNavOverlay) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isMenuOpen = mobileNavOverlay.classList.contains('is-open');
+                if (isMenuOpen) {
+                    mobileNavOverlay.classList.remove('is-open');
+                    document.body.classList.remove('menu-active');
+                    document.body.style.overflow = '';
+                    mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                    mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                } else {
+                    mobileNavOverlay.classList.add('is-open');
+                    document.body.classList.add('menu-active');
+                    document.body.style.overflow = 'hidden';
+                    mobileMenuToggle.querySelector('i').classList.remove('fa-bars');
+                    mobileMenuToggle.querySelector('i').classList.add('fa-times');
+                }
+            });
+            
+            document.body.addEventListener('click', (e) => {
+                if (document.body.classList.contains('menu-active') && 
+                    !mobileNavOverlay.contains(e.target) && 
+                    !mobileMenuToggle.contains(e.target)) {
+                    
+                    mobileNavOverlay.classList.remove('is-open');
+                    document.body.classList.remove('menu-active');
+                    document.body.style.overflow = '';
+                    mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                    mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
         }
-    };
 
-    // Función para aplicar configuración de cámara y autoRotate
-    const applyModelConfig = (viewer, config) => {
-        viewer.cameraOrbit = config.cameraOrbit;
-        viewer.cameraTarget = config.cameraTarget;
-        viewer.fieldOfView = config.fieldOfView;
-        viewer.autoRotate = config.autoRotate !== undefined ? config.autoRotate : false;
-    };
+        // --- CÓDIGO PARA CONTROLAR EL MODEL-VIEWER ---
+        const mainModelViewer = document.getElementById('mainModelViewer');
+        const modelControls = document.querySelector('.model-controls');
+        const backToGeneralViewBtn = document.getElementById('backToGeneralViewBtn');
+        const hotspotButtons = document.querySelectorAll('.Hotspot'); 
+        // Nuevas referencias para la descripción del componente
+        const componentDescriptionDiv = document.getElementById('componentDescription');
+        const componentTextParagraph = document.getElementById('componentText');
 
-    if (mainModelViewer) {
-        mainModelViewer.addEventListener('load', () => {
-            console.log('Modelo principal cargado:', mainModelViewer.src);
-            
-            mainModelViewer.autoplay = false;
-            mainModelViewer.animationName = '';
-            mainModelViewer.cameraControls = true;
-            
-            const initialModelSrc = mainModelViewer.src.split('/').pop();
-            // Asegurarse de que la configuración exista para el modelo inicial
-            const initialConfig = modelConfigs[initialModelSrc]; 
-            if (initialConfig) {
-                applyModelConfig(mainModelViewer, initialConfig);
+
+        // Función para controlar la visibilidad de los hotspots
+        const setHotspotsVisibility = (isVisible) => {
+            hotspotButtons.forEach(hotspot => {
+                hotspot.style.display = isVisible ? 'block' : 'none';
+            });
+        };
+
+        // Configuraciones para cada modelo (incluyendo componentes individuales)
+        const modelConfigs = {
+            "animacionAbertura.glb": {
+                animation: "AperturaCompletaYSalida",
+                cameraOrbit: "0deg 80deg 8.0m", 
+                cameraTarget: "0.0m 0.6m 0.0m",
+                fieldOfView: "35deg",
+                autoRotate: false,
+                hotspotsVisible: false,
+                description: "" // No descripción para esta vista
+            },
+            "vistaComponentes.glb": {
+                animation: "VistaComponentes",
+                cameraOrbit: "0deg 75deg 10.0m", 
+                cameraTarget: "0.0m 1.0m 0.0m",  
+                fieldOfView: "65deg", 
+                autoRotate: true,
+                hotspotsVisible: true,
+                description: "" // No descripción para esta vista
+            },
+            "gps.glb": { 
+                cameraOrbit: "0deg 75deg 0.2m", 
+                cameraTarget: "0.0m 0.0m 0.0m", 
+                fieldOfView: "45deg", 
+                autoRotate: true,
+                hotspotsVisible: false,
+                // NUEVO: Descripción para el GPS
+                description: "Este es el sensor GPS (GY-6MW), encargado de rastrear la ubicación en tiempo real de tu skate. Su precisión es crucial para el monitoreo y seguridad del dispositivo." 
+            },
+            "dht22.glb": { 
+                cameraOrbit: "0deg 75deg 10.0m", 
+                cameraTarget: "0.3m -0.7m 0.05m", 
+                fieldOfView: "45deg",
+                autoRotate: false,
+                hotspotsVisible: false,
+                // NUEVO: Descripción para el DHT22
+                description: "El sensor DHT22 mide la temperatura y humedad ambiental. Esta información es útil para monitorear las condiciones operativas del skate y su entorno."
+            },
+            "esp32.glb": { 
+                cameraOrbit: "0deg 75deg 8.0m", 
+                cameraTarget: "0.0m 0.0m 0.0m", 
+                fieldOfView: "45deg",
+                autoRotate: true,
+                hotspotsVisible: false,
+                // NUEVO: Descripción para el ESP32
+                description: "El ESP32 es el microcontrolador principal, la 'cerebro' del sistema. Gestiona todas las funciones, desde la lectura de sensores hasta la comunicación inalámbrica y el control remoto del skate."
             }
-        });
+        };
 
-        mainModelViewer.addEventListener('error', (event) => {
-            console.error('Error al cargar el modelo 3D:', event);
-        });
-    }
+        // Función para aplicar configuración de cámara y autoRotate
+        const applyModelConfig = (viewer, config) => {
+            viewer.cameraOrbit = config.cameraOrbit;
+            viewer.cameraTarget = config.cameraTarget;
+            viewer.fieldOfView = config.fieldOfView;
+            viewer.autoRotate = config.autoRotate !== undefined ? config.autoRotate : false;
+            setHotspotsVisibility(config.hotspotsVisible); // Aplicar visibilidad de hotspots
+            
+            // NUEVO: Mostrar la descripción si existe
+            if (config.description && config.description !== "") {
+                componentTextParagraph.textContent = config.description;
+                componentDescriptionDiv.style.display = 'block';
+            } else {
+                componentTextParagraph.textContent = '';
+                componentDescriptionDiv.style.display = 'none';
+            }
+        };
 
-    // Control de botones para cambiar modelos y animaciones
-    const modelToggleButtons = document.querySelectorAll('.model-toggle-btn');
-    const modelResetButton = document.querySelector('.model-reset-btn');
+        if (mainModelViewer) {
+            mainModelViewer.addEventListener('load', () => {
+                console.log('Modelo principal cargado:', mainModelViewer.src);
+                
+                mainModelViewer.autoplay = false;
+                mainModelViewer.animationName = '';
+                mainModelViewer.cameraControls = true;
+                
+                const initialModelSrc = mainModelViewer.src.split('/').pop();
+                const initialConfig = modelConfigs[initialModelSrc]; 
+                if (initialConfig) {
+                    applyModelConfig(mainModelViewer, initialConfig);
+                }
 
-    if (mainModelViewer && modelToggleButtons.length > 0) {
-        modelToggleButtons.forEach(button => {
-            button.addEventListener('click', async () => {
-                const newModelSrc = button.dataset.modelSrc;
-                const animName = button.dataset.animationName;
-                // Obtener la configuración específica para el nuevo modelo
-                const config = modelConfigs[newModelSrc]; 
+                // Si el modelo inicial es vistaComponentes.glb, ir al final de la animación
+                if (initialModelSrc === "vistaComponentes.glb") {
+                    if (initialConfig.animation && mainModelViewer.availableAnimations.includes(initialConfig.animation)) {
+                        mainModelViewer.animationName = initialConfig.animation;
+                        mainModelViewer.currentTime = mainModelViewer.duration; // Ir al final
+                        mainModelViewer.pause();
+                        setHotspotsVisibility(true); // Asegurar que los hotspots estén visibles
+                    }
+                } else {
+                    setHotspotsVisibility(false); // Ocultar hotspots para el modelo inicial si no es vistaComponentes
+                }
+                backToGeneralViewBtn.style.display = 'none';
+                modelControls.style.display = 'flex'; 
+            });
+
+            mainModelViewer.addEventListener('error', (event) => {
+                console.error('Error al cargar el modelo 3D:', event);
+            });
+        }
+
+        // Control de botones para cambiar modelos y animaciones (botones externos)
+        const modelToggleButtons = document.querySelectorAll('.model-toggle-btn');
+        const modelResetButton = document.querySelector('.model-reset-btn');
+
+        if (mainModelViewer && modelToggleButtons.length > 0) {
+            modelToggleButtons.forEach(button => {
+                button.addEventListener('click', async () => {
+                    const newModelSrc = button.dataset.modelSrc;
+                    const animName = button.dataset.animationName;
+                    const config = modelConfigs[newModelSrc]; 
+
+                    if (!config) {
+                        console.error(`No se encontró configuración para el modelo: ${newModelSrc}`);
+                        return;
+                    }
+
+                    backToGeneralViewBtn.style.display = 'none';
+                    modelControls.style.display = 'flex'; // Mostrar controles principales
+
+                    if (mainModelViewer.src.endsWith(newModelSrc)) {
+                        console.log(`Modelo ${newModelSrc} ya cargado. Preparando animación.`);
+                        applyModelConfig(mainModelViewer, config);
+                        
+                        if (animName && mainModelViewer.availableAnimations.includes(animName)) {
+                            mainModelViewer.animationName = animName;
+                            mainModelViewer.currentTime = 0; // Iniciar la animación desde el principio
+
+                            const playback = mainModelViewer.play({ repetitions: 1 });
+                            if (playback && typeof playback.then === 'function') {
+                                playback.then(() => {
+                                    mainModelViewer.pause();
+                                    // Si la animación de vistaComponentes o AperturaCompletaYSalida termina, asegurar que esté en el último frame
+                                    if (newModelSrc === "vistaComponentes.glb" || newModelSrc === "animacionAbertura.glb") {
+                                        mainModelViewer.currentTime = mainModelViewer.duration; 
+                                    } else {
+                                        mainModelViewer.currentTime = 0; 
+                                    }
+                                    console.log(`Animación ${animName} terminada y pausada.`);
+                                }).catch(error => {
+                                    console.error('Error o interrupción de la animación:', error);
+                                });
+                            }
+                        } else {
+                            console.warn(`Animación '${animName}' no encontrada.`);
+                            mainModelViewer.animationName = '';
+                            mainModelViewer.pause();
+                            mainModelViewer.currentTime = 0;
+                        }
+                    } else { // Si el modelo NO está cargado, cárgalo primero y luego reproduce la animación
+                        console.log(`Cambiando a modelo: ${newModelSrc}`);
+                        mainModelViewer.pause();
+                        mainModelViewer.animationName = ''; 
+                        mainModelViewer.src = newModelSrc;
+
+                        await mainModelViewer.updateComplete; // Esperar a que el nuevo modelo se cargue
+                        
+                        applyModelConfig(mainModelViewer, config);
+                        
+                        if (animName && mainModelViewer.availableAnimations.includes(animName)) {
+                            mainModelViewer.animationName = animName;
+                            mainModelViewer.currentTime = 0; // Iniciar la animación desde el principio
+
+                            const playback = mainModelViewer.play({ repetitions: 1 });
+                            if (playback && typeof playback.then === 'function') {
+                               playback.then(() => {
+                                    mainModelViewer.pause();
+                                    // Si la animación de vistaComponentes o AperturaCompletaYSalida termina, asegurar que esté en el último frame
+                                    if (newModelSrc === "vistaComponentes.glb" || newModelSrc === "animacionAbertura.glb") {
+                                        mainModelViewer.currentTime = mainModelViewer.duration; 
+                                    } else {
+                                        mainModelViewer.currentTime = 0; 
+                                    }
+                                    console.log(`Animación ${animName} terminada y pausada.`);
+                                }).catch(error => {
+                                    console.error('Error o interrupción de la animación:', error);
+                                });
+                            }
+                        } else {
+                            console.warn(`Animación '${animName}' no encontrada en el nuevo modelo.`);
+                            mainModelViewer.animationName = ''; 
+                            mainModelViewer.pause();
+                            mainModelViewer.currentTime = 0;
+                        }
+                    }
+                });
+            });
+        }
+
+        // Función para cargar un componente individual (hotspot clickeado)
+        const loadComponentFromHotspot = async (componentSrc) => { 
+            const config = modelConfigs[componentSrc] || {
+                cameraOrbit: mainModelViewer.cameraOrbit,
+                cameraTarget: mainModelViewer.cameraTarget,
+                fieldOfView: mainModelViewer.fieldOfView,
+                autoRotate: true,
+                hotspotsVisible: false,
+                description: "" // Por si no hay una config específica, que no rompa
+            };
+
+            if (!config) {
+                console.error(`No se encontró configuración para el componente: ${componentSrc}`);
+                return;
+            }
+
+            console.log(`Cargando componente individual: ${componentSrc}`);
+            mainModelViewer.pause();
+            mainModelViewer.animationName = '';
+            
+            mainModelViewer.src = componentSrc; 
+
+            await mainModelViewer.updateComplete; 
+            applyModelConfig(mainModelViewer, config); // Esto ya maneja la visibilidad de la descripción
+            setHotspotsVisibility(false); 
+
+            backToGeneralViewBtn.style.display = 'block'; 
+        };
+
+        // Event listeners para los hotspots (botones dentro del modelo 3D)
+        if (hotspotButtons.length > 0) {
+            hotspotButtons.forEach(button => {
+                button.addEventListener('click', () => { 
+                    const componentSrc = button.dataset.modelSrc;
+                    if (componentSrc) {
+                        loadComponentFromHotspot(componentSrc); 
+                    }
+                });
+            });
+        }
+
+        // Botón para reiniciar vista (volver a la configuración inicial o a la vista actual)
+        if (modelResetButton) {
+            modelResetButton.addEventListener('click', async () => { 
+                const currentModelSrc = mainModelViewer.src.split('/').pop();
+                const config = modelConfigs[currentModelSrc]; 
+                
+                mainModelViewer.pause();
+                mainModelViewer.animationName = ''; 
+                
+                // Si estamos en la vista de componentes, necesitamos asegurar que la animación esté al final
+                if (currentModelSrc === "vistaComponentes.glb") {
+                    mainModelViewer.src = "vistaComponentes.glb"; 
+                    await mainModelViewer.updateComplete; 
+                    mainModelViewer.animationName = config.animation; 
+                    mainModelViewer.currentTime = mainModelViewer.duration; 
+                    mainModelViewer.pause(); 
+                    setHotspotsVisibility(true); 
+                    // NUEVO: Ocultar descripción
+                    componentTextParagraph.textContent = '';
+                    componentDescriptionDiv.style.display = 'none';
+                } else if (currentModelSrc.endsWith("animacionAbertura.glb")) { 
+                    mainModelViewer.src = "animacionAbertura.glb"; 
+                    await mainModelViewer.updateComplete; 
+                    mainModelViewer.animationName = config.animation; 
+                    mainModelViewer.currentTime = 0; 
+                    mainModelViewer.pause(); 
+                    setHotspotsVisibility(false); 
+                    // NUEVO: Ocultar descripción
+                    componentTextParagraph.textContent = '';
+                    componentDescriptionDiv.style.display = 'none';
+                } else { 
+                    const defaultModelConfig = modelConfigs["animacionAbertura.glb"]; 
+                    if (defaultModelConfig) {
+                        mainModelViewer.src = "animacionAbertura.glb";
+                        await mainModelViewer.updateComplete;
+                        applyModelConfig(mainModelViewer, defaultModelConfig);
+                        setHotspotsVisibility(false); 
+                        mainModelViewer.currentTime = 0;
+                        mainModelViewer.pause();
+                        // NUEVO: Ocultar descripción
+                        componentTextParagraph.textContent = '';
+                        componentDescriptionDiv.style.display = 'none';
+                    }
+                }
+                
+                console.log(`Vista reiniciada para modelo ${currentModelSrc}`);
+                
+                backToGeneralViewBtn.style.display = 'none';
+                modelControls.style.display = 'flex'; 
+            });
+        }
+
+        // Botón para volver a la vista general de componentes (si estás viendo uno individual)
+        if (backToGeneralViewBtn) {
+            backToGeneralViewBtn.addEventListener('click', async () => {
+                console.log('Volviendo a la vista general de componentes...');
+                const newModelSrc = backToGeneralViewBtn.dataset.modelSrc; 
+                const animName = backToGeneralViewBtn.dataset.animationName; 
+                const config = modelConfigs[newModelSrc];
 
                 if (!config) {
                     console.error(`No se encontró configuración para el modelo: ${newModelSrc}`);
                     return;
                 }
 
-                if (mainModelViewer.src.endsWith(newModelSrc)) {
-                    console.log(`Modelo ${newModelSrc} ya cargado. Preparando animación.`);
-                    
-                    applyModelConfig(mainModelViewer, config);
-                    
-                    if (animName && mainModelViewer.availableAnimations.includes(animName)) {
-                        console.log('Animaciones disponibles:', mainModelViewer.availableAnimations);
-                        mainModelViewer.animationName = animName;
-                        mainModelViewer.currentTime = 0;
+                mainModelViewer.pause();
+                mainModelViewer.animationName = ''; 
 
-                        const playback = mainModelViewer.play({ repetitions: 1 });
-                        if (playback && typeof playback.then === 'function') {
-                            playback.then(() => {
-                                mainModelViewer.pause();
-                                mainModelViewer.currentTime = mainModelViewer.duration; 
-                                console.log(`Animación ${animName} terminada y pausada en el último frame.`);
-                            }).catch(error => {
-                                console.error('Error o interrupción de la animación:', error);
-                            });
-                        }
-                    } else {
-                        console.warn(`Animación '${animName}' no encontrada.`);
-                        mainModelViewer.animationName = '';
-                        mainModelViewer.pause();
-                        mainModelViewer.currentTime = 0;
-                    }
-                } else {
-                    console.log(`Cambiando a modelo: ${newModelSrc}`);
-                    mainModelViewer.pause();
-                    mainModelViewer.animationName = ''; 
-                    mainModelViewer.src = newModelSrc;
+                mainModelViewer.src = newModelSrc; 
 
-                    await mainModelViewer.updateComplete;
-                    
-                    applyModelConfig(mainModelViewer, config);
-                    
-                    if (animName && mainModelViewer.availableAnimations.includes(animName)) {
-                        console.log(`Nuevo modelo cargado. Animaciones:`, mainModelViewer.availableAnimations);
-                        console.log(`Reproduciendo animación: ${animName}`);
-                        mainModelViewer.animationName = animName;
-                        mainModelViewer.currentTime = 0; 
-
-                        const playback = mainModelViewer.play({ repetitions: 1 });
-                        if (playback && typeof playback.then === 'function') {
-                           playback.then(() => {
-                                mainModelViewer.pause();
-                                mainModelViewer.currentTime = mainModelViewer.duration; 
-                                console.log(`Animación ${animName} terminada y pausada en el último frame.`);
-                            }).catch(error => {
-                                console.error('Error o interrupción de la animación:', error);
-                            });
-                        }
-                    } else {
-                        console.warn(`Animación '${animName}' no encontrada en el nuevo modelo.`);
-                        mainModelViewer.animationName = ''; 
-                        mainModelViewer.pause();
-                        mainModelViewer.currentTime = 0;
-                    }
-                }
-            });
-        });
-    }
-
-    // Botón para reiniciar vista
-    if (modelResetButton) {
-        modelResetButton.addEventListener('click', () => {
-            const currentModelSrc = mainModelViewer.src.split('/').pop();
-            const config = modelConfigs[currentModelSrc]; // Obtener la configuración del modelo actual
-            
-            mainModelViewer.pause();
-            mainModelViewer.currentTime = 0;
-            mainModelViewer.animationName = ''; 
-            
-            if (config) {
+                await mainModelViewer.updateComplete; 
                 applyModelConfig(mainModelViewer, config);
-            } else {
-                // Fallback a valores predeterminados si no hay una config específica
-                mainModelViewer.cameraOrbit = '0deg 75deg auto';
-                mainModelViewer.cameraTarget = 'auto auto auto';
-                mainModelViewer.fieldOfView = 'auto';
-                mainModelViewer.autoRotate = false;
-            }
-            console.log(`Vista reiniciada para modelo ${currentModelSrc}`);
-        });
-    }
-  </script>
+
+                if (animName && mainModelViewer.availableAnimations.includes(animName)) {
+                    mainModelViewer.animationName = animName;
+                    mainModelViewer.currentTime = mainModelViewer.duration; 
+                    mainModelViewer.pause(); 
+                    console.log(`Cargado ${newModelSrc} y pausado en el último frame de ${animName}.`);
+                    setHotspotsVisibility(true); 
+                }
+                
+                backToGeneralViewBtn.style.display = 'none';
+                modelControls.style.display = 'flex'; 
+                // NUEVO: Ocultar descripción al volver a la vista de componentes
+                componentTextParagraph.textContent = '';
+                componentDescriptionDiv.style.display = 'none';
+            });
+        }
+    </script>
 </body>
 </html>
