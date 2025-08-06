@@ -18,10 +18,10 @@
             transition: background-color 0.3s ease !important;
             white-space: nowrap !important;
             pointer-events: auto !important;
-            
+
             left: 100% !important;
             transform: translate(75px, -50%) !important;
-            
+
             top: 50% !important;
             right: unset !important;
             bottom: unset !important;
@@ -44,49 +44,12 @@
             background-color: #FFA500 !important;
         }
 
-        /* --- ESTILOS DEL HEADER --- */
-        /* Aseguramos que el header se posicione por encima de los menús laterales */
-        header {
-            position: relative; 
-            z-index: 10;
-        }
-
-        /* Contenedor principal del header, usa Flexbox para centrar el contenido */
-        header .container {
-            display: flex;
-            align-items: center; 
-            justify-content: center; /* Centra el contenido principal horizontalmente */
-            width: 100%; 
-            padding: 10px 20px;
-        }
-
-        /* Estilo de la imagen del logo */
-        header img {
-            height: 125px; 
-            width: auto; 
-            margin-right: 40px; /* Separamos la imagen del bloque de texto */
-        }
-
-        /* Contenedor que agrupa el título y el eslogan */
-        .logo-text-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        /* Estilos del título */
-        .logo-text {
-            margin: 0;
-        }
-
-        /* Estilos del eslogan */
-        .tagline {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 1.5em; /* Tamaño más grande */
-            color: #FFD700; /* Color amarillo */
+        /* Estilos para la imagen del banner */
+        .banner-image {
+            width: 100%; /* Asegura que la imagen ocupe todo el ancho disponible */
+            max-height: 200px; /* Limita la altura máxima del banner */
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+            display: block; /* Elimina cualquier espacio extra debajo de la imagen */
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -108,21 +71,10 @@
         <a href="analisisCompetencia.html" class="sidebar-item" data-tooltip="Análisis de la Competencia"><i class="fas fa-balance-scale"></i></a>
     </aside>
 
-    <header>
-        <div class="container">
-            <img src="eskate.png" >
-            <div class="logo-text-group">
-                <h1 class="logo-text">E-Skate</h1>
-                <p class="tagline">Fast is not enough</p>
-            </div>
-            <div class="menu-icon" id="mobileMenuToggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
+    <!-- La imagen eskate.png ahora actúa como el banner principal -->
+    <img src="eskate.png" alt="E-Skate Banner" class="banner-image">
 
     </body>
-</html>
 
     <nav class="mobile-nav-overlay" id="mobileNavOverlay">
         <div class="mobile-nav-header"></div>
