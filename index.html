@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>E-Skate Project | Innovación en Movilidad Urbana</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="style.css" />
     <style>
         /* ESTILOS PARA HOTSPOTS */
         .Hotspot {
@@ -69,12 +68,10 @@
         <a href="#survey" class="sidebar-item" data-tooltip="Participa en la Encuesta"><i class="fas fa-poll-h"></i></a>
         <a href="resultados.html" class="sidebar-item" data-tooltip="Resultados"><i class="fas fa-chart-bar"></i></a>
         <a href="analisisCompetencia.html" class="sidebar-item" data-tooltip="Análisis de la Competencia"><i class="fas fa-balance-scale"></i></a>
+        <a href="conocenos.html" class="sidebar-item" data-tooltip="Conocenos"><i class="fas fa-user"></i></a>
     </aside>
 
-    <!-- La imagen eskate.png ahora actúa como el banner principal -->
     <img src="eskate.png" alt="E-Skate Banner" class="banner-image">
-
-    </body>
 
     <nav class="mobile-nav-overlay" id="mobileNavOverlay">
         <div class="mobile-nav-header"></div>
@@ -94,6 +91,7 @@
                 <li><a href="#survey" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Participa en la Encuesta</a></li>
                 <li><a href="resultados.html" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
                 <li><a href="analisisCompetencia.html" class="mobile-nav-item"><i class="fas fa-balance-scale"></i> Análisis de la Competencia</a></li>
+                <li><a href="conocenos.html" class="mobile-nav-item"><i class="fas fa-user"></i> Conocenos</a></li>
             </ul>
         </div>
     </nav>
@@ -296,7 +294,7 @@
         }
 
         // Navegación suave para todos los enlaces ancla y externos
-        document.querySelectorAll('a[href^="#"], a[href="resultados.html"], a[href="analisisCompetencia.html"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"], a[href="resultados.html"], a[href="analisisCompetencia.html"], a[href="conocenos.html"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 
@@ -357,8 +355,7 @@
                     }
                 });
             }
-        }); /* CORRECCIÓN: Este era el }) } que estaba mal. Se eliminó un }) extra que había antes de este. */
-
+        });
 
         // Lógica para el menú hamburguesa
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -401,10 +398,8 @@
         const modelControls = document.querySelector('.model-controls');
         const backToGeneralViewBtn = document.getElementById('backToGeneralViewBtn');
         const hotspotButtons = document.querySelectorAll('.Hotspot'); 
-        // Nuevas referencias para la descripción del componente
         const componentDescriptionDiv = document.getElementById('componentDescription');
         const componentTextParagraph = document.getElementById('componentText');
-
 
         // Función para controlar la visibilidad de los hotspots
         const setHotspotsVisibility = (isVisible) => {
@@ -422,7 +417,7 @@
                 fieldOfView: "35deg",
                 autoRotate: false,
                 hotspotsVisible: false,
-                description: "" // No descripción para esta vista
+                description: ""
             },
             "vistaComponentes.glb": {
                 animation: "VistaComponentes",
@@ -431,7 +426,7 @@
                 fieldOfView: "65deg", 
                 autoRotate: true,
                 hotspotsVisible: true,
-                description: "" // No descripción para esta vista
+                description: ""
             },
             "gps.glb": { 
                 cameraOrbit: "0deg 75deg 6.0m", 
@@ -439,7 +434,6 @@
                 fieldOfView: "45deg", 
                 autoRotate: true,
                 hotspotsVisible: false,
-                // NUEVO: Descripción para el GPS
                 description: "Este es el sensor GPS (GY-6MW), encargado de rastrear la ubicación en tiempo real de tu skate. Su precisión es crucial para el monitoreo y seguridad del dispositivo." 
             },
             "dht22.glb": { 
@@ -448,7 +442,6 @@
                 fieldOfView: "45deg",
                 autoRotate: false,
                 hotspotsVisible: false,
-                // NUEVO: Descripción para el DHT22
                 description: "El sensor DHT22 mide la temperatura y humedad ambiental. Esta información es útil para monitorear las condiciones operativas del skate y su entorno."
             },
             "esp32.glb": { 
@@ -457,7 +450,6 @@
                 fieldOfView: "45deg",
                 autoRotate: true,
                 hotspotsVisible: false,
-                // NUEVO: Descripción para el ESP32
                 description: "El ESP32 es el microcontrolador principal, la 'cerebro' del sistema. Gestiona todas las funciones, desde la lectura de sensores hasta la comunicación inalámbrica y el control remoto del skate."
             }
         };
@@ -468,9 +460,8 @@
             viewer.cameraTarget = config.cameraTarget;
             viewer.fieldOfView = config.fieldOfView;
             viewer.autoRotate = config.autoRotate !== undefined ? config.autoRotate : false;
-            setHotspotsVisibility(config.hotspotsVisible); // Aplicar visibilidad de hotspots
+            setHotspotsVisibility(config.hotspotsVisible);
             
-            // NUEVO: Mostrar la descripción si existe
             if (config.description && config.description !== "") {
                 componentTextParagraph.textContent = config.description;
                 componentDescriptionDiv.style.display = 'block';
@@ -494,16 +485,15 @@
                     applyModelConfig(mainModelViewer, initialConfig);
                 }
 
-                // Si el modelo inicial es vistaComponentes.glb, ir al final de la animación
                 if (initialModelSrc === "vistaComponentes.glb") {
                     if (initialConfig.animation && mainModelViewer.availableAnimations.includes(initialConfig.animation)) {
                         mainModelViewer.animationName = initialConfig.animation;
-                        mainModelViewer.currentTime = mainModelViewer.duration; // Ir al final
+                        mainModelViewer.currentTime = mainModelViewer.duration;
                         mainModelViewer.pause();
-                        setHotspotsVisibility(true); // Asegurar que los hotspots estén visibles
+                        setHotspotsVisibility(true);
                     }
                 } else {
-                    setHotspotsVisibility(false); // Ocultar hotspots para el modelo inicial si no es vistaComponentes
+                    setHotspotsVisibility(false);
                 }
                 backToGeneralViewBtn.style.display = 'none';
                 modelControls.style.display = 'flex'; 
@@ -514,7 +504,6 @@
             });
         }
 
-        // Control de botones para cambiar modelos y animaciones (botones externos)
         const modelToggleButtons = document.querySelectorAll('.model-toggle-btn');
         const modelResetButton = document.querySelector('.model-reset-btn');
 
@@ -531,7 +520,7 @@
                     }
 
                     backToGeneralViewBtn.style.display = 'none';
-                    modelControls.style.display = 'flex'; // Mostrar controles principales
+                    modelControls.style.display = 'flex';
 
                     if (mainModelViewer.src.endsWith(newModelSrc)) {
                         console.log(`Modelo ${newModelSrc} ya cargado. Preparando animación.`);
@@ -539,13 +528,12 @@
                         
                         if (animName && mainModelViewer.availableAnimations.includes(animName)) {
                             mainModelViewer.animationName = animName;
-                            mainModelViewer.currentTime = 0; // Iniciar la animación desde el principio
+                            mainModelViewer.currentTime = 0;
 
                             const playback = mainModelViewer.play({ repetitions: 1 });
                             if (playback && typeof playback.then === 'function') {
                                 playback.then(() => {
                                     mainModelViewer.pause();
-                                    // Si la animación de vistaComponentes o AperturaCompletaYSalida termina, asegurar que esté en el último frame
                                     if (newModelSrc === "vistaComponentes.glb" || newModelSrc === "animacionAbertura.glb") {
                                         mainModelViewer.currentTime = mainModelViewer.duration; 
                                     } else {
@@ -562,25 +550,24 @@
                             mainModelViewer.pause();
                             mainModelViewer.currentTime = 0;
                         }
-                    } else { // Si el modelo NO está cargado, cárgalo primero y luego reproduce la animación
+                    } else {
                         console.log(`Cambiando a modelo: ${newModelSrc}`);
                         mainModelViewer.pause();
                         mainModelViewer.animationName = ''; 
                         mainModelViewer.src = newModelSrc;
 
-                        await mainModelViewer.updateComplete; // Esperar a que el nuevo modelo se cargue
+                        await mainModelViewer.updateComplete;
                         
                         applyModelConfig(mainModelViewer, config);
                         
                         if (animName && mainModelViewer.availableAnimations.includes(animName)) {
                             mainModelViewer.animationName = animName;
-                            mainModelViewer.currentTime = 0; // Iniciar la animación desde el principio
+                            mainModelViewer.currentTime = 0;
 
                             const playback = mainModelViewer.play({ repetitions: 1 });
                             if (playback && typeof playback.then === 'function') {
                                playback.then(() => {
                                     mainModelViewer.pause();
-                                    // Si la animación de vistaComponentes o AperturaCompletaYSalida termina, asegurar que esté en el último frame
                                     if (newModelSrc === "vistaComponentes.glb" || newModelSrc === "animacionAbertura.glb") {
                                         mainModelViewer.currentTime = mainModelViewer.duration; 
                                     } else {
@@ -602,7 +589,6 @@
             });
         }
 
-        // Función para cargar un componente individual (hotspot clickeado)
         const loadComponentFromHotspot = async (componentSrc) => { 
             const config = modelConfigs[componentSrc] || {
                 cameraOrbit: mainModelViewer.cameraOrbit,
@@ -610,7 +596,7 @@
                 fieldOfView: mainModelViewer.fieldOfView,
                 autoRotate: true,
                 hotspotsVisible: false,
-                description: "" // Por si no hay una config específica, que no rompa
+                description: ""
             };
 
             if (!config) {
@@ -625,13 +611,12 @@
             mainModelViewer.src = componentSrc; 
 
             await mainModelViewer.updateComplete; 
-            applyModelConfig(mainModelViewer, config); // Esto ya maneja la visibilidad de la descripción
+            applyModelConfig(mainModelViewer, config);
             setHotspotsVisibility(false); 
 
             backToGeneralViewBtn.style.display = 'block'; 
         };
 
-        // Event listeners para los hotspots (botones dentro del modelo 3D)
         if (hotspotButtons.length > 0) {
             hotspotButtons.forEach(button => {
                 button.addEventListener('click', () => { 
@@ -643,7 +628,6 @@
             });
         }
 
-        // Botón para reiniciar vista (volver a la configuración inicial o a la vista actual)
         if (modelResetButton) {
             modelResetButton.addEventListener('click', async () => { 
                 const currentModelSrc = mainModelViewer.src.split('/').pop();
@@ -652,7 +636,6 @@
                 mainModelViewer.pause();
                 mainModelViewer.animationName = ''; 
                 
-                // Si estamos en la vista de componentes, necesitamos asegurar que la animación esté al final
                 if (currentModelSrc === "vistaComponentes.glb") {
                     mainModelViewer.src = "vistaComponentes.glb"; 
                     await mainModelViewer.updateComplete; 
@@ -660,7 +643,6 @@
                     mainModelViewer.currentTime = mainModelViewer.duration; 
                     mainModelViewer.pause(); 
                     setHotspotsVisibility(true); 
-                    // NUEVO: Ocultar descripción
                     componentTextParagraph.textContent = '';
                     componentDescriptionDiv.style.display = 'none';
                 } else if (currentModelSrc.endsWith("animacionAbertura.glb")) { 
@@ -670,7 +652,6 @@
                     mainModelViewer.currentTime = 0; 
                     mainModelViewer.pause(); 
                     setHotspotsVisibility(false); 
-                    // NUEVO: Ocultar descripción
                     componentTextParagraph.textContent = '';
                     componentDescriptionDiv.style.display = 'none';
                 } else { 
@@ -682,7 +663,6 @@
                         setHotspotsVisibility(false); 
                         mainModelViewer.currentTime = 0;
                         mainModelViewer.pause();
-                        // NUEVO: Ocultar descripción
                         componentTextParagraph.textContent = '';
                         componentDescriptionDiv.style.display = 'none';
                     }
@@ -695,7 +675,6 @@
             });
         }
 
-        // Botón para volver a la vista general de componentes (si estás viendo uno individual)
         if (backToGeneralViewBtn) {
             backToGeneralViewBtn.addEventListener('click', async () => {
                 console.log('Volviendo a la vista general de componentes...');
@@ -726,7 +705,6 @@
                 
                 backToGeneralViewBtn.style.display = 'none';
                 modelControls.style.display = 'flex'; 
-                // NUEVO: Ocultar descripción al volver a la vista de componentes
                 componentTextParagraph.textContent = '';
                 componentDescriptionDiv.style.display = 'none';
             });

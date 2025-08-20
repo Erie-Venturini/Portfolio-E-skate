@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Skate Project | Conócenos</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* ESTILOS PARA HOTSPOTS (mantenidos por consistencia, aunque no se usen en esta página) */
+        .Hotspot {
+            background-color: #FFD700 !important;
+            border-radius: 8px !important;
+            padding: 6px 10px !important;
+            color: #333 !important;
+            font-weight: bold !important;
+            text-decoration: none !important;
+            transition: background-color 0.3s ease !important;
+            white-space: nowrap !important;
+            pointer-events: auto !important;
+
+            left: 100% !important;
+            transform: translate(75px, -50%) !important;
+
+            top: 50% !important;
+            right: unset !important;
+            bottom: unset !important;
+        }
+
+        .Hotspot[data-surface]:before {
+            content: '' !important;
+            position: absolute !important;
+            top: 50% !important;
+            right: 100% !important;
+            transform: translateY(-50%) !important;
+            width: 0 !important;
+            height: 0 !important;
+            border-top: 5px solid transparent !important;
+            border-bottom: 5px solid transparent !important;
+            border-right: 5px solid #FFD700 !important;
+        }
+
+        .Hotspot:hover {
+            background-color: #FFA500 !important;
+        }
+
+        /* Estilos para la imagen del banner y otras imágenes */
+        .banner-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Estilos para el video y la imagen de publicidad */
+        .video-container, .publicidad-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .video-container video, .publicidad-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para las tarjetas de presentación */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+
+        .card-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilos para las secciones */
+        .section-padded {
+            padding: 60px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <aside class="sidebar sidebar-right">
+        <a href="index.html#hero" class="sidebar-item" data-tooltip="Inicio"><i class="fas fa-home"></i></a>
+        <a href="resultados.html" class="sidebar-item" data-tooltip="Resultados"><i class="fas fa-chart-bar"></i></a>
+        <a href="analisisCompetencia.html" class="sidebar-item" data-tooltip="Análisis de la Competencia"><i class="fas fa-balance-scale"></i></a>
+        <a href="conocenos.html" class="sidebar-item" data-tooltip="Conócenos"><i class="fas fa-user"></i></a>
+    </aside>
+
+    <img src="eskate.png" alt="E-Skate Banner" class="banner-image">
+
+    <nav class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav-header"></div>
+        <div class="mobile-nav-section">
+            <h3 class="mobile-nav-category-title">Página Principal</h3>
+            <ul class="mobile-nav-list">
+                <li><a href="index.html#hero" class="mobile-nav-item"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="index.html#about" class="mobile-nav-item"><i class="fas fa-lightbulb"></i> Visión del Proyecto</a></li>
+                <li><a href="index.html#product-showcase" class="mobile-nav-item"><i class="fas fa-cube"></i> Explora el Producto</a></li>
+                <li><a href="index.html#features" class="mobile-nav-item"><i class="fas fa-cogs"></i> Características Clave</a></li>
+                <li><a href="index.html#contact" class="mobile-nav-item"><i class="fas fa-envelope"></i> Contáctanos</a></li>
+            </ul>
+        </div>
+        <div class="mobile-nav-section">
+            <h3 class="mobile-nav-category-title">Economía del Producto</h3>
+            <ul class="mobile-nav-list">
+                <li><a href="index.html#survey" class="mobile-nav-item"><i class="fas fa-poll-h"></i> Participa en la Encuesta</a></li>
+                <li><a href="resultados.html" class="mobile-nav-item"><i class="fas fa-chart-bar"></i> Resultados</a></li>
+                <li><a href="analisisCompetencia.html" class="mobile-nav-item"><i class="fas fa-balance-scale"></i> Análisis de la Competencia</a></li>
+                <li><a href="conocenos.html" class="mobile-nav-item"><i class="fas fa-user"></i> Conócenos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="video" class="section-padded">
+            <div class="container">
+                <h2>Nuestra Historia en Movimiento</h2>
+                <div class="video-container">
+                    <video controls>
+                        <source src="Eskate.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <section id="publicidad" class="section-padded">
+            <div class="container">
+                <h2>Nuestra Publicidad</h2>
+                <div class="publicidad-container">
+                    <img src="publicidad.png" alt="Publicidad E-Skate">
+                </div>
+            </div>
+        </section>
+
+        <section id="banner" class="section-padded">
+            <div class="container">
+                <h2>Nuestra Identidad</h2>
+                <div class="publicidad-container">
+                    <img src="banner.png" alt="Banner E-Skate">
+                </div>
+            </div>
+        </section>
+
+        <section id="cards" class="section-padded">
+            <div class="container">
+                <h2>Nuestro Equipo</h2>
+                <div class="cards-container">
+                    <img src="1.png" alt="Tarjeta de Presentación 1" class="card-image">
+                    <img src="2.png" alt="Tarjeta de Presentación 2" class="card-image">
+                    <img src="3.png" alt="Tarjeta de Presentación 3" class="card-image">
+                    <img src="4.png" alt="Tarjeta de Presentación 4" class="card-image">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 E-Skate Project. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navegación suave para todos los enlaces ancla y externos
+        document.querySelectorAll('a[href^="#"], a[href="index.html"], a[href="resultados.html"], a[href="analisisCompetencia.html"], a[href="conocenos.html"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                
+                if (href.startsWith('#')) {
+                    e.preventDefault(); 
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
+
+                    if (this.classList.contains('mobile-nav-item')) {
+                        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+                        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                        if (mobileNavOverlay && mobileMenuToggle) {
+                            mobileNavOverlay.classList.remove('is-open');
+                            document.body.classList.remove('menu-active');
+                            document.body.style.overflow = '';
+                            mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                            mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                        }
+                    }
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: "smooth"
+                        });
+                    }
+                } else {
+                    if (this.classList.contains('mobile-nav-item')) {
+                        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+                        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                        if (mobileNavOverlay && mobileMenuToggle) {
+                            mobileNavOverlay.classList.remove('is-open');
+                            document.body.classList.remove('menu-active');
+                            document.body.style.overflow = '';
+                            mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                            mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                        }
+                    }
+                }
+            });
+        });
+
+        // Tooltip para el sidebar
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            const tooltipText = item.getAttribute('data-tooltip');
+            if (tooltipText) {
+                item.style.position = 'relative';
+                item.addEventListener('mouseenter', function() {
+                    const tooltip = document.createElement('span');
+                    tooltip.classList.add('custom-tooltip');
+                    tooltip.textContent = tooltipText;
+                    this.appendChild(tooltip);
+                });
+                item.addEventListener('mouseleave', function() {
+                    const tooltip = this.querySelector('.custom-tooltip');
+                    if (tooltip) {
+                        tooltip.remove();
+                    }
+                });
+            }
+        });
+
+        // Lógica para el menú hamburguesa
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+        if (mobileMenuToggle && mobileNavOverlay) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isMenuOpen = mobileNavOverlay.classList.contains('is-open');
+                if (isMenuOpen) {
+                    mobileNavOverlay.classList.remove('is-open');
+                    document.body.classList.remove('menu-active');
+                    document.body.style.overflow = '';
+                    mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                    mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                } else {
+                    mobileNavOverlay.classList.add('is-open');
+                    document.body.classList.add('menu-active');
+                    document.body.style.overflow = 'hidden';
+                    mobileMenuToggle.querySelector('i').classList.remove('fa-bars');
+                    mobileMenuToggle.querySelector('i').classList.add('fa-times');
+                }
+            });
+            
+            document.body.addEventListener('click', (e) => {
+                if (document.body.classList.contains('menu-active') && 
+                    !mobileNavOverlay.contains(e.target) && 
+                    !mobileMenuToggle.contains(e.target)) {
+                    
+                    mobileNavOverlay.classList.remove('is-open');
+                    document.body.classList.remove('menu-active');
+                    document.body.style.overflow = '';
+                    mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                    mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
